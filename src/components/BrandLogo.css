@@ -1,0 +1,77 @@
+.brand-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.brand-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 18px 40px rgba(0, 119, 182, 0.22));
+}
+
+.brand-logo--hero {
+  width: min(100%, 560px);
+  margin-inline: auto;
+  animation: logoFloat 5.5s ease-in-out infinite;
+}
+
+.brand-logo--hero img {
+  filter:
+    drop-shadow(0 22px 50px rgba(0, 119, 182, 0.28))
+    drop-shadow(0 2px 0 rgba(255, 255, 255, 0.8));
+}
+
+.brand-logo__glow {
+  position: absolute;
+  inset: 18% -4% 10%;
+  border-radius: 40%;
+  background: radial-gradient(circle, rgba(0, 119, 182, 0.28), transparent 68%);
+  filter: blur(22px);
+  z-index: -1;
+  pointer-events: none;
+  animation: glowPulse 4.8s ease-in-out infinite;
+}
+
+.brand-logo--nav {
+  width: clamp(148px, 18vw, 188px);
+}
+
+.brand-logo--nav img {
+  filter: none;
+}
+
+.brand-logo--footer {
+  width: min(100%, 240px);
+}
+
+.brand-logo--footer img {
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
