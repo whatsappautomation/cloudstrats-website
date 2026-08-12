@@ -23,6 +23,7 @@ import {
   productSlugify,
   products,
 } from "../data/products";
+import { industryPath, industrySectors } from "../data/industries";
 import "./Navbar.css";
 
 const serviceIcons = {
@@ -40,20 +41,19 @@ const productIcons = {
 } as const;
 
 const simpleLinks = [
-  { to: "/industries", label: "Industries" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
 ];
 
+type MenuKey = "services" | "products" | "industries" | null;
+
 export function Navbar() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<MenuKey>(null);
+  const [mobileOpen, setMobileOpen] = useState<MenuKey>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -64,10 +64,8 @@ export function Navbar() {
 
   useEffect(() => {
     setOpen(false);
-    setServicesOpen(false);
-    setProductsOpen(false);
-    setMobileServicesOpen(false);
-    setMobileProductsOpen(false);
+    setActiveMenu(null);
+    setMobileOpen(null);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -79,10 +77,13 @@ export function Navbar() {
 
   const servicesActive = location.pathname.startsWith("/services");
   const productsActive = location.pathname.startsWith("/products");
-  const menuOpen = servicesOpen || productsOpen;
+  const industriesActive = location.pathname.startsWith("/industries");
+
+  const openMenu = (key: MenuKey) => setActiveMenu(key);
+  const closeMenus = () => setActiveMenu(null);
 
   return (
-    <header className={`nav ${scrolled || menuOpen ? "nav--scrolled" : ""}`}>
+    <header className={`nav ${scrolled || activeMenu ? "nav--scrolled" : ""}`}>
       <div className="container nav__inner">
         <Link
           to="/"
@@ -105,24 +106,21 @@ export function Navbar() {
           </NavLink>
 
           <div
-            className={`nav__item ${servicesOpen ? "nav__item--open" : ""}`}
-            onMouseEnter={() => {
-              setServicesOpen(true);
-              setProductsOpen(false);
-            }}
-            onMouseLeave={() => setServicesOpen(false)}
+            className={`nav__item ${activeMenu === "services" ? "nav__item--open" : ""}`}
+            onMouseEnter={() => openMenu("services")}
+            onMouseLeave={closeMenus}
           >
             <Link
               to="/services"
               className={`nav__link nav__link--trigger ${servicesActive ? "nav__link--active" : ""}`}
-              aria-expanded={servicesOpen}
+              aria-expanded={activeMenu === "services"}
               aria-haspopup="true"
             >
               Services
               <ChevronDown size={15} className="nav__chevron" />
             </Link>
 
-            <div className={`nav__mega ${servicesOpen ? "nav__mega--open" : ""}`}>
+            <div className={`nav__mega ${activeMenu === "services" ? "nav__mega--open" : ""}`}>
               <div className="nav__mega-inner">
                 <div className="nav__mega-head">
                   <div>
@@ -133,7 +131,6 @@ export function Navbar() {
                     View all services →
                   </Link>
                 </div>
-
                 <div className="nav__mega-grid">
                   {serviceCategories.map((cat) => {
                     const Icon =
@@ -164,26 +161,21 @@ export function Navbar() {
           </div>
 
           <div
-            className={`nav__item ${productsOpen ? "nav__item--open" : ""}`}
-            onMouseEnter={() => {
-              setProductsOpen(true);
-              setServicesOpen(false);
-            }}
-            onMouseLeave={() => setProductsOpen(false)}
+            className={`nav__item ${activeMenu === "products" ? "nav__item--open" : ""}`}
+            onMouseEnter={() => openMenu("products")}
+            onMouseLeave={closeMenus}
           >
             <Link
               to="/products"
               className={`nav__link nav__link--trigger ${productsActive ? "nav__link--active" : ""}`}
-              aria-expanded={productsOpen}
+              aria-expanded={activeMenu === "products"}
               aria-haspopup="true"
             >
               Products
               <ChevronDown size={15} className="nav__chevron" />
             </Link>
 
-            <div
-              className={`nav__mega nav__mega--products ${productsOpen ? "nav__mega--open" : ""}`}
-            >
+            <div className={`nav__mega ${activeMenu === "products" ? "nav__mega--open" : ""}`}>
               <div className="nav__mega-inner nav__mega-inner--products">
                 <div className="nav__mega-head">
                   <div>
@@ -194,17 +186,13 @@ export function Navbar() {
                     View all products →
                   </Link>
                 </div>
-
                 <div className="nav__mega-grid nav__mega-grid--products">
                   {products.map((product) => {
                     const Icon =
                       productIcons[product.id as keyof typeof productIcons] ?? Cloud;
                     return (
                       <div key={product.id} className="nav__mega-col">
-                        <Link
-                          to={productPath(product.id)}
-                          className="nav__mega-title"
-                        >
+                        <Link to={productPath(product.id)} className="nav__mega-title">
                           <span className="nav__mega-icon">
                             <Icon size={16} />
                           </span>
@@ -224,6 +212,48 @@ export function Navbar() {
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`nav__item ${activeMenu === "industries" ? "nav__item--open" : ""}`}
+            onMouseEnter={() => openMenu("industries")}
+            onMouseLeave={closeMenus}
+          >
+            <Link
+              to="/industries"
+              className={`nav__link nav__link--trigger ${industriesActive ? "nav__link--active" : ""}`}
+              aria-expanded={activeMenu === "industries"}
+              aria-haspopup="true"
+            >
+              Industries
+              <ChevronDown size={15} className="nav__chevron" />
+            </Link>
+
+            <div className={`nav__mega ${activeMenu === "industries" ? "nav__mega--open" : ""}`}>
+              <div className="nav__mega-inner nav__mega-inner--industries">
+                <div className="nav__mega-head">
+                  <div>
+                    <p className="nav__mega-kicker">Industries</p>
+                    <h3>Sectors we serve</h3>
+                  </div>
+                  <Link to="/industries" className="nav__mega-all">
+                    View all industries →
+                  </Link>
+                </div>
+                <div className="nav__mega-grid nav__mega-grid--industries">
+                  {industrySectors.map((sector) => (
+                    <Link
+                      key={sector.id}
+                      to={industryPath(sector.id)}
+                      className="nav__industry-link"
+                    >
+                      <strong>{sector.title}</strong>
+                      <span>{sector.summary}</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -267,65 +297,78 @@ export function Navbar() {
           Home
         </NavLink>
 
-        <button
-          type="button"
-          className={`nav__drawer-link nav__drawer-toggle ${servicesActive ? "nav__link--active" : ""}`}
-          onClick={() => setMobileServicesOpen((v) => !v)}
-        >
-          Services
-          <ChevronDown
-            size={18}
-            className={
-              mobileServicesOpen ? "nav__chevron nav__chevron--up" : "nav__chevron"
-            }
-          />
-        </button>
-        {mobileServicesOpen && (
-          <div className="nav__drawer-services">
-            <Link to="/services" onClick={() => setOpen(false)}>
-              All Services
-            </Link>
-            {serviceCategories.map((cat) => (
-              <Link
-                key={cat.id}
-                to={servicePath(cat.id)}
-                onClick={() => setOpen(false)}
-              >
-                {cat.title}
-              </Link>
-            ))}
+        {(
+          [
+            {
+              key: "services" as const,
+              label: "Services",
+              active: servicesActive,
+              allTo: "/services",
+              allLabel: "All Services",
+              items: serviceCategories.map((c) => ({
+                id: c.id,
+                title: c.title,
+                to: servicePath(c.id),
+              })),
+            },
+            {
+              key: "products" as const,
+              label: "Products",
+              active: productsActive,
+              allTo: "/products",
+              allLabel: "All Products",
+              items: products.map((p) => ({
+                id: p.id,
+                title: p.name,
+                to: productPath(p.id),
+              })),
+            },
+            {
+              key: "industries" as const,
+              label: "Industries",
+              active: industriesActive,
+              allTo: "/industries",
+              allLabel: "All Industries",
+              items: industrySectors.map((s) => ({
+                id: s.id,
+                title: s.title,
+                to: industryPath(s.id),
+              })),
+            },
+          ] as const
+        ).map((section) => (
+          <div key={section.key}>
+            <button
+              type="button"
+              className={`nav__drawer-link nav__drawer-toggle ${section.active ? "nav__link--active" : ""}`}
+              onClick={() =>
+                setMobileOpen((v) => (v === section.key ? null : section.key))
+              }
+            >
+              {section.label}
+              <ChevronDown
+                size={18}
+                className={
+                  mobileOpen === section.key
+                    ? "nav__chevron nav__chevron--up"
+                    : "nav__chevron"
+                }
+              />
+            </button>
+            {mobileOpen === section.key && (
+              <div className="nav__drawer-services">
+                <Link to={section.allTo} onClick={() => setOpen(false)}>
+                  {section.allLabel}
+                </Link>
+                {section.items.map((item) => (
+                  <Link key={item.id} to={item.to} onClick={() => setOpen(false)}>
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-
-        <button
-          type="button"
-          className={`nav__drawer-link nav__drawer-toggle ${productsActive ? "nav__link--active" : ""}`}
-          onClick={() => setMobileProductsOpen((v) => !v)}
-        >
-          Products
-          <ChevronDown
-            size={18}
-            className={
-              mobileProductsOpen ? "nav__chevron nav__chevron--up" : "nav__chevron"
-            }
-          />
-        </button>
-        {mobileProductsOpen && (
-          <div className="nav__drawer-services">
-            <Link to="/products" onClick={() => setOpen(false)}>
-              All Products
-            </Link>
-            {products.map((product) => (
-              <Link
-                key={product.id}
-                to={productPath(product.id)}
-                onClick={() => setOpen(false)}
-              >
-                {product.name}
-              </Link>
-            ))}
-          </div>
-        )}
+        ))}
 
         {simpleLinks.map((link) => (
           <NavLink

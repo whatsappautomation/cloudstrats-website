@@ -3,6 +3,83 @@ export type IndustryUseCase = {
   cases: string[];
 };
 
+export type IndustrySector = {
+  id: string;
+  title: string;
+  summary: string;
+};
+
+export const industrySectors: IndustrySector[] = [
+  {
+    id: "defense-aerospace",
+    title: "Defense & Aerospace",
+    summary:
+      "Mission-critical AI, C5I, cybersecurity and infrastructure for defence forces and aerospace programs.",
+  },
+  {
+    id: "government-public-sector",
+    title: "Government & Public Sector",
+    summary:
+      "Secure digital platforms, data intelligence and automation for central, state and public enterprises.",
+  },
+  {
+    id: "banking-financial-services",
+    title: "Banking & Financial Services",
+    summary:
+      "AI, analytics, cloud and cybersecurity solutions for banking, insurance, FinTech and capital markets.",
+  },
+  {
+    id: "healthcare-life-sciences",
+    title: "Healthcare & Life Sciences",
+    summary:
+      "Intelligent systems for hospitals, pharma and life sciences — from monitoring to predictive insights.",
+  },
+  {
+    id: "manufacturing",
+    title: "Manufacturing",
+    summary:
+      "Smart manufacturing, quality analytics, digital twins and industrial automation at scale.",
+  },
+  {
+    id: "telecommunications",
+    title: "Telecommunications",
+    summary:
+      "Network modernization, operations intelligence and secure digital infrastructure for telecom operators.",
+  },
+  {
+    id: "energy-utilities",
+    title: "Energy & Utilities",
+    summary:
+      "Grid intelligence, predictive maintenance and secure operations for oil, gas, power and utilities.",
+  },
+  {
+    id: "retail-consumer",
+    title: "Retail & Consumer",
+    summary:
+      "Customer analytics, automation and data platforms that improve experience and operational efficiency.",
+  },
+  {
+    id: "transportation-logistics",
+    title: "Transportation & Logistics",
+    summary:
+      "Route optimization, fleet intelligence, surveillance and integrated transport management systems.",
+  },
+  {
+    id: "smart-cities-infrastructure",
+    title: "Smart Cities & Infrastructure",
+    summary:
+      "Safe city, command centres, citizen services and critical infrastructure digitalization.",
+  },
+];
+
+export function getIndustryById(id: string) {
+  return industrySectors.find((s) => s.id === id);
+}
+
+export function industryPath(id: string) {
+  return `/industries/${id}`;
+}
+
 export const practices = [
   {
     id: "enterprise",

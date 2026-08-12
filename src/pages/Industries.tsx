@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import {
   aksharUseCases,
+  industryPath,
+  industrySectors,
   mirayaUseCases,
   nayanUseCases,
-  practices,
   swarUseCases,
 } from "../data/industries";
 import "./Industries.css";
@@ -27,25 +30,24 @@ export function Industries() {
           <p className="eyebrow">Industries & Use Cases</p>
           <h1 className="section-title">Intelligent solutions across key sectors</h1>
           <p className="section-lead">
-            From defence and homeland security to BFSI, energy, healthcare and
-            e-government — Cloudstrats delivers measurable mission and business outcomes.
+            From defence and aerospace to BFSI, healthcare, smart cities and
+            critical infrastructure — Cloudstrats delivers measurable outcomes.
           </p>
         </div>
       </section>
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="practices-grid">
-            {practices.map((p, i) => (
-              <Reveal key={p.id} delay={i * 0.05}>
-                <article className="panel practice-card">
-                  <h2>{p.title}</h2>
-                  <ul>
-                    {p.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
+          <div className="sectors-grid">
+            {industrySectors.map((sector, i) => (
+              <Reveal key={sector.id} delay={i * 0.03}>
+                <Link to={industryPath(sector.id)} className="panel sector-card">
+                  <h2>{sector.title}</h2>
+                  <p>{sector.summary}</p>
+                  <span>
+                    Explore <ArrowRight size={14} />
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>

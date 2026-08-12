@@ -1,33 +1,40 @@
-.practices-grid {
+.sectors-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
-.practice-card {
+.sector-card {
   padding: 1.25rem;
-  min-height: 100%;
-}
-
-.practice-card h2 {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-  min-height: 2.8em;
-}
-
-.practice-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.55rem;
+  min-height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.practice-card li {
+.sector-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.sector-card h2 {
+  font-size: 1.15rem;
+}
+
+.sector-card p {
   color: var(--ink-soft);
-  font-weight: 600;
   font-size: 0.92rem;
+  flex: 1;
+}
+
+.sector-card span {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .usecase-section {
@@ -94,13 +101,12 @@
 }
 
 @media (max-width: 1100px) {
-  .practices-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .sectors-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 720px) {
-  .practices-grid,
   .usecase-grid {
     grid-template-columns: 1fr;
   }
