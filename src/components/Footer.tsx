@@ -19,6 +19,9 @@ export function Footer() {
             <Link to="/services">Services</Link>
             <Link to="/products">Products</Link>
             <Link to="/industries">Industries</Link>
+            <Link to="/why-cloudstrats">Why Cloudstrats?</Link>
+            <Link to="/blog">Blog</Link>
+            <Link to="/case-studies">Case Studies</Link>
             <Link to="/about">About</Link>
             <Link to="/careers">Careers</Link>
             <Link to="/contact">Contact</Link>

@@ -1,0 +1,47 @@
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-card {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-height: 100%;
+}
+
+.case-card > span {
+  align-self: flex-start;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #eaf4fb;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.case-card h2 {
+  font-size: 1.15rem;
+}
+
+.case-card p {
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.case-card__link {
+  color: var(--accent);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+@media (max-width: 800px) {
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+}

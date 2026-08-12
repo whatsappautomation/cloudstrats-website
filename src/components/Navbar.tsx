@@ -41,6 +41,7 @@ const productIcons = {
 } as const;
 
 const simpleLinks = [
+  { to: "/why-cloudstrats", label: "Why Cloudstrats?" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
