@@ -1,5 +1,12 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
-import { aiSuites, products } from "../data/products";
+import {
+  aiSuites,
+  productPath,
+  productSlugify,
+  products,
+} from "../data/products";
 import "./Products.css";
 
 export function Products() {
@@ -22,7 +29,9 @@ export function Products() {
               <article id={product.id} className="panel product-detail">
                 <div className="product-detail__intro">
                   <p className="product-detail__tag">{product.tagline}</p>
-                  <h2>{product.name}</h2>
+                  <Link to={productPath(product.id)}>
+                    <h2>{product.name}</h2>
+                  </Link>
                   <p>{product.description}</p>
                   <div className="trait-row">
                     {product.traits.map((t) => (
@@ -30,11 +39,20 @@ export function Products() {
                     ))}
                   </div>
                 </div>
-                <ul>
-                  {product.offerings.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
+                <div>
+                  <ul>
+                    {product.items.map((o) => (
+                      <li key={o}>
+                        <Link to={`${productPath(product.id)}#${productSlugify(o)}`}>
+                          {o}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={productPath(product.id)} className="product-detail__cta">
+                    Open product page <ArrowRight size={15} />
+                  </Link>
+                </div>
               </article>
             </Reveal>
           ))}

@@ -219,7 +219,7 @@ export function Home() {
                   <h3>{product.name}</h3>
                   <p>{product.description}</p>
                   <ul>
-                    {product.offerings.slice(0, 4).map((o) => (
+                    {product.items.map((o) => (
                       <li key={o}>{o}</li>
                     ))}
                   </ul>

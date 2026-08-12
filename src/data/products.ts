@@ -3,7 +3,7 @@ export type Product = {
   name: string;
   tagline: string;
   description: string;
-  offerings: string[];
+  items: string[];
   traits: string[];
 };
 
@@ -14,12 +14,7 @@ export const products: Product[] = [
     tagline: "IaaS · AIaaS · GPUaaS · GCC",
     description:
       "Cloud-native, secure-by-design AI platform delivering Infrastructure as a Service, AI as a Service, GPU as a Service and Government Community Cloud for mission workloads.",
-    offerings: [
-      "Infrastructure as a Service (IaaS)",
-      "AI as a Service (AIaaS)",
-      "GPU as a Service (GPUaaS)",
-      "Government Community Cloud (GCC)",
-    ],
+    items: ["IaaS", "AIaaS", "GPUaaS", "GCC"],
     traits: ["Cloud Native", "Secure by Design", "AI Powered", "Mission Focused"],
   },
   {
@@ -28,32 +23,35 @@ export const products: Product[] = [
     tagline: "Data Lake · Analytics · Predictive Modelling",
     description:
       "An end-to-end data factory that unifies lakes, warehouses, marts and analytics — with governance and DevOps — so organizations turn data into decisions.",
-    offerings: [
-      "Common Data Framework",
-      "Data Lake House",
-      "Analytics & Insights",
-      "Predictive Modeling",
-      "Data Integration & Orchestration",
-      "Data Governance",
-      "Miraya DevOps",
-    ],
+    items: ["Data Lake", "Analytics", "Predictive Modelling"],
     traits: ["Governed", "Scalable", "AI/ML Ready", "Insight Driven"],
   },
   {
     id: "narad",
     name: "Narad Security System",
-    tagline: "SOC · Threat Intel · CTEM · C5I",
+    tagline: "Security Ops Center · Threat Intel · CTEM · C5i",
     description:
       "Mission-grade security platform spanning Security Operations Center, Threat Intelligence, Continuous Threat Exposure Management and C5I network security.",
-    offerings: [
-      "Security Operations Center",
-      "Threat Intel Platform",
-      "Continuous Threat Exposure Management (CTEM)",
-      "C5I Network Security",
-    ],
+    items: ["Security Ops Center", "Threat Intel", "CTEM", "C5i"],
     traits: ["Secure", "Interoperable", "Always On", "Zero Trust"],
   },
 ];
+
+export function getProductById(id: string) {
+  return products.find((p) => p.id === id);
+}
+
+export function productPath(id: string) {
+  return `/products/${id}`;
+}
+
+export function productSlugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[()]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
 export const aiSuites = [
   {

@@ -5,6 +5,7 @@ import { Careers } from "./pages/Careers";
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
 import { Industries } from "./pages/Industries";
+import { ProductDetail } from "./pages/ProductDetail";
 import { Products } from "./pages/Products";
 import { ServiceCategoryPage } from "./pages/ServiceCategory";
 import { Services } from "./pages/Services";
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="services" element={<Services />} />
           <Route path="services/:serviceId" element={<ServiceCategoryPage />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/:productId" element={<ProductDetail />} />
           <Route path="industries" element={<Industries />} />
           <Route path="about" element={<About />} />
           <Route path="careers" element={<Careers />} />

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import {
   Brain,
   ChevronDown,
+  Cloud,
+  Database,
   Menu,
   Network,
   Server,
@@ -16,9 +18,14 @@ import {
   servicePath,
   slugify,
 } from "../data/services";
+import {
+  productPath,
+  productSlugify,
+  products,
+} from "../data/products";
 import "./Navbar.css";
 
-const icons = {
+const serviceIcons = {
   server: Server,
   brain: Brain,
   network: Network,
@@ -26,9 +33,13 @@ const icons = {
   spark: Sparkles,
 } as const;
 
+const productIcons = {
+  abha: Cloud,
+  miraya: Database,
+  narad: Shield,
+} as const;
+
 const simpleLinks = [
-  { to: "/", label: "Home", end: true },
-  { to: "/products", label: "Products" },
   { to: "/industries", label: "Industries" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
@@ -40,7 +51,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -52,7 +65,9 @@ export function Navbar() {
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
+    setProductsOpen(false);
     setMobileServicesOpen(false);
+    setMobileProductsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -63,9 +78,11 @@ export function Navbar() {
   }, [open]);
 
   const servicesActive = location.pathname.startsWith("/services");
+  const productsActive = location.pathname.startsWith("/products");
+  const menuOpen = servicesOpen || productsOpen;
 
   return (
-    <header className={`nav ${scrolled || servicesOpen ? "nav--scrolled" : ""}`}>
+    <header className={`nav ${scrolled || menuOpen ? "nav--scrolled" : ""}`}>
       <div className="container nav__inner">
         <Link
           to="/"
@@ -89,7 +106,10 @@ export function Navbar() {
 
           <div
             className={`nav__item ${servicesOpen ? "nav__item--open" : ""}`}
-            onMouseEnter={() => setServicesOpen(true)}
+            onMouseEnter={() => {
+              setServicesOpen(true);
+              setProductsOpen(false);
+            }}
             onMouseLeave={() => setServicesOpen(false)}
           >
             <Link
@@ -116,7 +136,8 @@ export function Navbar() {
 
                 <div className="nav__mega-grid">
                   {serviceCategories.map((cat) => {
-                    const Icon = icons[cat.icon as keyof typeof icons] ?? Server;
+                    const Icon =
+                      serviceIcons[cat.icon as keyof typeof serviceIcons] ?? Server;
                     return (
                       <div key={cat.id} className="nav__mega-col">
                         <Link to={servicePath(cat.id)} className="nav__mega-title">
@@ -142,19 +163,83 @@ export function Navbar() {
             </div>
           </div>
 
-          {simpleLinks
-            .filter((l) => l.to !== "/")
-            .map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `nav__link ${isActive ? "nav__link--active" : ""}`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+          <div
+            className={`nav__item ${productsOpen ? "nav__item--open" : ""}`}
+            onMouseEnter={() => {
+              setProductsOpen(true);
+              setServicesOpen(false);
+            }}
+            onMouseLeave={() => setProductsOpen(false)}
+          >
+            <Link
+              to="/products"
+              className={`nav__link nav__link--trigger ${productsActive ? "nav__link--active" : ""}`}
+              aria-expanded={productsOpen}
+              aria-haspopup="true"
+            >
+              Products
+              <ChevronDown size={15} className="nav__chevron" />
+            </Link>
+
+            <div
+              className={`nav__mega nav__mega--products ${productsOpen ? "nav__mega--open" : ""}`}
+            >
+              <div className="nav__mega-inner nav__mega-inner--products">
+                <div className="nav__mega-head">
+                  <div>
+                    <p className="nav__mega-kicker">Our Products</p>
+                    <h3>Platforms & capabilities</h3>
+                  </div>
+                  <Link to="/products" className="nav__mega-all">
+                    View all products →
+                  </Link>
+                </div>
+
+                <div className="nav__mega-grid nav__mega-grid--products">
+                  {products.map((product) => {
+                    const Icon =
+                      productIcons[product.id as keyof typeof productIcons] ?? Cloud;
+                    return (
+                      <div key={product.id} className="nav__mega-col">
+                        <Link
+                          to={productPath(product.id)}
+                          className="nav__mega-title"
+                        >
+                          <span className="nav__mega-icon">
+                            <Icon size={16} />
+                          </span>
+                          <span>{product.name}</span>
+                        </Link>
+                        <ul>
+                          {product.items.map((item) => (
+                            <li key={item}>
+                              <Link
+                                to={`${productPath(product.id)}#${productSlugify(item)}`}
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {simpleLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `nav__link ${isActive ? "nav__link--active" : ""}`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
 
         <Link to="/contact" className="btn btn-primary nav__cta">
@@ -190,10 +275,11 @@ export function Navbar() {
           Services
           <ChevronDown
             size={18}
-            className={mobileServicesOpen ? "nav__chevron nav__chevron--up" : "nav__chevron"}
+            className={
+              mobileServicesOpen ? "nav__chevron nav__chevron--up" : "nav__chevron"
+            }
           />
         </button>
-
         {mobileServicesOpen && (
           <div className="nav__drawer-services">
             <Link to="/services" onClick={() => setOpen(false)}>
@@ -211,20 +297,48 @@ export function Navbar() {
           </div>
         )}
 
-        {simpleLinks
-          .filter((l) => l.to !== "/")
-          .map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `nav__drawer-link ${isActive ? "nav__link--active" : ""}`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <button
+          type="button"
+          className={`nav__drawer-link nav__drawer-toggle ${productsActive ? "nav__link--active" : ""}`}
+          onClick={() => setMobileProductsOpen((v) => !v)}
+        >
+          Products
+          <ChevronDown
+            size={18}
+            className={
+              mobileProductsOpen ? "nav__chevron nav__chevron--up" : "nav__chevron"
+            }
+          />
+        </button>
+        {mobileProductsOpen && (
+          <div className="nav__drawer-services">
+            <Link to="/products" onClick={() => setOpen(false)}>
+              All Products
+            </Link>
+            {products.map((product) => (
+              <Link
+                key={product.id}
+                to={productPath(product.id)}
+                onClick={() => setOpen(false)}
+              >
+                {product.name}
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {simpleLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `nav__drawer-link ${isActive ? "nav__link--active" : ""}`
+            }
+          >
+            {link.label}
+          </NavLink>
+        ))}
 
         <Link
           to="/contact"
