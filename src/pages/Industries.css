@@ -1,0 +1,107 @@
+.practices-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.practice-card {
+  padding: 1.25rem;
+  min-height: 100%;
+}
+
+.practice-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  min-height: 2.8em;
+}
+
+.practice-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.practice-card li {
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.usecase-section {
+  background: linear-gradient(180deg, transparent, rgba(207, 230, 255, 0.45), transparent);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.75rem 0 1.25rem;
+}
+
+.tabs button {
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.7rem 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabs button.is-active,
+.tabs button:hover {
+  color: white;
+  border-color: transparent;
+  background: linear-gradient(135deg, #0077b6, #0e76de);
+  box-shadow: 0 10px 24px rgba(0, 119, 182, 0.25);
+}
+
+.usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.usecase-card {
+  padding: 1.25rem;
+}
+
+.usecase-card h3 {
+  margin-bottom: 0.7rem;
+  font-size: 1.15rem;
+}
+
+.usecase-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.usecase-card li {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: #eef6ff;
+  border: 1px solid var(--line);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .practices-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .practices-grid,
+  .usecase-grid {
+    grid-template-columns: 1fr;
+  }
+}

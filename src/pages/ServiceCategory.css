@@ -1,0 +1,123 @@
+.service-cat__title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.service-cat__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--accent);
+  background: #eaf4fb;
+  border: 1px solid var(--line);
+  margin-top: 0.2rem;
+}
+
+.service-cat__items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.75rem 0 1.5rem;
+}
+
+.service-cat__item {
+  padding: 1.35rem 1.4rem;
+  scroll-margin-top: calc(var(--nav-h) + 1.25rem);
+}
+
+.service-cat__item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.45rem;
+}
+
+.service-cat__item p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.service-cat__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+}
+
+.service-cat__cta h2 {
+  margin-bottom: 0.35rem;
+}
+
+.service-cat__cta p {
+  color: var(--ink-soft);
+}
+
+.service-cat__others {
+  background: linear-gradient(180deg, transparent, rgba(207, 230, 255, 0.4), transparent);
+}
+
+.service-cat__others-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.service-cat__other {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.2rem 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-cat__other:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.service-cat__other span {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: #eaf4fb;
+  border: 1px solid var(--line);
+}
+
+.service-cat__other strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.service-cat__other em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+@media (max-width: 800px) {
+  .service-cat__items,
+  .service-cat__others-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-cat__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-cat__title-row {
+    flex-direction: column;
+  }
+}
