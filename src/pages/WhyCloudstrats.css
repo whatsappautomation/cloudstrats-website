@@ -1,68 +1,13 @@
-.why-stats {
-  margin-bottom: 1.5rem;
-}
-
-.why-stat {
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.why-stat strong {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--accent);
-}
-
-.why-stat span {
-  color: var(--ink-soft);
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-.why-reasons {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
+.why-lead {
+  padding: 2rem 2.1rem;
   margin-bottom: 1.25rem;
 }
 
-.why-reason {
-  padding: 1.4rem;
-}
-
-.why-reason h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.45rem;
-}
-
-.why-reason p {
+.why-lead p {
   color: var(--ink-soft);
-}
-
-.why-diff {
-  padding: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.why-diff h2 {
-  margin: 0.35rem 0 1rem;
-}
-
-.why-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.why-chips span {
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  background: #eaf4fb;
-  border: 1px solid var(--line);
-  font-weight: 600;
-  font-size: 0.88rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.75;
+  max-width: 72ch;
 }
 
 .why-cta {
@@ -82,8 +27,8 @@
 }
 
 @media (max-width: 800px) {
-  .why-reasons {
-    grid-template-columns: 1fr;
+  .why-lead {
+    padding: 1.5rem;
   }
 
   .why-cta {
