@@ -1,3 +1,4 @@
+import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import { domains } from "../data/industries";
@@ -16,6 +17,16 @@ export function About() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <Reveal>
+            <div className="about-visual">
+              <LiveImage
+                className="live-image--tall"
+                src="/assets/lifestyle/team-meeting.png"
+                alt="Cloudstrats team working together"
+                caption="Customer Obsession"
+              />
+            </div>
+          </Reveal>
           <Reveal>
             <article className="panel about-story">
               <h2>Who we are</h2>

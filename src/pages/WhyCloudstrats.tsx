@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { LiveImage, MediaStrip } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import "./WhyCloudstrats.css";
 
@@ -16,6 +17,17 @@ export function WhyCloudstrats() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal>
+            <div className="why-hero-media">
+              <LiveImage
+                className="live-image--hero"
+                src="/assets/lifestyle/team-collab.png"
+                alt="Cloudstrats experts collaborating on outcomes"
+                caption="One partner. Measurable outcomes."
+              />
+            </div>
+          </Reveal>
+
+          <Reveal>
             <article className="panel why-lead">
               <p>
                 CloudStrats helps organizations turn complex technology challenges into
@@ -29,6 +41,28 @@ export function WhyCloudstrats() {
                 faster.
               </p>
             </article>
+          </Reveal>
+
+          <Reveal>
+            <MediaStrip
+              items={[
+                {
+                  src: "/assets/lifestyle/data-infra.png",
+                  alt: "AI infrastructure",
+                  label: "Build smarter",
+                },
+                {
+                  src: "/assets/lifestyle/digital-consult.png",
+                  alt: "Secure digital consulting",
+                  label: "Operate securely",
+                },
+                {
+                  src: "/assets/lifestyle/process-automation.png",
+                  alt: "Process automation",
+                  label: "Scale faster",
+                },
+              ]}
+            />
           </Reveal>
 
           <Reveal>

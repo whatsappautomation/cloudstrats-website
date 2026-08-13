@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import "./Contact.css";
@@ -74,6 +75,13 @@ export function Contact() {
           </Reveal>
 
           <div className="contact-side">
+            <Reveal>
+              <LiveImage
+                src="/assets/lifestyle/digital-consult.png"
+                alt="Talk to Cloudstrats"
+                caption="We're ready when you are"
+              />
+            </Reveal>
             <Reveal>
               <article className="panel contact-card">
                 <h3>Direct</h3>

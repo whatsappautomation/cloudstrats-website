@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { BrandLogo } from "../components/BrandLogo";
+import { LiveImage, MediaStrip } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import { products } from "../data/products";
@@ -101,18 +102,17 @@ export function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.25, duration: 0.8 }}
           >
-            <div className="hero__panel">
-              <p className="hero__panel-kicker">Exponential Technology Company</p>
-              <h2>AI · Automation · Analytics · Cloud · Cybersecurity</h2>
-              <p>
-                Innovating products powered by cloud — strategy, design and
-                management for mission-critical operations.
-              </p>
-              <ul>
-                <li>Abha AI Platform</li>
-                <li>Miraya Data Factory</li>
-                <li>Narad Security System</li>
-              </ul>
+            <div className="hero__stage">
+              <LiveImage
+                className="live-image--hero"
+                src="/assets/lifestyle/boardroom-skyline.png"
+                alt="Cloudstrats team in a strategic boardroom session"
+                caption="Strategy in motion"
+              />
+              <div className="hero__float panel">
+                <p className="hero__panel-kicker">Exponential Technology</p>
+                <strong>AI · Data · C5I · Security · Automation</strong>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -128,6 +128,40 @@ export function Home() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="section home-live">
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow">In action</p>
+            <h2 className="section-title">Built for real teams and real missions</h2>
+            <p className="section-lead">
+              From AI-ready infrastructure to analytics, automation and secure
+              operations — Cloudstrats helps organizations move from complexity to outcomes.
+            </p>
+          </Reveal>
+          <Reveal>
+            <MediaStrip
+              items={[
+                {
+                  src: "/assets/lifestyle/data-infra.png",
+                  alt: "AI and data infrastructure visualization",
+                  label: "AI Infrastructure",
+                },
+                {
+                  src: "/assets/lifestyle/analytics-dashboard.png",
+                  alt: "Analytics dashboard review",
+                  label: "Data & Analytics",
+                },
+                {
+                  src: "/assets/lifestyle/automation-rpa.png",
+                  alt: "Intelligent automation and RPA",
+                  label: "Intelligent Automation",
+                },
+              ]}
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -258,6 +292,33 @@ export function Home() {
               Industry Use Cases <ArrowRight size={18} />
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="section home-people">
+        <div className="container">
+          <Reveal>
+            <div className="media-duo">
+              <LiveImage
+                className="live-image--tall"
+                src="/assets/lifestyle/team-meeting.png"
+                alt="Cloudstrats team collaborating"
+                caption="People + process + technology"
+              />
+              <div className="media-duo__stack">
+                <LiveImage
+                  src="/assets/lifestyle/ai-workshop.png"
+                  alt="AI briefing and workshop"
+                  caption="Intelligence at work"
+                />
+                <LiveImage
+                  src="/assets/lifestyle/strategy-review.png"
+                  alt="Strategy review with experts"
+                  caption="Outcome-driven delivery"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

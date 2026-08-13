@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Reveal } from "../components/Reveal";
+import { MediaStrip } from "../components/LiveMedia";
 import {
   aiInfraFeatures,
   highlightServices,
@@ -45,7 +46,28 @@ export function Services() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="grid-3">
+          <Reveal>
+            <MediaStrip
+              items={[
+                {
+                  src: "/assets/lifestyle/data-infra.png",
+                  alt: "AI infrastructure services",
+                  label: "AI Infrastructure",
+                },
+                {
+                  src: "/assets/lifestyle/ai-briefing.png",
+                  alt: "Mission intelligence briefing",
+                  label: "Data & Mission Intel",
+                },
+                {
+                  src: "/assets/lifestyle/automation-rpa.png",
+                  alt: "Automation services",
+                  label: "Automation",
+                },
+              ]}
+            />
+          </Reveal>
+          <div className="grid-3" style={{ marginTop: "1.25rem" }}>
             {servicePillars.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.06}>
                 <article className="panel services-pillar">

@@ -87,6 +87,38 @@
   overflow: hidden;
 }
 
+.hero__stage {
+  position: relative;
+}
+
+.hero__float {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.95rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.hero__float strong {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.home-live,
+.home-people {
+  padding-top: 1rem;
+}
+
+.home-live .media-strip,
+.home-people .media-duo {
+  margin-top: 1.75rem;
+}
+
 .hero__panel::before {
   content: "";
   position: absolute;

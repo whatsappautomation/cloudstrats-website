@@ -1,5 +1,13 @@
 .why-lead {
   padding: 2rem 2.1rem;
+  margin: 1.25rem 0;
+}
+
+.why-hero-media {
+  margin-bottom: 0.25rem;
+}
+
+.why-page .media-strip {
   margin-bottom: 1.25rem;
 }
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import "./Careers.css";
@@ -51,6 +52,16 @@ export function Careers() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <Reveal>
+            <div className="careers-visual">
+              <LiveImage
+                className="live-image--tall"
+                src="/assets/lifestyle/strategy-review.png"
+                alt="Join the Cloudstrats team"
+                caption="Build with purpose"
+              />
+            </div>
+          </Reveal>
           <div className="careers-grid">
             {openings.map((job, i) => (
               <Reveal key={job.title} delay={i * 0.05}>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import {
   aiSuites,
@@ -8,6 +9,12 @@ import {
   products,
 } from "../data/products";
 import "./Products.css";
+
+const productVisuals: Record<string, string> = {
+  abha: "/assets/lifestyle/data-infra.png",
+  miraya: "/assets/lifestyle/analytics-dashboard.png",
+  narad: "/assets/lifestyle/digital-consult.png",
+};
 
 export function Products() {
   return (
@@ -26,7 +33,12 @@ export function Products() {
         <div className="container products-stack">
           {products.map((product, i) => (
             <Reveal key={product.id} delay={i * 0.06}>
-              <article id={product.id} className="panel product-detail">
+              <article id={product.id} className="panel product-detail product-detail--media">
+                <LiveImage
+                  src={productVisuals[product.id] ?? "/assets/lifestyle/data-infra.png"}
+                  alt={product.name}
+                  caption={product.name}
+                />
                 <div className="product-detail__intro">
                   <p className="product-detail__tag">{product.tagline}</p>
                   <Link to={productPath(product.id)}>

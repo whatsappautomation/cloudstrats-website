@@ -10,8 +10,29 @@
   flex-direction: column;
   gap: 0.65rem;
   min-height: 100%;
+  overflow: hidden;
 }
 
+.case-card--media {
+  padding: 0;
+}
+
+.case-card--media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.case-card__body {
+  padding: 1.2rem 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.case-card__body > span,
 .case-card > span {
   align-self: flex-start;
   padding: 0.3rem 0.65rem;
@@ -23,11 +44,13 @@
   font-weight: 600;
 }
 
-.case-card h2 {
+.case-card h2,
+.case-card__body h2 {
   font-size: 1.15rem;
 }
 
-.case-card p {
+.case-card p,
+.case-card__body p {
   color: var(--ink-soft);
   flex: 1;
 }
