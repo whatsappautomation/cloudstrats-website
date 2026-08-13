@@ -56,12 +56,13 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container footer__meta">
-        <span>Sitemap</span>
-      </div>
-
       <div className="container footer__bottom">
-        <span>© {new Date().getFullYear()} {company.legalName}</span>
+        <div className="footer__bottom-left">
+          <Link to="/sitemap" className="footer__sitemap">
+            Sitemap
+          </Link>
+          <span>© {new Date().getFullYear()} {company.legalName}</span>
+        </div>
         <span>Made in India · Made for India · Made to Protect</span>
       </div>
     </footer>

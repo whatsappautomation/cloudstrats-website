@@ -12,6 +12,7 @@ import { ProductDetail } from "./pages/ProductDetail";
 import { Products } from "./pages/Products";
 import { ServiceCategoryPage } from "./pages/ServiceCategory";
 import { Services } from "./pages/Services";
+import { Sitemap } from "./pages/Sitemap";
 import { WhyCloudstrats } from "./pages/WhyCloudstrats";
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="careers" element={<Careers />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="sitemap" element={<Sitemap />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
