@@ -62,12 +62,112 @@
   line-height: 1.2;
 }
 
+.hero__headline {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 14ch;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
 .hero__lead {
   color: var(--ink-soft);
   font-size: 1.05rem;
   font-weight: 400;
   max-width: 40ch;
   margin-bottom: 1.75rem;
+}
+
+.home-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.home-service-card {
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.home-service-card h3 {
+  font-size: 1.15rem;
+}
+
+.home-service-card p {
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.home-service-card span {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.home-industry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+.home-industry-card {
+  padding: 1.3rem 1.35rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-industry-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.home-industry-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.45rem;
+}
+
+.home-industry-card p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.home-why__grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.home-why__copy h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.home-why__copy p {
+  color: var(--ink-soft);
+  margin-bottom: 0.9rem;
+  max-width: 52ch;
+}
+
+.home-why__punch {
+  color: var(--ink) !important;
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin: 1.1rem 0 1.35rem !important;
 }
 
 .hero__actions {
@@ -480,7 +580,10 @@
     order: 0;
   }
 
-  .pillars {
+  .pillars,
+  .home-service-grid,
+  .home-industry-grid,
+  .home-why__grid {
     grid-template-columns: 1fr;
   }
 

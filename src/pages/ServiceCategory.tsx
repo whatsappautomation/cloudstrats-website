@@ -1,29 +1,13 @@
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import {
-  ArrowRight,
-  Brain,
-  Network,
-  Server,
-  Shield,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import {
   getServiceById,
-  serviceCategories,
-  servicePath,
   slugify,
 } from "../data/services";
 import "./ServiceCategory.css";
-
-const icons = {
-  server: Server,
-  brain: Brain,
-  network: Network,
-  shield: Shield,
-  spark: Sparkles,
-} as const;
 
 export function ServiceCategoryPage() {
   const { serviceId = "" } = useParams();
@@ -34,98 +18,166 @@ export function ServiceCategoryPage() {
     if (!location.hash) return;
     const id = location.hash.replace("#", "");
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [location.hash, serviceId]);
 
-  if (!category) {
-    return <Navigate to="/services" replace />;
-  }
-
-  const Icon = icons[category.icon as keyof typeof icons] ?? Server;
-  const others = serviceCategories.filter((c) => c.id !== category.id);
+  if (!category) return <Navigate to="/services" replace />;
 
   return (
     <div className="service-cat">
-      <section className="page-hero">
-        <div className="container">
+      {/* Section 1 — Banner */}
+      <section className="service-banner">
+        <img src={category.bannerImage} alt="" className="service-banner__bg" />
+        <div className="service-banner__overlay" />
+        <div className="container service-banner__content">
           <p className="eyebrow">Services</p>
-          <div className="service-cat__title-row">
-            <span className="service-cat__icon">
-              <Icon size={26} />
-            </span>
-            <h1 className="section-title">{category.title}</h1>
-          </div>
-          <p className="section-lead">{category.summary}</p>
+          <h1>{category.title}</h1>
+          <p>{category.summary}</p>
+          <Link to="/contact" className="btn btn-primary">
+            Talk to Us <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
+      {/* Section 2 — Why important */}
+      <section className="section">
+        <div className="container service-why-grid">
+          <Reveal>
+            <div>
+              <h2 className="section-title" style={{ maxWidth: "16ch" }}>
+                Why this service matters
+              </h2>
+              <p className="section-lead">{category.whyImportant}</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <LiveImage
+              className="live-image--tall"
+              src={category.chartImage}
+              alt={`${category.title} impact`}
+              caption="Impact & insight"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Section 3 — Experience highlight + CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Capabilities</p>
-            <h2 className="section-title" style={{ maxWidth: "20ch" }}>
-              What&apos;s included
-            </h2>
-          </Reveal>
-
-          <div className="service-cat__items">
-            {category.items.map((item, i) => (
-              <Reveal key={item} delay={i * 0.04}>
-                <article id={slugify(item)} className="panel service-cat__item">
-                  <h3>{item}</h3>
-                  <p>
-                    Part of our {category.title} practice — delivered with
-                    strategy, design and managed operations for mission-critical
-                    environments.
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <div className="panel service-cat__cta">
+            <div className="panel service-highlight">
               <div>
-                <h2>Talk to our specialists</h2>
-                <p>
-                  Share your requirements and we&apos;ll map the right solution
-                  under {category.title}.
-                </p>
+                <p className="eyebrow">Our experience</p>
+                <h2>Proven delivery across mission-critical environments</h2>
+                <p>{category.experience}</p>
               </div>
               <Link to="/contact" className="btn btn-primary">
-                Contact Us <ArrowRight size={16} />
+                Discuss Your Needs <ArrowRight size={16} />
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="section service-cat__others">
+      {/* Section 4 — Sub services */}
+      <section className="section service-subs">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Explore more</p>
-            <h2 className="section-title">Other service areas</h2>
+            <p className="eyebrow">Capabilities</p>
+            <h2 className="section-title">Sub-services</h2>
           </Reveal>
-          <div className="service-cat__others-grid">
-            {others.map((cat, i) => {
-              const OtherIcon = icons[cat.icon as keyof typeof icons] ?? Server;
-              return (
-                <Reveal key={cat.id} delay={i * 0.04}>
-                  <Link to={servicePath(cat.id)} className="panel service-cat__other">
-                    <span>
-                      <OtherIcon size={18} />
-                    </span>
-                    <strong>{cat.title}</strong>
-                    <em>
-                      {cat.items.length} capabilities <ArrowRight size={14} />
-                    </em>
+          <div className="service-cat__items">
+            {category.items.map((item, i) => (
+              <Reveal key={item} delay={i * 0.04}>
+                <article id={slugify(item)} className="panel service-cat__item">
+                  <h3>{item}</h3>
+                  <p>
+                    {category.itemBlurbs[item] ??
+                      `Part of our ${category.title} practice for mission-critical environments.`}
+                  </p>
+                  <Link to="/contact" className="service-cat__item-cta">
+                    Enquire <ArrowRight size={14} />
                   </Link>
-                </Reveal>
-              );
-            })}
+                </article>
+              </Reveal>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Section 5 — Industries (6) */}
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow">Industries</p>
+            <h2 className="section-title">Where this service creates impact</h2>
+          </Reveal>
+          <div className="service-industries">
+            {category.industries.map((industry, i) => (
+              <Reveal key={industry.id} delay={i * 0.04}>
+                <Link
+                  to={`/industries/${industry.id}`}
+                  className="panel service-industry"
+                >
+                  <h3>{industry.title}</h3>
+                  <p>{industry.text}</p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6 — Why Choose Cloudstrats */}
+      <section className="section service-choose">
+        <div className="container service-choose__grid">
+          <Reveal>
+            <div>
+              <h2 className="section-title">Why Choose Cloudstrats?</h2>
+              <p className="section-lead">{category.whyChoose}</p>
+              <Link to="/why-cloudstrats" className="btn btn-primary">
+                Learn More <ArrowRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <LiveImage
+              className="live-image--tall"
+              src={category.whyImage}
+              alt="Why choose Cloudstrats"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Section 7 — Stats */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container service-stats">
+          {category.stats.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 0.05}>
+              <div className="panel service-stat">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Section 8 — Final CTA */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <Reveal>
+            <div className="panel service-cat__cta">
+              <div>
+                <h2>Ready to get started with {category.title}?</h2>
+                <p>Share your requirements and our specialists will map the right path.</p>
+              </div>
+              <Link to="/contact" className="btn btn-primary">
+                Contact Us <ArrowRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>
