@@ -1,0 +1,10 @@
+.tilt-card {
+  height: 100%;
+  perspective: 900px;
+}
+
+.tilt-card__inner {
+  height: 100%;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
