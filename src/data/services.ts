@@ -97,9 +97,9 @@ const sharedIndustries = [
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "ai-infrastructure",
-    title: "AI Infrastructure & Data Centers",
+    title: "AI Infrastructure and Data Centres",
     summary:
-      "High-performance, secure and scalable AI-ready infrastructure for training, inference and mission workloads.",
+      "Build high performance AI data centre solutions with advanced cybersecurity and 24/7 uptime.",
     icon: "server",
     items: [
       "AI Data Center Design & Build",
@@ -142,9 +142,9 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "data-ai-analytics",
-    title: "Data, AI & Analytics",
+    title: "Data AI & Analytics",
     summary:
-      "Unify, govern and enrich data to deliver real-time insights, predictive intelligence and operational advantage.",
+      "Align circumstantial expectations and ensure preparedness using predictive analytics solutions.",
     icon: "brain",
     items: [
       "Data Engineering",
@@ -185,9 +185,9 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "c5i-networks",
-    title: "C5I & Mission-Critical Networks",
+    title: "C5I and Mission Critical Networks",
     summary:
-      "Secure, interoperable command-and-control networks for defence, homeland security and critical national operations.",
+      "Collate analytics and insights derived from years of experience with our C5I integration services.",
     icon: "network",
     items: [
       "C5I Network Integration",
@@ -230,9 +230,9 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "cybersecurity",
-    title: "Cybersecurity & Security Operations",
+    title: "Cyber Security Operations",
     summary:
-      "Continuous monitoring, deep threat visibility and rapid response to protect digital infrastructure around the clock.",
+      "Managed SOC services for around the clock monitoring, deep threat visibility and rapid response.",
     icon: "shield",
     items: [
       "Security Operations Center (SOC)",
@@ -279,9 +279,9 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "automation",
-    title: "Intelligent Automation & Digital Transformation",
+    title: "Intelligent Automations and Digital Transformation",
     summary:
-      "Automation, AI agents and AIOps that reduce friction, accelerate outcomes and optimize operations.",
+      "Intelligent automation services that reduce friction, accelerate outcomes and optimize business operations.",
     icon: "spark",
     items: [
       "Business Process Automation",

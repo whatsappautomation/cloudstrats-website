@@ -22,36 +22,31 @@ const homeServices = [
   {
     id: "ai-infrastructure",
     code: "01",
-    title: "AI Infrastructure",
-    whisper: "Data centres. Uptime. Scale.",
+    title: "AI Infrastructure and Data Centres",
     text: "Build high performance AI data centre solutions with advanced cybersecurity and 24/7 uptime.",
   },
   {
     id: "data-ai-analytics",
     code: "02",
-    title: "Data · AI · Analytics",
-    whisper: "Signal from noise.",
+    title: "Data AI & Analytics",
     text: "Align circumstantial expectations and ensure preparedness using predictive analytics solutions.",
   },
   {
     id: "c5i-networks",
     code: "03",
-    title: "C5I Networks",
-    whisper: "Mission-critical links.",
+    title: "C5I and Mission Critical Networks",
     text: "Collate analytics and insights derived from years of experience with our C5I integration services.",
   },
   {
     id: "cybersecurity",
     code: "04",
-    title: "Cybersecurity Ops",
-    whisper: "Always watching.",
+    title: "Cyber Security Operations",
     text: "Managed SOC services for around the clock monitoring, deep threat visibility and rapid response.",
   },
   {
     id: "automation",
     code: "05",
-    title: "Intelligent Automation",
-    whisper: "Friction, removed.",
+    title: "Intelligent Automations and Digital Transformation",
     text: "Intelligent automation services that reduce friction, accelerate outcomes and optimize business operations.",
   },
 ];
@@ -252,14 +247,18 @@ export function Home() {
         </div>
       </section>
 
-      {/* Layers / services */}
+      {/* Layers / services — document copy */}
       <section className="section enigma-layers">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Layers</p>
-            <h2 className="enigma-heading">Five domains. Hover to unlock.</h2>
+            <p className="eyebrow">Our Services</p>
+            <h2 className="enigma-heading enigma-heading--services">
+              Digital Transformation Services that Delivers Impact
+            </h2>
             <p className="enigma-sub">
-              Digital transformation — only as much as you choose to see.
+              We provide end-to-end solutions that strengthens your digital
+              infrastructure, ensuring a smoother work environment with
+              comprehensive security.
             </p>
           </Reveal>
 
@@ -273,10 +272,9 @@ export function Home() {
                     </span>
                     <div className="enigma-layer__body">
                       <h3>{service.title}</h3>
-                      <p className="enigma-layer__whisper">{service.whisper}</p>
                       <p className="enigma-layer__text">{service.text}</p>
                       <span className="enigma-layer__cta">
-                        Open <ArrowRight size={14} />
+                        Learn more <ArrowRight size={14} />
                       </span>
                     </div>
                   </Link>
@@ -287,7 +285,7 @@ export function Home() {
 
           <div className="section-cta">
             <Link to="/services" className="btn btn-ghost">
-              All services <ArrowRight size={18} />
+              View all services <ArrowRight size={18} />
             </Link>
           </div>
         </div>

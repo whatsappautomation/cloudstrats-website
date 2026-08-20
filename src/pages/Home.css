@@ -221,9 +221,13 @@
   margin-inline: auto;
 }
 
+.enigma-heading--services {
+  max-width: 22ch;
+}
+
 .enigma-sub {
   color: var(--ink-soft);
-  max-width: 42ch;
+  max-width: 52ch;
   font-size: 1.02rem;
 }
 
@@ -388,15 +392,9 @@
 }
 
 .enigma-layer h3 {
-  font-size: 1.25rem;
+  font-size: 1.18rem;
   color: var(--bg-deep);
-  max-width: 14ch;
-}
-
-.enigma-layer__whisper {
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.9rem;
+  max-width: 22ch;
 }
 
 .enigma-layer__text {

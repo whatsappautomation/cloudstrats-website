@@ -38,7 +38,7 @@ export function Services() {
           <h1 className="section-title">Comprehensive solutions. Measurable impact.</h1>
           <p className="section-lead">
             Strategy · Design · Management — end-to-end services for mission
-            success across AI infrastructure, data, C5I, cybersecurity and
+            success across AI infrastructure, data, C5I, cyber security and
             intelligent automation.
           </p>
         </div>
