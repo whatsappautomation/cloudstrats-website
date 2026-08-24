@@ -1,7 +1,10 @@
 export type ServiceCategory = {
   id: string;
   title: string;
+  headline: string;
   summary: string;
+  quote: string;
+  servicesIntro: string;
   icon: string;
   items: string[];
   whyImportant: string;
@@ -10,6 +13,8 @@ export type ServiceCategory = {
   industries: { id: string; title: string; text: string }[];
   whyChoose: string;
   stats: { value: string; label: string }[];
+  finalHeadline: string;
+  finalText: string;
   bannerImage: string;
   chartImage: string;
   whyImage: string;
@@ -61,48 +66,19 @@ export const highlightServices = [
   },
 ] as const;
 
-const sharedIndustries = [
-  {
-    id: "defense-aerospace",
-    title: "Defense & Aerospace",
-    text: "Mission-ready architectures that protect sensitive operations and accelerate decision cycles.",
-  },
-  {
-    id: "government-public-sector",
-    title: "Government & Public Sector",
-    text: "Secure, scalable platforms that keep citizen and critical programs always available.",
-  },
-  {
-    id: "banking-financial-services",
-    title: "Banking & Financial Services",
-    text: "Analytics, automation and security that reduce risk while improving customer outcomes.",
-  },
-  {
-    id: "healthcare-life-sciences",
-    title: "Healthcare & Life Sciences",
-    text: "Reliable monitoring and predictive insight that support better care delivery.",
-  },
-  {
-    id: "manufacturing",
-    title: "Manufacturing",
-    text: "Smarter workflows and uptime improvements through AI, data and automation.",
-  },
-  {
-    id: "energy-utilities",
-    title: "Energy & Utilities",
-    text: "Operational intelligence and resilient infrastructure for grids, plants and field assets.",
-  },
-];
-
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "ai-infrastructure",
     title: "AI Infrastructure and Data Centres",
+    headline: "Build Scalable AI Infrastructure for the Future of Enterprise Innovation",
     summary:
-      "Build high performance AI data centre solutions with advanced cybersecurity and 24/7 uptime.",
+      "Adapt AI infrastructure solutions designed to support modern workloads, GPU-intensive computing, and next-generation data center environments.",
+    quote:
+      "Our AI infrastructure solutions ensure that innovation works hand in hand with performance, security, efficiency, and long-term scalability.",
+    servicesIntro: "Solutions catered for excellence",
     icon: "server",
     items: [
-      "AI Data Center Design & Build",
+      "Building AI Data Centers",
       "GPU Infrastructure",
       "AI/HPC Infrastructure",
       "Cloud & Hybrid Cloud Infrastructure",
@@ -110,32 +86,91 @@ export const serviceCategories: ServiceCategory[] = [
       "AI Infrastructure Management",
     ],
     whyImportant:
-      "AI outcomes depend on infrastructure quality. Purpose-built GPU clusters, storage and secure fabrics turn ambitious models into reliable production systems — with uptime, sovereignty and scale designed in from day one.",
+      "As organizations invest in artificial intelligence, machine learning, generative AI, and advanced analytics, traditional IT environments often struggle to meet the growing demands for compute power, scalability, and performance. Modern enterprises require AI-ready infrastructure that can support LLMs, AI training environments, inference workloads, high-performance computing (HPC), and data-intensive applications.",
     experience:
-      "Cloudstrats designs, builds and operates AI-ready data centers and hybrid platforms for defence, government and enterprise — combining GPU acceleration, resilient architecture and 24×7 managed operations.",
+      "Cloudstrats helps businesses design, deploy, modernize, and manage AI infrastructure to ensure that innovation works hand in hand with performance, security, operational efficiency, and long-term scalability.",
     itemBlurbs: {
-      "AI Data Center Design & Build":
-        "End-to-end design and build for high-density, secure AI facilities.",
+      "Building AI Data Centers":
+        "Create future-ready AI data centers designed to support high-density computing, advanced cooling requirements, AI workloads, and exponential growth.",
       "GPU Infrastructure":
-        "NVIDIA-optimized clusters engineered for training and inference at scale.",
+        "Deploy high-performance GPU infrastructure for AI workloads, machine learning, deep learning, and generative AI applications.",
       "AI/HPC Infrastructure":
-        "Compute platforms built for high-performance AI and scientific workloads.",
+        "Build premium AI and HPC infrastructure, equipped to handle compute-intensive workloads, advanced analytics, and large-scale AI model training.",
       "Cloud & Hybrid Cloud Infrastructure":
-        "Flexible on-prem, edge, hybrid and cloud deployment models.",
+        "Develop flexible cloud and hybrid infrastructure for AI applications and enterprise workloads to ensure optimum performance, cost, security, and scalability.",
       "Data Center Modernization":
-        "Upgrade legacy estates for density, efficiency and AI readiness.",
+        "Transform legacy infrastructure into modern, AI-ready environments for improved efficiency, optimized resources, and enhanced security.",
       "AI Infrastructure Management":
-        "24×7 monitoring, optimization and lifecycle management by specialists.",
+        "Ensure optimal performance, availability, and security through proactive AI infrastructure management services.",
     },
-    industries: sharedIndustries,
-    whyChoose:
-      "From strategy to operations, Cloudstrats brings deep domain expertise, secure-by-design engineering and proven delivery for mission-critical AI infrastructure.",
-    stats: [
-      { value: "24×7", label: "Managed Operations" },
-      { value: "100+", label: "Expert Professionals" },
-      { value: "50+", label: "Mission Engagements" },
-      { value: "15+", label: "Years of Experience" },
+    industries: [
+      {
+        id: "defense-aerospace",
+        title: "Defence & Aerospace",
+        text: "Support mission-critical operations, advanced simulations, intelligence systems, and real-time analytics with secure AI infrastructure built for demanding environments.",
+      },
+      {
+        id: "government-public-sector",
+        title: "Government & Public Sector",
+        text: "Enable smart governance, citizen services, digital transformation initiatives, and data-driven decision-making with scalable and secure AI infrastructure solutions.",
+      },
+      {
+        id: "banking-financial-services",
+        title: "Banking & Financial Services",
+        text: "Strengthen systems with fraud detection, risk analysis, algorithmic trading, customer intelligence, and regulatory compliance.",
+      },
+      {
+        id: "healthcare-life-sciences",
+        title: "Healthcare & Life Sciences",
+        text: "Accelerate medical research, diagnostic imaging, drug discovery, genomics, and patient care applications with high-performance AI computing infrastructure.",
+      },
+      {
+        id: "energy-utilities",
+        title: "Energy & Utilities",
+        text: "Improve efficiency, predictive maintenance, asset monitoring, and demand forecasting using AI infrastructure solutions capable of processing large volumes of data.",
+      },
+      {
+        id: "smart-cities-infrastructure",
+        title: "Smart Cities & Infrastructure",
+        text: "Support intelligent transportation systems, public safety initiatives, urban planning, and IoT ecosystems with resilient AI-ready infrastructure.",
+      },
     ],
+    whyChoose:
+      "With years of experience delivering AI infrastructure solutions, Cloudstrats helps organizations build and manage scalable AI ecosystems aligned with their business objectives. Our team combines expertise across AI data centers, GPU infrastructure, cloud environments, infrastructure modernization, and managed services to deliver solutions that support both current requirements and future growth. From strategy and architecture to deployment and ongoing management, we provide end-to-end support throughout the AI infrastructure lifecycle.",
+    stats: [
+      {
+        value: "80%+",
+        label:
+          "Of large-scale company data tends to be unstructured, increasing the need for scalable AI-ready infrastructure.",
+      },
+      {
+        value: "10x Faster",
+        label:
+          "Parallel processing can be achieved with AI data centres having GPU infrastructure for AI workloads.",
+      },
+      {
+        value: "Petabyte-Scale",
+        label:
+          "Storage and data processing requirements are becoming the norm for AI-driven enterprises.",
+      },
+      {
+        value: "24×7",
+        label:
+          "Monitoring and management capabilities help maximize infrastructure availability and performance.",
+      },
+      {
+        value: "Multi-Cloud",
+        label:
+          "Environments are increasingly adopted to support AI scalability, resilience, and flexibility.",
+      },
+      {
+        value: "Enterprise-Grade",
+        label:
+          "Modern security and governance frameworks help protect critical AI infrastructure including data centres.",
+      },
+    ],
+    finalHeadline: "A Future-Ready Foundation for Exponential Growth",
+    finalText: "Ready to optimize your CPUs and data centres? Let’s get started.",
     bannerImage: "/assets/lifestyle/data-infra.png",
     chartImage: "/assets/lifestyle/analytics-dashboard.png",
     whyImage: "/assets/lifestyle/strategy-review.png",
@@ -143,8 +178,12 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: "data-ai-analytics",
     title: "Data AI & Analytics",
+    headline: "Transform data into Actionable Intelligence",
     summary:
-      "Align circumstantial expectations and ensure preparedness using predictive analytics solutions.",
+      "Harness analytics from modern data platforms, and AI-powered business insights, that drive smarter decision making.",
+    quote:
+      "Identify trends and implement deliberate improvements faster than your competitors with Data, AI and Analytics.",
+    servicesIntro: "Collect, store, analyse and implement",
     icon: "brain",
     items: [
       "Data Engineering",
@@ -156,29 +195,78 @@ export const serviceCategories: ServiceCategory[] = [
       "Data Strategy & Modernization",
     ],
     whyImportant:
-      "Decisions improve when data becomes intelligence. Modern lakes, governed pipelines and AI models help organizations anticipate risk, unlock insight and act faster across every mission and business domain.",
+      "In today's digital economy, data is one of the most valuable business assets. However, many organizations struggle with fragmented systems, isolated data, outdated infrastructure, and limited visibility into business performance. Modern Data, AI & Analytics solutions help organizations unify data sources, improve decision-making, automate processes, uncover hidden opportunities, and accelerate innovation.",
     experience:
-      "Our data and AI practice turns fragmented sources into trusted platforms — with analytics, ML and generative AI that drive measurable outcomes.",
+      "Cloudstrats helps organizations build scalable data ecosystems that transform raw data into meaningful insights, enabling faster growth, greater efficiency, and sustainable competitive advantage.",
     itemBlurbs: {
-      "Data Engineering": "Reliable pipelines that ingest, cleanse and prepare data at scale.",
+      "Data Engineering":
+        "Build reliable, scalable, and efficient data pipelines that collect, process, transform, and deliver high-quality data across your organization.",
       "Data Platforms & Data Lakes":
-        "Lakehouse foundations for storage, discovery and governed access.",
-      "Business Intelligence": "Dashboards and reporting that put insight in decision-makers’ hands.",
-      "AI & ML Solutions": "Models that detect patterns, forecast outcomes and automate decisions.",
-      "Generative AI": "Language and content intelligence tailored to enterprise workflows.",
-      "Predictive Analytics": "Forward-looking insight that improves planning and response.",
+        "Create modern data platforms and centralized data lakes that unify structured and unstructured data from multiple sources.",
+      "Business Intelligence":
+        "Turn complex business data into actionable insights through intuitive dashboards, reporting systems, and visualization tools.",
+      "AI & ML Solutions":
+        "Analyse stored data to enhance automation, improve operational efficiency, customer experiences, and uncover valuable business insights.",
+      "Generative AI":
+        "Enhance productivity, automate content generation, improve customer engagement, and streamline business operations with Generative AI.",
+      "Predictive Analytics":
+        "Anticipate future outcomes and make proactive business decisions using advanced predictive analytics.",
       "Data Strategy & Modernization":
-        "Roadmaps that modernize estates and unlock long-term data value.",
+        "Modernize legacy data environments and establish a future-ready data strategy that supports business growth, innovation, and digital transformation initiatives.",
     },
-    industries: sharedIndustries,
-    whyChoose:
-      "Cloudstrats combines data engineering depth with AI delivery experience — helping you move from raw information to decisions you can trust.",
-    stats: [
-      { value: "250+", label: "Customer Engagements" },
-      { value: "100+", label: "Consultants" },
-      { value: "15+", label: "Years of Experience" },
-      { value: "24×7", label: "Support Readiness" },
+    industries: [
+      {
+        id: "defense-aerospace",
+        title: "Defence & Aerospace",
+        text: "Enable mission-critical decision-making, predictive maintenance, intelligence analysis, and operational optimization through advanced analytics and AI.",
+      },
+      {
+        id: "government-public-sector",
+        title: "Government & Public Sector",
+        text: "Improve public services, enhance transparency, optimize resource allocation, and support data-driven policymaking.",
+      },
+      {
+        id: "banking-financial-services",
+        title: "Banking & Financial Services",
+        text: "Adapt AI-powered analytics to strengthen fraud detection, risk management, customer intelligence, regulatory compliance, and financial forecasting.",
+      },
+      {
+        id: "manufacturing",
+        title: "Manufacturing",
+        text: "Adapt real time data analytics to optimize production processes, improve quality control, enable predictive maintenance, and increase operational efficiency.",
+      },
+      {
+        id: "retail-consumer",
+        title: "Retail & Consumer",
+        text: "Improve inventory management, optimize pricing strategies, and enhance demand forecasting using advanced analytics and AI solutions.",
+      },
+      {
+        id: "transportation-logistics",
+        title: "Transportation & Logistics",
+        text: "Increase supply chain visibility, optimize route planning, and improve fleet management, through predictive analytics and intelligent data platforms.",
+      },
     ],
+    whyChoose:
+      "Cloudstrats brings 15+ years of experience in delivering enterprise-scale data, AI, and analytics solutions across diverse industries. Our team combines expertise in data engineering, analytics, artificial intelligence, cloud technologies, and modernization initiatives to help organizations unlock measurable business value from their data. From strategy and architecture to implementation and ongoing optimization, we provide end-to-end support to help organizations build intelligent, data-driven enterprises that are ready for the future.",
+    stats: [
+      {
+        value: "3x Faster",
+        label:
+          "Decision-making can be achieved through real-time business intelligence and analytics platforms.",
+      },
+      {
+        value: "70%+",
+        label:
+          "Of enterprise AI initiatives depend on strong data foundations and effective data management practices.",
+      },
+      {
+        value: "10,00,000+",
+        label:
+          "Of records can be processed and analysed in real time through modern data engineering architectures.",
+      },
+    ],
+    finalHeadline: "Data Modernisation Services; Powered by AI",
+    finalText: "Prioritize data-driven decision making to have an edge over your competition.",
     bannerImage: "/assets/lifestyle/analytics-dashboard.png",
     chartImage: "/assets/lifestyle/ai-briefing.png",
     whyImage: "/assets/lifestyle/team-collab.png",
@@ -186,8 +274,13 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: "c5i-networks",
     title: "C5I and Mission Critical Networks",
+    headline: "C5I Networks for Mission Critical Networks",
     summary:
-      "Collate analytics and insights derived from years of experience with our C5I integration services.",
+      "Enable secure, resilient, and mission-ready operations with advanced C5I systems.",
+    quote:
+      "Connecting Intelligence, Communication, and Operational Excellence with C5I Infrastructure services.",
+    servicesIntro:
+      "Build secure, scalable, resilient C5I networks for mission critical communication systems.",
     icon: "network",
     items: [
       "C5I Network Integration",
@@ -198,32 +291,76 @@ export const serviceCategories: ServiceCategory[] = [
       "Mission-Critical Infrastructure",
     ],
     whyImportant:
-      "Mission superiority depends on connected, trusted networks. C5I integration unifies command, communications and intelligence so teams share situational awareness and act with confidence.",
+      "Modern defence organizations, government agencies, critical infrastructure providers, and public safety institutions operate in increasingly complex and dynamic environments. The ability to collect, process, share, and act on information in real time is essential for operational success. C5I (Command, Control, Communications, Computers, Cyber, and Intelligence) systems serve as the backbone of mission-critical operations by enabling seamless communication, rapid decision-making, enhanced situational awareness, and coordinated responses across distributed teams and assets.",
     experience:
-      "We integrate and modernize mission-critical networks with security, interoperability and resilience designed for the most demanding operating environments.",
+      "Cloudstrats helps organizations design, integrate, modernize, and manage secure mission-critical networks that support operational readiness, information superiority, and resilient communications in the most demanding environments.",
     itemBlurbs: {
       "C5I Network Integration":
-        "Seamless Command, Control, Communications, Computers and Intelligence integration.",
+        "Integrate communications, intelligence, surveillance, command, and operational systems into a unified network environment.",
       "Command & Control Systems":
-        "Platforms that coordinate operations with clarity and speed.",
+        "Build advanced command and control systems that provide centralized operational oversight, real-time monitoring, and coordinated mission execution.",
       "Secure Communications":
-        "Protected voice, data and mission channels across contested environments.",
+        "Protect critical information and ensure uninterrupted communication through secure communication networks designed for mission-critical environments.",
       "Network Modernization":
-        "Upgrade paths that improve performance without compromising assurance.",
+        "Modernize legacy network environments for improved performance, scalability, security, and resilience.",
       "Intelligence & Situational Awareness":
-        "Fused insight that strengthens real-time operational understanding.",
+        "Gain real-time visibility into operational environments through advanced intelligence and situational awareness solutions.",
       "Mission-Critical Infrastructure":
-        "Always-on foundations for high-stakes national and enterprise missions.",
+        "Design and deploy resilient infrastructure that supports continuous operations and high availability.",
     },
-    industries: sharedIndustries,
-    whyChoose:
-      "Cloudstrats understands mission domains — delivering interoperable C5I and network programs with security and operational excellence at the core.",
-    stats: [
-      { value: "50+", label: "Mission Programs" },
-      { value: "100%", label: "Security Focus" },
-      { value: "24×7", label: "Operational Support" },
-      { value: "15+", label: "Years Domain Depth" },
+    industries: [
+      {
+        id: "defense-aerospace",
+        title: "Defence & Aerospace",
+        text: "Support military operations, intelligence gathering, surveillance systems, tactical communications, and command structures with highly resilient C5I networks.",
+      },
+      {
+        id: "government-public-sector",
+        title: "Government & Public Sector",
+        text: "Enable secure emergency response coordination, critical communications, and digital governance initiatives through mission-critical infrastructure.",
+      },
+      {
+        id: "healthcare-life-sciences",
+        title: "Healthcare & Life Sciences",
+        text: "Ensure uninterrupted communication, secure data exchange, emergency preparedness, and operational continuity for healthcare and life science departments.",
+      },
+      {
+        id: "energy-utilities",
+        title: "Energy & Utilities",
+        text: "Strengthen operational resilience, infrastructure monitoring, incident response, and asset management through secure communication networks.",
+      },
+      {
+        id: "transportation-logistics",
+        title: "Transportation & Logistics",
+        text: "Improve fleet coordination, operational visibility, asset tracking, and incident management with integrated communication, and monitoring systems.",
+      },
+      {
+        id: "telecommunications",
+        title: "Telecommunications",
+        text: "Enhance network reliability, security, service delivery, and operational management through mission-critical communication systems.",
+      },
     ],
+    whyChoose:
+      "Cloudstrats brings extensive experience in delivering secure network integration, infrastructure modernization to complex operational environments. Our team adapts their expertise in C5I systems to help organizations improve operational efficiency, resilience, and readiness. From planning and architecture to deployment, modernization, and ongoing support, we provide end-to-end capabilities that help organizations maintain reliable, secure, and mission-ready networks.",
+    stats: [
+      {
+        value: "30-40%",
+        label:
+          "Reduced finished product wastage experienced by core industries after adapting C5I networks",
+      },
+      {
+        value: "90%",
+        label:
+          "Accuracy experienced in C5I forecasting tasks pertaining to sales and inventory storage",
+      },
+      {
+        value: "30%",
+        label:
+          "Reduction in output time after integrating tactical and integrated communication systems",
+      },
+    ],
+    finalHeadline: "Modernise Networks for Mission Success",
+    finalText: "Ready to build resilient infrastructure with C5I?",
     bannerImage: "/assets/lifestyle/ai-workshop.png",
     chartImage: "/assets/lifestyle/boardroom-skyline.png",
     whyImage: "/assets/lifestyle/digital-consult.png",
@@ -231,11 +368,15 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: "cybersecurity",
     title: "Cyber Security Operations",
+    headline: "Strengthen Security Posture with Around the Clock Monitoring",
     summary:
-      "Managed SOC services for around the clock monitoring, deep threat visibility and rapid response.",
+      "Cybersecurity services built for threat detection, incident response, and better preparedness against unprecedented threats.",
+    quote:
+      "Build a Stronger, More Proactive Security Defence with our Cybersecurity Operations Services",
+    servicesIntro: "Our Cybersecurity Operations Services",
     icon: "shield",
     items: [
-      "Security Operations Center (SOC)",
+      "Security Operations Centre (SOC)",
       "Managed Security Services",
       "SIEM & Threat Detection",
       "Threat Intelligence",
@@ -245,34 +386,79 @@ export const serviceCategories: ServiceCategory[] = [
       "Cybersecurity Assessment",
     ],
     whyImportant:
-      "Threats move fast. A modern SOC with AI-assisted detection, threat intel and rapid response reduces dwell time and protects mission continuity before damage spreads.",
+      "Cyber threats are becoming more sophisticated, persistent, and difficult to detect. At the same time, expanding cloud environments, connected networks, remote workforces, and growing volumes of enterprise data are creating new attack surfaces for organizations to secure. Traditional security approaches are no longer enough. Organizations need continuous visibility, real-time threat detection, proactive threat intelligence, and rapid incident response to identify and contain threats before they impact critical operations.",
     experience:
-      "Cloudstrats delivers managed security operations with continuous monitoring, investigation excellence and response playbooks tuned for critical environments.",
+      "Cloudstrats provides comprehensive cybersecurity services that combine security operations, threat detection, intelligence, and response capabilities to help organizations strengthen cyber resilience and protect their most critical assets.",
     itemBlurbs: {
-      "Security Operations Center (SOC)":
-        "24×7 command for detection, investigation and coordinated response.",
+      "Security Operations Centre (SOC)":
+        "Ensure proactive threat protection with around the clock monitoring and expert oversight.",
       "Managed Security Services":
-        "Expert-led protection across endpoints, networks, cloud and users.",
+        "Ensure continuous monitoring, threat detection, security management, and operational support via managed security.",
       "SIEM & Threat Detection":
-        "AI/ML analytics that prioritize real threats over noise.",
+        "Bring security data together and identify potential threats with SIEM and threat detection solutions.",
       "Threat Intelligence":
-        "Actionable intel that hardens posture before incidents escalate.",
+        "Receive and act on real-time threat intelligence provided by cybersecurity experts with 10+ years of experience.",
       "Incident Response":
-        "Rapid containment, forensics and recovery to restore operations.",
-      "Cloud Security": "Controls and monitoring for hybrid and multi-cloud estates.",
-      "Network Security": "Segmentation, visibility and defence for critical fabrics.",
+        "Detect, contain, investigate, and recover from cybersecurity incidents while minimizing operational disruption and reducing potential business impact.",
+      "Cloud Security":
+        "Strengthen cloud security monitoring and maintain secure, resilient environments with comprehensive cloud security monitoring services.",
+      "Network Security":
+        "Identify network-based threats and strengthen protection across increasingly distributed environments.",
       "Cybersecurity Assessment":
-        "Risk and readiness reviews that strengthen compliance and resilience.",
+        "Understand your security posture and identify areas for improvement through comprehensive cybersecurity maturity assessment.",
     },
-    industries: sharedIndustries,
-    whyChoose:
-      "Security is not a bolt-on for Cloudstrats — it is built into delivery, operations and culture across every engagement.",
-    stats: [
-      { value: "<15m", label: "Mean Time to Detect" },
-      { value: "<60m", label: "Mean Time to Respond" },
-      { value: "24×7", label: "SOC Coverage" },
-      { value: "100+", label: "Security Specialists" },
+    industries: [
+      {
+        id: "defense-aerospace",
+        title: "Defence & Aerospace",
+        text: "Protect mission-critical systems, sensitive information, communications, and operational infrastructure.",
+      },
+      {
+        id: "government-public-sector",
+        title: "Government & Public Sector",
+        text: "Strengthen the security of government systems, citizen data, digital services, and critical infrastructure.",
+      },
+      {
+        id: "banking-financial-services",
+        title: "Banking & Financial Services",
+        text: "Implement around the clock monitoring to protect financial systems, customer data, digital banking environments, and transaction infrastructure.",
+      },
+      {
+        id: "healthcare-life-sciences",
+        title: "Healthcare & Life Sciences",
+        text: "Adapt network, cloud and cybersecurity services to secure sensitive patient data, connected medical environments, research systems, and healthcare infrastructure.",
+      },
+      {
+        id: "energy-utilities",
+        title: "Energy & Utilities",
+        text: "Protect industrial systems, critical infrastructure, and networks from cyber threats through proactive monitoring, threat intelligence, and managed security services.",
+      },
+      {
+        id: "transportation-logistics",
+        title: "Transportation & Logistics",
+        text: "Secure connected transportation systems, logistics networks, operational technologies, and sensitive business data with continuous threat detection.",
+      },
     ],
+    whyChoose:
+      "With years of experience delivering enterprise technology, infrastructure, cloud, and security solutions, Cloudstrats brings a holistic approach to cybersecurity operations. We help enterprises move from reactive security system to proactive cyber defense by combining technology, security expertise, continuous monitoring, and actionable intelligence. We excel at building security strategies aligned with your business goals and risk environment.",
+    stats: [
+      {
+        value: "$10.5 trillion",
+        label:
+          "Projected costs of damage caused globally to enterprises through cyber crimes",
+      },
+      {
+        value: "$4.4 million",
+        label: "Global average of data breach costs",
+      },
+      {
+        value: "$1.9 billion",
+        label:
+          "Average annual savings, by organizations that deploy AI and security operations",
+      },
+    ],
+    finalHeadline: "A Proactive Solution to Cyber Threats",
+    finalText: "Ready to build a security-first system? Let’s get started.",
     bannerImage: "/assets/lifestyle/digital-consult.png",
     chartImage: "/assets/lifestyle/process-automation.png",
     whyImage: "/assets/lifestyle/boardroom-skyline.png",
@@ -280,8 +466,12 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: "automation",
     title: "Intelligent Automations and Digital Transformation",
+    headline: "Transform Operations with AI-Powered Automation",
     summary:
-      "Intelligent automation services that reduce friction, accelerate outcomes and optimize business operations.",
+      "Incorporate intelligent workflows, and digital transformation solutions that improve efficiency, agility, and business performance.",
+    quote:
+      "Digital transformation is no longer simply about adopting new technology. It is about fundamentally improving how work gets done.",
+    servicesIntro: "Intelligent Automation & Digital Transformation Services",
     icon: "spark",
     items: [
       "Business Process Automation",
@@ -294,32 +484,81 @@ export const serviceCategories: ServiceCategory[] = [
       "Workflow Optimization",
     ],
     whyImportant:
-      "Manual bottlenecks slow growth. Intelligent automation frees teams, improves accuracy and scales processes so organizations deliver faster with less operational drag.",
+      "Organizations are under constant pressure to improve productivity, reduce operational costs, and deliver better customer experiences. Yet repetitive processes, disconnected systems, manual workflows, and legacy operations tend to prevent businesses from achieving these goals. Intelligent automation combines artificial intelligence, machine learning, robotic process automation, workflow automation, and advanced technologies to transform how businesses operate.",
     experience:
-      "We design automation programs that combine RPA, AI agents, document intelligence and AIOps — focused on measurable efficiency and reliable operations.",
+      "Instead of simply automating repetitive tasks, Cloudstrats creates intelligent, connected processes that understand information, make decisions, and adapt to changing business requirements.",
     itemBlurbs: {
       "Business Process Automation":
-        "Streamline core workflows end-to-end with measurable cycle-time gains.",
-      "AI Automation": "Embed intelligence into processes that need judgment at scale.",
+        "Automate repetitive and time-consuming business processes to improve efficiency and reduce manual intervention; enabling teams to focus on core activities.",
+      "AI Automation":
+        "Combine AI-powered decision-making, intelligent workflows, and machine learning to automate complex processes and improve team productivity.",
       "Intelligent Document Processing":
-        "Extract, classify and route documents with speed and accuracy.",
-      "AI Agents": "Goal-driven assistants that execute multi-step enterprise tasks.",
-      "RPA": "Reliable bots for high-volume, rules-based operational work.",
-      "AIOps": "Intelligent IT operations that detect, correlate and remediate faster.",
+        "Transform documents and unstructured information into actionable data with intelligent document processing (IDP).",
+      "AI Agents":
+        "Our AI agent solutions help enterprises automate business processes and create AI-powered digital workers for a range of operational use cases.",
+      "RPA":
+        "Streamline data entry and automate rule-based, repetitive tasks across enterprise applications with Robotic Process Automation (RPA).",
+      "AIOps":
+        "Our AIOps solutions help automate monitoring, identify anomalies, correlate events, predict potential issues, and improve the performance of complex IT environments.",
       "IT Operations Automation":
-        "Automate provisioning, monitoring and routine infra tasks.",
+        "Our IT operations automation services help enterprises reduce manual intervention, accelerate issue resolution, and create more efficient and resilient IT environments.",
       "Workflow Optimization":
-        "Redesign processes for clarity, speed and sustainable improvement.",
+        "Combine process analysis, automation, AI, and orchestration to redesign workflows for greater efficiency, speed, and scalability.",
     },
-    industries: sharedIndustries,
-    whyChoose:
-      "Cloudstrats pairs automation technology with outcome-driven delivery — so transformation shows up in throughput, quality and cost.",
-    stats: [
-      { value: "60%", label: "Growth Momentum" },
-      { value: "15+", label: "Years Experience" },
-      { value: "250+", label: "Engagements" },
-      { value: "24×7", label: "Operational Support" },
+    industries: [
+      {
+        id: "defense-aerospace",
+        title: "Defence & Aerospace",
+        text: "Automate critical processes, IT operations, document workflows, and data-intensive tasks while improving operational efficiency for faster decision-making.",
+      },
+      {
+        id: "government-public-sector",
+        title: "Government & Public Sector",
+        text: "Streamline citizen services, administrative workflows, document processing, and back-office operations through intelligent automation.",
+      },
+      {
+        id: "banking-financial-services",
+        title: "Banking & Financial Services",
+        text: "Automate transaction processing, customer onboarding, compliance workflows, document processing, and repetitive operational tasks.",
+      },
+      {
+        id: "energy-utilities",
+        title: "Energy & Utilities",
+        text: "Optimize asset management, field operations, IT processes, service workflows, and data-driven operations with intelligent automation.",
+      },
+      {
+        id: "transportation-logistics",
+        title: "Transportation & Logistics",
+        text: "Automate shipment processing, documentation, scheduling, customer service, fleet operations, and supply chain workflows.",
+      },
+      {
+        id: "smart-cities-infrastructure",
+        title: "Smart Cities & Infrastructure",
+        text: "Enable smarter public infrastructure through automation of monitoring, maintenance, service delivery, and operational workflows.",
+      },
     ],
+    whyChoose:
+      "With years of experience delivering enterprise technology, AI, infrastructure, and digital transformation solutions, Cloudstrats helps organizations move beyond isolated automation projects and toward scalable enterprise automation strategies. Our years of experience has taught us how to approach automation holistically—identifying the right processes to automate, selecting the right technologies, integrating them with existing systems, and helping organizations scale automation across the enterprise.",
+    stats: [
+      {
+        value: "80%",
+        label:
+          "Activities across company operations can benefit from some level of AI automation.",
+      },
+      {
+        value: "65%",
+        label:
+          "Organizations are regularly using generative AI in at least one business function—nearly double the share reported ten months earlier.",
+      },
+      {
+        value: "30%",
+        label:
+          "Estimated potential share of current work hours could be automated by 2030",
+      },
+    ],
+    finalHeadline: "Make Automation the Engine of Digital Transformation",
+    finalText:
+      "The future of enterprise operations is intelligent, connected, and increasingly automated.",
     bannerImage: "/assets/lifestyle/automation-rpa.png",
     chartImage: "/assets/lifestyle/process-automation.png",
     whyImage: "/assets/lifestyle/team-meeting.png",
@@ -342,38 +581,25 @@ export function slugify(text: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+export const aiInfraFeatures = [
+  { title: "GPU Acceleration", text: "High-density GPU clusters for training and inference." },
+  { title: "Compute Platforms", text: "Scalable platforms for AI, HPC and mission workloads." },
+  { title: "Storage Architecture", text: "High-throughput storage for data-intensive AI pipelines." },
+  { title: "Network Fabric", text: "Low-latency fabrics for distributed AI and C5I systems." },
+];
+
 export const socCapabilities = [
-  "Continuous Monitoring",
-  "Threat Detection (AI/ML)",
-  "Investigation & Analysis",
+  "24×7 Monitoring",
+  "Threat Detection",
   "Incident Response",
   "Threat Intelligence",
-  "Risk & Compliance",
-  "Executive Reporting",
-] as const;
+  "SIEM Analytics",
+  "Vulnerability Management",
+];
 
 export const socOutcomes = [
-  { label: "Mean Time to Detect", value: "< 15 mins" },
-  { label: "Mean Time to Respond", value: "< 60 mins" },
-  { label: "Coverage", value: "24×7 Global" },
-  { label: "Team", value: "DID Certified Analysts" },
-] as const;
-
-export const aiInfraFeatures = [
-  {
-    title: "GPU Acceleration",
-    text: "NVIDIA GPU optimized systems for AI/ML at massive scale.",
-  },
-  {
-    title: "Compute Platforms",
-    text: "Enterprise-grade servers engineered for compute-intensive workloads.",
-  },
-  {
-    title: "Storage Architecture",
-    text: "High-performance storage for data lakes, models and datasets.",
-  },
-  {
-    title: "Network Fabric",
-    text: "Low-latency, high-bandwidth networks for AI clusters and data movement.",
-  },
-] as const;
+  { value: "Faster", label: "Reduced dwell time" },
+  { value: "Stronger", label: "Faster containment" },
+  { value: "Clearer", label: "Improved visibility" },
+  { value: "Safer", label: "Stronger compliance posture" },
+];

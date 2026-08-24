@@ -297,12 +297,33 @@
   z-index: 1;
 }
 
-/* ——— SIGNAL ——— */
+/* ——— SIGNAL: 2×2 stats left + image right ——— */
+.enigma-signal__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-top: 2.5rem;
+}
+
 .enigma-signal__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 2.5rem;
+}
+
+.enigma-signal__media {
+  height: 100%;
+  min-height: 320px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.enigma-signal__media .live-image,
+.enigma-signal__media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .enigma-stat {
@@ -313,6 +334,7 @@
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(10px);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  height: 100%;
 }
 
 .enigma-stat:hover {
@@ -337,19 +359,34 @@
   font-size: 0.88rem;
 }
 
-/* ——— LAYERS ——— */
+/* ——— LAYERS: portrait cards, 3 + 2 ——— */
 .enigma-layers__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 2.25rem;
+}
+
+.enigma-layers__grid > * {
+  grid-column: span 2;
+}
+
+/* Center the second row (cards 4–5) */
+.enigma-layers__grid > *:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.enigma-layers__grid > *:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .enigma-layer {
   position: relative;
   display: block;
-  min-height: 220px;
-  padding: 1.6rem 1.5rem 1.4rem;
+  min-height: 320px;
+  aspect-ratio: 3 / 4;
+  max-height: 420px;
+  padding: 1.6rem 1.35rem 1.4rem;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(232, 244, 252, 0.75));
@@ -686,9 +723,23 @@
 }
 
 @media (max-width: 1000px) {
+  .enigma-signal__layout {
+    grid-template-columns: 1fr;
+  }
+
   .enigma-signal__grid,
   .enigma-pillars__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .enigma-layers__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .enigma-layers__grid > *,
+  .enigma-layers__grid > *:nth-child(4),
+  .enigma-layers__grid > *:nth-child(5) {
+    grid-column: span 1;
   }
 
   .enigma-platforms__grid {
@@ -711,17 +762,20 @@
     grid-template-columns: 1fr;
   }
 
-  .enigma-sector {
-    grid-template-columns: 2.5rem 1fr;
+  .enigma-layers__grid > *,
+  .enigma-layers__grid > *:nth-child(4),
+  .enigma-layers__grid > *:nth-child(5) {
+    grid-column: auto;
   }
 
-  .enigma-sector__arrow {
-    display: none;
+  .enigma-layer {
+    aspect-ratio: auto;
+    min-height: 240px;
+    max-height: none;
   }
 
   .enigma-layer__text,
-  .enigma-platform__text,
-  .enigma-sector p {
+  .enigma-platform__text {
     max-height: none;
     opacity: 1;
   }

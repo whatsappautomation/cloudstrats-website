@@ -3,10 +3,7 @@ import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
-import {
-  getServiceById,
-  slugify,
-} from "../data/services";
+import { getServiceById, slugify } from "../data/services";
 import "./ServiceCategory.css";
 
 export function ServiceCategoryPage() {
@@ -25,26 +22,24 @@ export function ServiceCategoryPage() {
 
   return (
     <div className="service-cat">
-      {/* Section 1 — Banner */}
       <section className="service-banner">
         <img src={category.bannerImage} alt="" className="service-banner__bg" />
         <div className="service-banner__overlay" />
         <div className="container service-banner__content">
           <p className="eyebrow">Services</p>
-          <h1>{category.title}</h1>
+          <h1>{category.headline}</h1>
           <p>{category.summary}</p>
           <Link to="/contact" className="btn btn-primary">
-            Talk to Us <ArrowRight size={16} />
+            Talk to Our Experts <ArrowRight size={16} />
           </Link>
         </div>
       </section>
 
-      {/* Section 2 — Why important */}
       <section className="section">
         <div className="container service-why-grid">
           <Reveal>
             <div>
-              <h2 className="section-title" style={{ maxWidth: "16ch" }}>
+              <h2 className="section-title" style={{ maxWidth: "18ch" }}>
                 Why this service matters
               </h2>
               <p className="section-lead">{category.whyImportant}</p>
@@ -61,30 +56,29 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      {/* Section 3 — Experience highlight + CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal>
             <div className="panel service-highlight">
               <div>
                 <p className="eyebrow">Our experience</p>
-                <h2>Proven delivery across mission-critical environments</h2>
+                <h2>{category.quote}</h2>
                 <p>{category.experience}</p>
               </div>
               <Link to="/contact" className="btn btn-primary">
-                Discuss Your Needs <ArrowRight size={16} />
+                Schedule a Consultation <ArrowRight size={16} />
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Section 4 — Sub services */}
       <section className="section service-subs">
         <div className="container">
           <Reveal>
             <p className="eyebrow">Capabilities</p>
-            <h2 className="section-title">Sub-services</h2>
+            <h2 className="section-title">Our {category.title} Services</h2>
+            <p className="section-lead">{category.servicesIntro}</p>
           </Reveal>
           <div className="service-cat__items">
             {category.items.map((item, i) => (
@@ -105,7 +99,6 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      {/* Section 5 — Industries (6) */}
       <section className="section">
         <div className="container">
           <Reveal>
@@ -128,15 +121,14 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      {/* Section 6 — Why Choose Cloudstrats */}
       <section className="section service-choose">
         <div className="container service-choose__grid">
           <Reveal>
             <div>
               <h2 className="section-title">Why Choose Cloudstrats?</h2>
               <p className="section-lead">{category.whyChoose}</p>
-              <Link to="/why-cloudstrats" className="btn btn-primary">
-                Learn More <ArrowRight size={16} />
+              <Link to="/contact" className="btn btn-primary">
+                Talk to an Expert <ArrowRight size={16} />
               </Link>
             </div>
           </Reveal>
@@ -150,31 +142,35 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      {/* Section 7 — Stats */}
       <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container service-stats">
-          {category.stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 0.05}>
-              <div className="panel service-stat">
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            </Reveal>
-          ))}
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow">By the numbers</p>
+            <h2 className="section-title">{category.title} by the Numbers</h2>
+          </Reveal>
+          <div className="service-stats">
+            {category.stats.map((stat, i) => (
+              <Reveal key={`${stat.value}-${i}`} delay={i * 0.05}>
+                <div className="panel service-stat">
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Section 8 — Final CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal>
             <div className="panel service-cat__cta">
               <div>
-                <h2>Ready to get started with {category.title}?</h2>
-                <p>Share your requirements and our specialists will map the right path.</p>
+                <h2>{category.finalHeadline}</h2>
+                <p>{category.finalText}</p>
               </div>
               <Link to="/contact" className="btn btn-primary">
-                Contact Us <ArrowRight size={16} />
+                Get in Touch <ArrowRight size={16} />
               </Link>
             </div>
           </Reveal>

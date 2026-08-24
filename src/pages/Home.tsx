@@ -51,39 +51,6 @@ const homeServices = [
   },
 ];
 
-const homeIndustries = [
-  {
-    id: "government-public-sector",
-    code: "I",
-    title: "Government Critical Infrastructure",
-    text: "Modern AI infrastructure with threat detection and response services ensure that mission critical programmes are protected.",
-  },
-  {
-    id: "defense-aerospace",
-    code: "II",
-    title: "Defence and Aerospace",
-    text: "Modern security monitoring services protects critical data, keeping it away from the public eye.",
-  },
-  {
-    id: "banking-financial-services",
-    code: "III",
-    title: "Banking and Finance",
-    text: "Enterprise data analytics and machine learning solutions catch market trends and protects organizations from significant losses.",
-  },
-  {
-    id: "manufacturing",
-    code: "IV",
-    title: "Manufacturing",
-    text: "AI automation solutions and intelligent process automation ensures faster output and efficient workflow.",
-  },
-  {
-    id: "healthcare-life-sciences",
-    code: "V",
-    title: "Healthcare and Life Sciences",
-    text: "Around the clock monitoring services paired with predictive analysis solutions ensure efficient treatment.",
-  },
-];
-
 export function Home() {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -99,7 +66,6 @@ export function Home() {
     >
       <motion.div className="home__cursor-glow" style={{ background: glow }} />
 
-      {/* NDIA-style composition · CloudStrats colours */}
       <section className="enigma-hero">
         <div className="enigma-hero__atmosphere" aria-hidden />
         <EnigmaField />
@@ -169,7 +135,6 @@ export function Home() {
         </a>
       </section>
 
-      {/* Whisper codes */}
       <section id="discover" className="enigma-codes">
         <div className="container">
           <Reveal>
@@ -182,7 +147,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Design. Secure. Scale. — pillar rhythm like NDIA */}
       <section className="section enigma-pillars">
         <div className="container">
           <Reveal>
@@ -227,27 +191,38 @@ export function Home() {
         </div>
       </section>
 
-      {/* Signal */}
+      {/* Stats: 2×2 left + image right */}
       <section className="section enigma-signal">
         <div className="container">
           <Reveal>
             <p className="eyebrow">Signal</p>
             <h2 className="enigma-heading">Numbers that stay quiet until you look.</h2>
           </Reveal>
-          <div className="enigma-signal__grid">
-            {company.stats.slice(0, 4).map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.08}>
-                <div className="enigma-stat">
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </div>
-              </Reveal>
-            ))}
+          <div className="enigma-signal__layout">
+            <div className="enigma-signal__grid">
+              {company.stats.slice(0, 4).map((stat, i) => (
+                <Reveal key={stat.label} delay={i * 0.08}>
+                  <div className="enigma-stat">
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.12}>
+              <div className="enigma-signal__media">
+                <LiveImage
+                  className="live-image--tall"
+                  src="/assets/lifestyle/boardroom-skyline.png"
+                  alt="Cloudstrats presence and delivery"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Layers / services — document copy */}
+      {/* Services: portrait cards, 3 + 2 */}
       <section className="section enigma-layers">
         <div className="container">
           <Reveal>
@@ -291,7 +266,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Platforms */}
       <section className="section enigma-platforms">
         <div className="container">
           <Reveal>
@@ -320,38 +294,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Sectors */}
-      <section className="section enigma-sectors">
-        <div className="container">
-          <Reveal>
-            <p className="eyebrow">Sectors</p>
-            <h2 className="enigma-heading">Where the work lives.</h2>
-          </Reveal>
+      {/* Industries section unpublished per feedback */}
 
-          <div className="enigma-sectors__list">
-            {homeIndustries.map((industry, i) => (
-              <Reveal key={industry.id} delay={i * 0.05}>
-                <Link to={`/industries/${industry.id}`} className="enigma-sector">
-                  <span className="enigma-sector__code">{industry.code}</span>
-                  <div className="enigma-sector__main">
-                    <h3>{industry.title}</h3>
-                    <p>{industry.text}</p>
-                  </div>
-                  <ArrowRight className="enigma-sector__arrow" size={18} />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="section-cta">
-            <Link to="/industries" className="btn btn-ghost">
-              View all industries <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Why */}
       <section className="section enigma-why">
         <div className="container enigma-why__grid">
           <Reveal>
@@ -368,33 +312,27 @@ export function Home() {
             <div className="enigma-why__copy">
               <p className="eyebrow">Why Cloudstrats</p>
               <h2 className="enigma-heading">
-                Fifteen years. Still asking better questions.
+                One partner. Multiple transformation capabilities.
               </h2>
-              <p className="enigma-why__lead">
-                What began as a tech company became an AI infrastructure and growth
-                partner — for missions that cannot afford noise.
-              </p>
-              <p className="enigma-why__punch">
-                Build smarter. Operate securely. Scale faster.
-              </p>
-              <Link to="/why-cloudstrats" className="btn btn-primary">
-                Go deeper <ArrowRight size={16} />
+              <p className="enigma-why__lead">{company.advantageIntro}</p>
+              <p className="enigma-why__punch">{company.punchline}</p>
+              <Link to="/about" className="btn btn-primary">
+                About Cloudstrats <ArrowRight size={16} />
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Threshold CTA */}
       <section className="section enigma-threshold">
         <div className="container">
           <Reveal>
             <div className="enigma-threshold__panel">
-              <p className="eyebrow">Threshold</p>
-              <h2>Ready when you are.</h2>
-              <p>No pitch deck required. Just the next conversation.</p>
+              <p className="eyebrow">Building What’s Next</p>
+              <h2>{company.futurePunch}</h2>
+              <p>{company.futureText}</p>
               <Link to="/contact" className="btn btn-primary">
-                Contact Cloudstrats <ArrowRight size={18} />
+                Talk to our experts <ArrowRight size={18} />
               </Link>
             </div>
           </Reveal>

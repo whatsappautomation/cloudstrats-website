@@ -2,8 +2,94 @@
 .about-pillar,
 .value-card,
 .presence-block,
-.about-split .panel {
+.about-split .panel,
+.about-capability,
+.about-future {
   padding: 1.5rem;
+}
+
+.about-punch {
+  margin-top: 0.85rem;
+  font-weight: 700;
+  color: var(--bg-deep);
+  font-size: 1.05rem;
+}
+
+.about-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.about-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.about-capabilities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.about-capability h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.15rem;
+}
+
+.about-capability p {
+  color: var(--ink-soft);
+}
+
+.about-capability__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.9rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.about-method {
+  margin-top: 1.75rem;
+}
+
+.about-step {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.55rem;
+}
+
+.about-future h2 {
+  margin-bottom: 0.75rem;
+}
+
+.about-future p {
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.about-future .btn {
+  margin-top: 1.25rem;
 }
 
 .about-visual {
@@ -133,14 +219,16 @@
 
 @media (max-width: 900px) {
   .about-split,
-  .cert-row {
+  .cert-row,
+  .about-capabilities {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 640px) {
   .about-split,
-  .cert-row {
+  .cert-row,
+  .about-capabilities {
     grid-template-columns: 1fr;
   }
 }
