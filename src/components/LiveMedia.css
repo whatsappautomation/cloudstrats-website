@@ -40,6 +40,16 @@
   min-height: 360px;
 }
 
+.live-image--wide {
+  min-height: 280px;
+}
+
+.live-image--wide img {
+  min-height: 280px;
+  aspect-ratio: 3 / 1;
+  object-position: 70% center;
+}
+
 .live-image--hero {
   min-height: 420px;
   border-radius: 24px;

@@ -66,7 +66,7 @@ export function Home() {
     >
       <motion.div className="home__cursor-glow" style={{ background: glow }} />
 
-      <section className="enigma-hero">
+      <section className="enigma-hero enigma-hero--cover">
         <div className="enigma-hero__atmosphere" aria-hidden />
         <EnigmaField />
         <div className="enigma-hero__orb" aria-hidden />
@@ -128,6 +128,20 @@ export function Home() {
               ))}
             </motion.ul>
           </div>
+
+          <motion.div
+            className="enigma-hero__cover"
+            initial={{ opacity: 0, x: 28 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img
+              src="/assets/lifestyle/team-cover.png"
+              alt="Cloudstrats team"
+              className="enigma-hero__cover-img"
+            />
+            <div className="enigma-hero__cover-fade" aria-hidden />
+          </motion.div>
         </div>
 
         <a href="#discover" className="enigma-hero__scroll" aria-label="Scroll to discover">
@@ -213,8 +227,8 @@ export function Home() {
               <div className="enigma-signal__media">
                 <LiveImage
                   className="live-image--tall"
-                  src="/assets/lifestyle/boardroom-skyline.png"
-                  alt="Cloudstrats presence and delivery"
+                  src="/assets/lifestyle/team-cover.png"
+                  alt="Cloudstrats leadership team"
                 />
               </div>
             </Reveal>
@@ -302,7 +316,7 @@ export function Home() {
             <div className="enigma-why__media">
               <LiveImage
                 className="live-image--tall"
-                src="/assets/lifestyle/team-collab.png"
+                src="/assets/lifestyle/team-cover.png"
                 alt="Cloudstrats team"
               />
               <div className="enigma-why__media-veil" />

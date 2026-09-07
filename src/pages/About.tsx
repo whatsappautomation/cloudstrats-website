@@ -26,10 +26,10 @@ export function About() {
           <Reveal>
             <div className="about-visual">
               <LiveImage
-                className="live-image--tall"
-                src="/assets/lifestyle/team-meeting.png"
-                alt="Cloudstrats team working together"
-                caption="Customer Obsession"
+                className="live-image--wide"
+                src="/assets/lifestyle/team-cover.png"
+                alt="Cloudstrats team"
+                caption="The Cloudstrats team"
               />
             </div>
           </Reveal>
