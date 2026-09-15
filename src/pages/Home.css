@@ -12,7 +12,7 @@
   opacity: 0.8;
 }
 
-/* ——— HERO (NDIA composition, CS palette) ——— */
+/* ——— HERO: full-bleed banner, darkened text zone ——— */
 .enigma-hero {
   position: relative;
   min-height: 100vh;
@@ -23,100 +23,61 @@
   overflow: hidden;
 }
 
-.enigma-hero__atmosphere {
+.enigma-hero--banner {
+  background: #020b16;
+}
+
+.enigma-hero__banner {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(1100px 640px at 78% 42%, rgba(0, 119, 182, 0.28), transparent 58%),
-    radial-gradient(700px 480px at 12% 20%, rgba(14, 118, 222, 0.16), transparent 55%),
-    radial-gradient(600px 400px at 40% 90%, rgba(2, 62, 99, 0.1), transparent 50%),
-    linear-gradient(165deg, #e4f2fb 0%, #f7fbff 45%, #eef6ff 100%);
 }
 
-.enigma-hero__atmosphere::before {
-  content: "";
+.enigma-hero__banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.enigma-hero__shade {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 119, 182, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 119, 182, 0.06) 1px, transparent 1px);
-  background-size: 52px 52px;
-  mask-image: radial-gradient(ellipse at 70% 45%, black 15%, transparent 70%);
-}
-
-.enigma-hero__orb {
-  position: absolute;
-  right: -8%;
-  top: 18%;
-  width: min(58vw, 640px);
-  height: min(58vw, 640px);
-  border-radius: 50%;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.55), transparent 55%),
-    radial-gradient(circle at 60% 60%, rgba(0, 119, 182, 0.35), transparent 62%);
-  filter: blur(2px);
-  opacity: 0.85;
-  animation: enigma-orb 12s ease-in-out infinite;
-}
-
-.enigma-hero__veil {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(247, 251, 255, 0.88) 0%, rgba(247, 251, 255, 0.55) 42%, transparent 68%),
-    linear-gradient(180deg, rgba(247, 251, 255, 0.35) 0%, transparent 28%, transparent 70%, rgba(247, 251, 255, 0.7) 100%);
+    linear-gradient(
+      90deg,
+      rgba(1, 8, 18, 0.92) 0%,
+      rgba(1, 12, 28, 0.82) 28%,
+      rgba(2, 20, 40, 0.55) 52%,
+      rgba(2, 20, 40, 0.22) 72%,
+      rgba(2, 20, 40, 0.12) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1, 8, 18, 0.45) 0%,
+      transparent 28%,
+      transparent 68%,
+      rgba(1, 8, 18, 0.55) 100%
+    );
 }
 
 .enigma-hero__layout {
   position: relative;
   z-index: 2;
   width: min(var(--max), calc(100% - 2.5rem));
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
+}
+
+.enigma-hero__layout--banner {
+  display: block;
 }
 
 .enigma-hero__copy {
   max-width: 640px;
   position: relative;
   z-index: 2;
-}
-
-.enigma-hero__cover {
-  position: relative;
-  border-radius: calc(var(--radius) + 4px);
-  overflow: hidden;
-  isolation: isolate;
-  min-height: clamp(240px, 32vw, 420px);
-  box-shadow:
-    0 28px 60px rgba(2, 62, 99, 0.14),
-    0 0 0 1px rgba(0, 119, 182, 0.08);
-  background:
-    linear-gradient(135deg, rgba(228, 242, 251, 0.9), rgba(255, 255, 255, 0.95));
-}
-
-.enigma-hero__cover-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: clamp(240px, 32vw, 420px);
-  object-fit: cover;
-  object-position: 72% center;
-}
-
-.enigma-hero__cover-fade {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(247, 251, 255, 0.55) 0%, transparent 28%),
-    linear-gradient(180deg, transparent 70%, rgba(247, 251, 255, 0.35) 100%);
 }
 
 .enigma-badge {
@@ -134,30 +95,62 @@
   box-shadow: 0 10px 28px rgba(0, 119, 182, 0.28);
 }
 
-.enigma-hero__title {
+.enigma-hero--banner .enigma-hero__title {
   font-size: clamp(2.6rem, 6.4vw, 4.6rem);
   font-weight: 700;
-  color: var(--bg-deep);
+  color: #f4f9ff;
   line-height: 1.06;
   letter-spacing: -0.038em;
   margin-bottom: 1.25rem;
   max-width: 11ch;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
-.enigma-hero__accent {
+.enigma-hero--banner .enigma-hero__accent {
   display: inline;
-  background: linear-gradient(105deg, var(--accent) 0%, #0e76de 45%, var(--bg-deep) 100%);
+  background: linear-gradient(105deg, #7ec8ef 0%, #4db0e0 45%, #e8f6ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.enigma-hero__lead {
-  color: var(--ink-soft);
+.enigma-hero--banner .enigma-hero__lead {
+  color: rgba(226, 239, 250, 0.88);
   font-size: clamp(1.02rem, 1.6vw, 1.15rem);
   line-height: 1.65;
   max-width: 42ch;
   margin-bottom: 1.75rem;
+}
+
+.enigma-hero__ghost {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  color: #f4f9ff !important;
+}
+
+.enigma-hero__ghost:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: #fff !important;
+}
+
+.enigma-hero--banner .enigma-trust li {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8f4ff;
+  backdrop-filter: blur(10px);
+}
+
+.enigma-hero--banner .enigma-trust li:hover {
+  border-color: rgba(126, 200, 239, 0.8);
+  color: #fff;
+}
+
+.enigma-hero--banner .enigma-hero__scroll {
+  color: rgba(232, 244, 255, 0.55);
+}
+
+.enigma-hero--banner .enigma-hero__scroll:hover {
+  color: #fff;
 }
 
 .enigma-hero__actions {
@@ -361,7 +354,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: 72% center;
+  object-position: center 22%;
 }
 
 .enigma-stat {
@@ -761,16 +754,6 @@
 }
 
 @media (max-width: 1000px) {
-  .enigma-hero__layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .enigma-hero__cover,
-  .enigma-hero__cover-img {
-    min-height: 220px;
-  }
-
   .enigma-signal__layout {
     grid-template-columns: 1fr;
   }
@@ -798,7 +781,7 @@
     grid-template-columns: 1fr;
   }
 
-  .enigma-hero__title {
+  .enigma-hero--banner .enigma-hero__title {
     max-width: 14ch;
   }
 }
@@ -840,15 +823,9 @@
   .enigma-layer__cta {
     opacity: 1;
   }
-
-  .enigma-hero__orb {
-    opacity: 0.45;
-    right: -30%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .enigma-hero__orb,
   .enigma-hero__scroll {
     animation: none;
   }

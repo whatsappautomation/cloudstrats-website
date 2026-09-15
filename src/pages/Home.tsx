@@ -66,13 +66,18 @@ export function Home() {
     >
       <motion.div className="home__cursor-glow" style={{ background: glow }} />
 
-      <section className="enigma-hero enigma-hero--cover">
-        <div className="enigma-hero__atmosphere" aria-hidden />
+      <section className="enigma-hero enigma-hero--banner">
+        <div className="enigma-hero__banner" aria-hidden>
+          <img
+            src="/assets/lifestyle/home-banner.png"
+            alt=""
+            className="enigma-hero__banner-img"
+          />
+        </div>
+        <div className="enigma-hero__shade" aria-hidden />
         <EnigmaField />
-        <div className="enigma-hero__orb" aria-hidden />
-        <div className="enigma-hero__veil" aria-hidden />
 
-        <div className="container enigma-hero__layout">
+        <div className="container enigma-hero__layout enigma-hero__layout--banner">
           <div className="enigma-hero__copy">
             <motion.span
               className="enigma-badge"
@@ -112,7 +117,7 @@ export function Home() {
               <Link to="/contact" className="btn btn-primary">
                 Partner with Cloudstrats <ArrowRight size={18} />
               </Link>
-              <Link to="/services" className="btn btn-ghost">
+              <Link to="/services" className="btn btn-ghost enigma-hero__ghost">
                 Explore Services
               </Link>
             </motion.div>
@@ -128,20 +133,6 @@ export function Home() {
               ))}
             </motion.ul>
           </div>
-
-          <motion.div
-            className="enigma-hero__cover"
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <img
-              src="/assets/lifestyle/team-cover.png"
-              alt="Cloudstrats team"
-              className="enigma-hero__cover-img"
-            />
-            <div className="enigma-hero__cover-fade" aria-hidden />
-          </motion.div>
         </div>
 
         <a href="#discover" className="enigma-hero__scroll" aria-label="Scroll to discover">
@@ -227,8 +218,8 @@ export function Home() {
               <div className="enigma-signal__media">
                 <LiveImage
                   className="live-image--tall"
-                  src="/assets/lifestyle/team-cover.png"
-                  alt="Cloudstrats leadership team"
+                  src="/assets/lifestyle/stats-award.png"
+                  alt="Cloudstrats at India Digital Empowerment Meet & Awards"
                 />
               </div>
             </Reveal>
