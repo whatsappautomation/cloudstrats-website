@@ -145,7 +145,9 @@ export function Home() {
           <Reveal>
             <ul className="enigma-codes__list">
               {["AI", "Data", "C5I", "Security", "Automation"].map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </Reveal>
@@ -198,6 +200,7 @@ export function Home() {
 
       {/* Stats: 2×2 left + image right */}
       <section className="section enigma-signal">
+        <div className="enigma-signal__glow" aria-hidden />
         <div className="container">
           <Reveal>
             <p className="eyebrow">Signal</p>

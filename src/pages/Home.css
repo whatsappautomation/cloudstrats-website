@@ -204,22 +204,35 @@
   color: var(--accent);
 }
 
-/* ——— CODES ——— */
+/* ——— CODES: dark bridge from hero ——— */
 .enigma-codes {
-  padding: 0.25rem 0;
-  border-block: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
+  position: relative;
+  padding: 0.35rem 0;
+  border-block: 1px solid rgba(126, 200, 239, 0.14);
+  background:
+    linear-gradient(180deg, #020b16 0%, #041525 100%);
+  overflow: hidden;
+}
+
+.enigma-codes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 80px at 50% 50%, rgba(0, 119, 182, 0.28), transparent 70%);
+  pointer-events: none;
 }
 
 .enigma-codes__list {
   list-style: none;
   margin: 0;
-  padding: 1rem 0;
+  padding: 1.15rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.65rem 2rem;
+  gap: 0.65rem 1.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .enigma-codes__list li {
@@ -227,14 +240,17 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--bg-deep);
-  opacity: 0.45;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  color: rgba(232, 244, 255, 0.55);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.enigma-codes__list li span {
+  position: relative;
 }
 
 .enigma-codes__list li:hover {
-  opacity: 1;
-  color: var(--accent);
+  color: #9fd8f5;
+  text-shadow: 0 0 18px rgba(0, 119, 182, 0.55);
 }
 
 /* ——— SHARED ——— */
@@ -277,28 +293,52 @@
 }
 
 /* ——— PILLARS ——— */
+.enigma-pillars {
+  position: relative;
+  background:
+    radial-gradient(900px 420px at 50% 0%, rgba(0, 119, 182, 0.1), transparent 60%),
+    linear-gradient(180deg, #eef6ff 0%, #f7fbff 55%, #ffffff 100%);
+}
+
 .enigma-pillars__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.15rem;
   margin-top: 2.5rem;
 }
 
 .enigma-pillar {
   position: relative;
-  min-height: 220px;
-  padding: 1.75rem 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95), rgba(232, 244, 252, 0.8));
+  min-height: 240px;
+  padding: 1.85rem 1.55rem 1.65rem;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(0, 119, 182, 0.16);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.98), rgba(226, 241, 252, 0.88));
+  box-shadow: 0 18px 40px rgba(2, 62, 99, 0.06);
   overflow: hidden;
   height: 100%;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.enigma-pillar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  right: 1.25rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #4db0e0, transparent);
+  opacity: 0.85;
 }
 
 .enigma-pillar:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow);
+  border-color: rgba(0, 119, 182, 0.35);
+  box-shadow:
+    0 22px 48px rgba(2, 62, 99, 0.12),
+    0 0 0 1px rgba(0, 119, 182, 0.08);
+  transform: translateY(-4px);
 }
 
 .enigma-pillar__n {
@@ -308,13 +348,13 @@
   font-size: 4.5rem;
   font-weight: 800;
   line-height: 1;
-  color: rgba(0, 119, 182, 0.08);
+  color: rgba(0, 119, 182, 0.1);
   letter-spacing: -0.06em;
   pointer-events: none;
 }
 
 .enigma-pillar h3 {
-  font-size: 1.65rem;
+  font-size: 1.7rem;
   color: var(--bg-deep);
   margin-bottom: 0.65rem;
 }
@@ -327,7 +367,46 @@
   z-index: 1;
 }
 
-/* ——— SIGNAL: 2×2 stats left + image right ——— */
+/* ——— SIGNAL: deep band echoing hero ——— */
+.enigma-signal {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(800px 360px at 85% 30%, rgba(0, 119, 182, 0.28), transparent 55%),
+    linear-gradient(165deg, #031525 0%, #05253d 48%, #04182b 100%);
+  color: #e8f4ff;
+}
+
+.enigma-signal__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(126, 200, 239, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 200, 239, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 72%);
+  opacity: 0.7;
+}
+
+.enigma-signal .container {
+  position: relative;
+  z-index: 1;
+}
+
+.enigma-signal .eyebrow {
+  color: #7ec8ef;
+}
+
+.enigma-signal .eyebrow::before {
+  background: #7ec8ef;
+}
+
+.enigma-signal .enigma-heading {
+  color: #f4f9ff;
+  max-width: 18ch;
+}
+
 .enigma-signal__layout {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
@@ -345,8 +424,11 @@
 .enigma-signal__media {
   height: 100%;
   min-height: 320px;
-  border-radius: var(--radius);
+  border-radius: calc(var(--radius) + 2px);
   overflow: hidden;
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(126, 200, 239, 0.18);
 }
 
 .enigma-signal__media .live-image,
@@ -358,43 +440,51 @@
 }
 
 .enigma-stat {
-  padding: 1.6rem 1.2rem;
+  padding: 1.7rem 1.25rem;
   text-align: center;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(10px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border: 1px solid rgba(126, 200, 239, 0.18);
+  border-radius: calc(var(--radius) + 2px);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
   height: 100%;
 }
 
 .enigma-stat:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-soft);
-  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(126, 200, 239, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
 .enigma-stat strong {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3vw, 2.45rem);
-  color: var(--accent);
+  font-size: clamp(1.95rem, 3.2vw, 2.6rem);
+  color: #7ec8ef;
   letter-spacing: -0.04em;
   line-height: 1.1;
   margin-bottom: 0.4rem;
+  text-shadow: 0 0 24px rgba(0, 119, 182, 0.35);
 }
 
 .enigma-stat span {
-  color: var(--ink-soft);
+  color: rgba(226, 239, 250, 0.78);
   font-weight: 600;
   font-size: 0.88rem;
 }
 
 /* ——— LAYERS: portrait cards, 3 + 2 ——— */
+.enigma-layers {
+  background:
+    radial-gradient(700px 320px at 10% 20%, rgba(0, 119, 182, 0.08), transparent 55%),
+    linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+}
+
 .enigma-layers__grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.1rem;
   margin-top: 2.25rem;
 }
 
@@ -417,18 +507,38 @@
   min-height: 320px;
   aspect-ratio: 3 / 4;
   max-height: 420px;
-  padding: 1.6rem 1.35rem 1.4rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(232, 244, 252, 0.75));
+  padding: 1.7rem 1.4rem 1.45rem;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(0, 119, 182, 0.16);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.96), rgba(224, 240, 252, 0.82));
+  box-shadow: 0 16px 36px rgba(2, 62, 99, 0.06);
   overflow: hidden;
   height: 100%;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.enigma-layer::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -35% -20%;
+  height: 55%;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 119, 182, 0.16), transparent 65%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .enigma-layer:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow);
+  border-color: rgba(0, 119, 182, 0.4);
+  box-shadow:
+    0 24px 48px rgba(2, 62, 99, 0.14),
+    0 0 0 1px rgba(0, 119, 182, 0.1);
+  transform: translateY(-5px);
+}
+
+.enigma-layer:hover::after {
+  opacity: 1;
 }
 
 .enigma-layer__num {
@@ -439,7 +549,7 @@
   font-size: clamp(4.5rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 1;
-  color: rgba(0, 119, 182, 0.07);
+  color: rgba(0, 119, 182, 0.09);
   letter-spacing: -0.06em;
   pointer-events: none;
   user-select: none;
@@ -447,7 +557,7 @@
 }
 
 .enigma-layer:hover .enigma-layer__num {
-  color: rgba(0, 119, 182, 0.14);
+  color: rgba(0, 119, 182, 0.18);
 }
 
 .enigma-layer__body {
@@ -491,7 +601,7 @@
   color: var(--accent);
   font-weight: 700;
   font-size: 0.88rem;
-  opacity: 0.55;
+  opacity: 0.7;
   transition: opacity 0.3s ease, gap 0.3s ease;
 }
 
@@ -502,13 +612,29 @@
 
 /* ——— PLATFORMS ——— */
 .enigma-platforms {
-  background: linear-gradient(180deg, transparent, rgba(207, 230, 255, 0.42), transparent);
+  position: relative;
+  background:
+    radial-gradient(700px 340px at 80% 20%, rgba(0, 119, 182, 0.22), transparent 55%),
+    linear-gradient(165deg, #03182a 0%, #052845 50%, #031525 100%);
+  color: #e8f4ff;
+}
+
+.enigma-platforms .eyebrow {
+  color: #7ec8ef;
+}
+
+.enigma-platforms .eyebrow::before {
+  background: #7ec8ef;
+}
+
+.enigma-platforms .enigma-heading {
+  color: #f4f9ff;
 }
 
 .enigma-platforms__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.1rem;
   margin-top: 2.25rem;
 }
 
@@ -517,21 +643,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  min-height: 260px;
-  padding: 1.65rem 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(12px);
+  min-height: 270px;
+  padding: 1.75rem 1.55rem;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(126, 200, 239, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
   overflow: hidden;
   height: 100%;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, transform 0.35s ease;
 }
 
 .enigma-platform:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow);
-  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(126, 200, 239, 0.4);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-4px);
 }
 
 .enigma-platform__index {
@@ -540,13 +667,13 @@
   right: 0.85rem;
   font-size: 2.8rem;
   font-weight: 800;
-  color: rgba(2, 62, 99, 0.06);
+  color: rgba(126, 200, 239, 0.12);
   line-height: 1;
   pointer-events: none;
 }
 
 .enigma-platform__tag {
-  color: var(--accent);
+  color: #7ec8ef;
   font-weight: 700;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -563,11 +690,11 @@
 
 .enigma-platform h3 {
   font-size: 1.55rem;
-  color: var(--bg-deep);
+  color: #f4f9ff;
 }
 
 .enigma-platform__hint {
-  color: var(--ink-muted);
+  color: rgba(226, 239, 250, 0.45);
   font-size: 0.85rem;
   font-weight: 600;
   transition: opacity 0.3s ease;
@@ -580,7 +707,7 @@
 }
 
 .enigma-platform__text {
-  color: var(--ink-soft);
+  color: rgba(226, 239, 250, 0.78);
   font-size: 0.92rem;
   flex: 1;
   max-height: 0;
@@ -599,7 +726,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--accent);
+  color: #9fd8f5;
   font-weight: 700;
   font-size: 0.9rem;
 }
@@ -674,23 +801,32 @@
 }
 
 /* ——— WHY ——— */
+.enigma-why {
+  background:
+    radial-gradient(700px 300px at 20% 30%, rgba(0, 119, 182, 0.1), transparent 55%),
+    linear-gradient(180deg, #f7fbff 0%, #eaf4fb 100%);
+}
+
 .enigma-why__grid {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  gap: 2rem;
+  gap: 2.25rem;
   align-items: center;
 }
 
 .enigma-why__media {
   position: relative;
-  border-radius: var(--radius);
+  border-radius: calc(var(--radius) + 4px);
   overflow: hidden;
+  box-shadow:
+    0 28px 56px rgba(2, 62, 99, 0.14),
+    0 0 0 1px rgba(0, 119, 182, 0.12);
 }
 
 .enigma-why__media-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(2, 62, 99, 0.18), transparent 55%, rgba(0, 119, 182, 0.2));
+  background: linear-gradient(135deg, rgba(2, 62, 99, 0.22), transparent 55%, rgba(0, 119, 182, 0.22));
   pointer-events: none;
 }
 
@@ -708,27 +844,45 @@
   letter-spacing: -0.01em;
 }
 
-/* ——— THRESHOLD ——— */
+/* ——— THRESHOLD: cinematic close ——— */
+.enigma-threshold {
+  padding-top: 1.5rem;
+  background: linear-gradient(180deg, #eaf4fb 0%, #031525 28%, #020b16 100%);
+}
+
 .enigma-threshold__panel {
   text-align: center;
-  padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid var(--line);
+  padding: clamp(2.75rem, 7vw, 4.5rem) 1.75rem;
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(126, 200, 239, 0.2);
   background:
-    radial-gradient(600px 280px at 50% 0%, rgba(0, 119, 182, 0.12), transparent 60%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(232, 244, 252, 0.85));
-  box-shadow: var(--shadow-soft);
+    radial-gradient(700px 280px at 50% 0%, rgba(0, 119, 182, 0.35), transparent 58%),
+    linear-gradient(180deg, rgba(8, 36, 58, 0.95), rgba(2, 14, 26, 0.98));
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.enigma-threshold__panel .eyebrow {
+  color: #7ec8ef;
+  justify-content: center;
+}
+
+.enigma-threshold__panel .eyebrow::before {
+  background: #7ec8ef;
 }
 
 .enigma-threshold__panel h2 {
   font-size: clamp(1.85rem, 4vw, 2.8rem);
-  color: var(--bg-deep);
-  margin: 0.5rem 0 0.65rem;
+  color: #f4f9ff;
+  margin: 0.5rem auto 0.85rem;
+  max-width: 22ch;
 }
 
 .enigma-threshold__panel > p:not(.eyebrow) {
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
+  color: rgba(226, 239, 250, 0.78);
+  margin: 0 auto 1.65rem;
+  max-width: 48ch;
 }
 
 @keyframes enigma-orb {
