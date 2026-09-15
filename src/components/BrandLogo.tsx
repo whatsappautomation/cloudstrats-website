@@ -8,7 +8,7 @@ import {
 import "./BrandLogo.css";
 
 type Props = {
-  variant?: "hero" | "nav" | "footer";
+  variant?: "hero" | "nav" | "navOnDark" | "footer";
   className?: string;
 };
 
@@ -23,7 +23,7 @@ export function BrandLogo({ variant = "hero", className = "" }: Props) {
   const src =
     variant === "nav"
       ? "/assets/logo-nav.png"
-      : variant === "footer"
+      : variant === "navOnDark" || variant === "footer"
         ? "/assets/logo-white.png"
         : "/assets/logo-hero.png";
 

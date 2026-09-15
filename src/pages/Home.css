@@ -1,882 +1,679 @@
-/* CloudStrats homepage — cinematic hero + refined luxury body (Poppins) */
+/* CloudStrats homepage — cinematic, image-led, Poppins */
 
-.home--enigma {
-  position: relative;
+.home--wow {
+  --ink: #061f31;
+  --muted: #5a7182;
+  --line: rgba(6, 31, 49, 0.1);
+  --blue: #0077b6;
+  --paper: #f4f8fb;
+  overflow: clip;
 }
 
-.home--luxe {
-  --luxe-ink: #06253a;
-  --luxe-soft: #4d6474;
-  --luxe-line: rgba(0, 119, 182, 0.13);
-  --luxe-glow: rgba(0, 119, 182, 0.22);
+.wow-kicker {
+  margin: 0 0 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.wow-kicker--light {
+  color: rgba(210, 232, 248, 0.72);
+}
+
+.wow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.45rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.wow-btn:hover {
+  transform: translateY(-2px);
+}
+
+.wow-btn--solid {
+  color: #fff;
+  background: var(--blue);
+  box-shadow: 0 16px 40px rgba(0, 119, 182, 0.28);
+}
+
+.wow-btn--solid:hover {
+  background: #0e76de;
+}
+
+.wow-btn--ghost {
+  color: #f4f9ff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.wow-btn--ghost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wow-btn--dark {
+  color: #fff;
+  background: var(--ink);
+}
+
+.wow-btn--dark:hover {
+  background: var(--blue);
+}
+
+.wow-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.75rem;
+  color: var(--blue);
+  font-weight: 600;
+  transition: gap 0.25s ease;
+}
+
+.wow-text-link:hover {
+  gap: 0.7rem;
 }
 
 /* ——— HERO ——— */
-.enigma-hero {
+.wow-hero {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
-  padding: calc(var(--nav-h) + 2.75rem) 0 5.5rem;
+  align-items: flex-end;
+  padding: calc(var(--nav-h) + 3rem) 0 4.5rem;
   overflow: hidden;
-}
-
-.enigma-hero--banner {
   background: #020b16;
 }
 
-.enigma-hero__banner {
+.wow-hero__media {
   position: absolute;
-  inset: 0;
+  inset: -8% 0 -8%;
   z-index: 0;
 }
 
-.enigma-hero__banner-img {
+.wow-hero__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
   display: block;
-  transform: scale(1.02);
+  will-change: transform;
 }
 
-.enigma-hero__shade {
+.wow-hero__shade {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  pointer-events: none;
+  z-index: 1;
   background:
     linear-gradient(
       105deg,
-      rgba(1, 8, 18, 0.94) 0%,
-      rgba(1, 12, 28, 0.78) 34%,
-      rgba(2, 20, 40, 0.42) 58%,
-      rgba(2, 20, 40, 0.16) 100%
+      rgba(1, 8, 18, 0.92) 0%,
+      rgba(1, 12, 26, 0.72) 38%,
+      rgba(2, 18, 34, 0.28) 68%,
+      rgba(2, 18, 34, 0.12) 100%
     ),
-    linear-gradient(
-      180deg,
-      rgba(1, 8, 18, 0.4) 0%,
-      transparent 30%,
-      transparent 72%,
-      rgba(1, 8, 18, 0.5) 100%
-    );
+    linear-gradient(180deg, rgba(1, 8, 18, 0.35) 0%, transparent 35%, rgba(1, 8, 18, 0.55) 100%);
 }
 
-.enigma-hero__layout {
-  position: relative;
-  z-index: 3;
-  width: min(var(--max), calc(100% - 2.5rem));
-}
-
-.enigma-hero__layout--banner {
-  display: block;
-}
-
-.enigma-hero__copy {
-  max-width: 640px;
+.wow-hero__copy {
   position: relative;
   z-index: 2;
+  max-width: 720px;
+  padding-bottom: 1rem;
 }
 
-.enigma-kicker {
-  margin: 0 0 1.35rem;
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(210, 232, 248, 0.78);
-}
-
-.enigma-hero--banner .enigma-hero__title {
-  font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+.wow-hero h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(3rem, 7.2vw, 5.4rem);
   font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
   color: #f7fbff;
-  line-height: 1.05;
-  letter-spacing: -0.042em;
-  margin-bottom: 1.3rem;
-  max-width: 11ch;
 }
 
-.enigma-hero--banner .enigma-hero__accent {
-  display: inline;
-  background: linear-gradient(105deg, #a8dbf5 0%, #5eb8e4 50%, #eaf6ff 100%);
+.wow-hero h1 span {
+  background: linear-gradient(100deg, #c5e8f8 0%, #5eb8e4 45%, #eaf6ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.enigma-hero--banner .enigma-hero__lead {
-  color: rgba(226, 239, 250, 0.86);
-  font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+.wow-hero__lead {
+  margin: 0 0 1.85rem;
+  max-width: 38ch;
+  color: rgba(226, 239, 250, 0.84);
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
   font-weight: 300;
-  line-height: 1.72;
-  max-width: 40ch;
-  margin-bottom: 1.85rem;
+  line-height: 1.7;
 }
 
-.enigma-hero__actions {
+.wow-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  margin-bottom: 1.75rem;
 }
 
-.enigma-hero__ghost {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(255, 255, 255, 0.42) !important;
-  color: #f4f9ff !important;
-  font-weight: 500 !important;
-}
-
-.enigma-hero__ghost:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(255, 255, 255, 0.75) !important;
-}
-
-.enigma-trustline {
+.wow-hero__rail {
+  position: absolute;
+  right: clamp(1rem, 4vw, 2.5rem);
+  bottom: 2rem;
+  z-index: 2;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem 0.15rem;
-  margin: 0;
-  color: rgba(210, 232, 248, 0.62);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.enigma-trustline__sep {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  margin: 0 0.7rem;
-  border-radius: 50%;
-  background: rgba(126, 200, 239, 0.65);
-  vertical-align: middle;
-}
-
-.enigma-hero__scroll {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  z-index: 3;
-  transform: translateX(-50%);
+  gap: 0.75rem;
   color: rgba(232, 244, 255, 0.45);
-  animation: enigma-bounce 2.4s ease-in-out infinite;
-}
-
-.enigma-hero__scroll:hover {
-  color: #fff;
-}
-
-/* ——— CODES ——— */
-.enigma-codes {
-  position: relative;
-  padding: 0.2rem 0;
-  border-bottom: 1px solid rgba(126, 200, 239, 0.1);
-  background: linear-gradient(180deg, #020b16 0%, #03111f 100%);
-  overflow: hidden;
-}
-
-.enigma-codes::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(520px 70px at 50% 50%, rgba(0, 119, 182, 0.2), transparent 70%);
-  pointer-events: none;
-}
-
-.enigma-codes__list {
-  list-style: none;
-  margin: 0;
-  padding: 1.2rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.enigma-codes__list li {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(232, 244, 255, 0.42);
-  transition: color 0.35s ease;
 }
 
-.enigma-codes__list li:hover {
-  color: #b7dff4;
+.wow-hero__rail i {
+  display: block;
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent);
+  animation: wow-rail 2.2s ease-in-out infinite;
 }
 
-/* ——— SHARED ——— */
-.home--luxe .eyebrow {
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  opacity: 0.95;
+@keyframes wow-rail {
+  0%,
+  100% {
+    transform: scaleY(0.7);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
-.home--luxe .eyebrow::before {
-  width: 1.1rem;
-  height: 1px;
-  border-radius: 0;
-  background: currentColor;
-  opacity: 0.7;
+/* ——— MARQUEE ——— */
+.wow-marquee {
+  overflow: hidden;
+  border-block: 1px solid rgba(255, 255, 255, 0.06);
+  background: #03111d;
+  padding: 1.15rem 0;
 }
 
-.enigma-heading {
-  font-size: clamp(1.9rem, 3.8vw, 2.95rem);
-  font-weight: 600;
-  color: var(--luxe-ink);
-  max-width: 16ch;
-  margin: 0.45rem 0 0.85rem;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
-}
-
-.enigma-heading--wide {
-  max-width: 18ch;
-  text-align: center;
-  margin-inline: auto;
-}
-
-.enigma-heading--services {
-  max-width: 20ch;
-}
-
-.enigma-sub {
-  color: var(--luxe-soft);
-  max-width: 48ch;
-  font-size: 1.02rem;
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-.enigma-sub--center {
-  text-align: center;
-  margin-inline: auto;
-}
-
-.section-cta {
-  margin-top: 2.25rem;
-}
-
-.enigma-pillars .eyebrow {
+.wow-marquee__track {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  width: max-content;
+  animation: wow-marquee 32s linear infinite;
 }
 
-/* ——— PILLARS ——— */
-.enigma-pillars {
-  position: relative;
+.wow-marquee__group {
+  display: flex;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  white-space: nowrap;
+}
+
+.wow-marquee__group span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(210, 232, 248, 0.45);
+}
+
+@keyframes wow-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ——— MANIFESTO ——— */
+.wow-manifesto {
+  padding: clamp(5rem, 12vw, 9rem) 0;
   background:
-    radial-gradient(900px 400px at 50% -10%, rgba(0, 119, 182, 0.08), transparent 55%),
-    linear-gradient(180deg, #f3f8fc 0%, #ffffff 70%);
+    radial-gradient(900px 420px at 80% 0%, rgba(0, 119, 182, 0.08), transparent 55%),
+    #fff;
 }
 
-.enigma-pillars__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin-top: 2.75rem;
-}
-
-.enigma-pillar {
-  position: relative;
-  min-height: 250px;
-  padding: 2rem 1.65rem 1.75rem;
-  border-radius: 22px;
-  border: 1px solid rgba(0, 119, 182, 0.12);
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(236, 246, 252, 0.72));
-  box-shadow: 0 20px 50px rgba(2, 62, 99, 0.05);
-  overflow: hidden;
-  height: 100%;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
-}
-
-.enigma-pillar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 1.4rem;
-  right: 1.4rem;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), transparent 85%);
-  opacity: 0.7;
-}
-
-.enigma-pillar:hover {
-  border-color: rgba(0, 119, 182, 0.28);
-  box-shadow: 0 28px 60px rgba(2, 62, 99, 0.1);
-  transform: translateY(-6px);
-}
-
-.enigma-pillar__n {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.85rem;
-  font-size: 4.2rem;
+.wow-manifesto h2 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
   font-weight: 600;
-  line-height: 1;
-  color: rgba(0, 119, 182, 0.08);
-  letter-spacing: -0.06em;
-  pointer-events: none;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
 }
 
-.enigma-pillar h3 {
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: var(--luxe-ink);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
+.wow-manifesto h2 em {
+  font-style: normal;
+  color: var(--blue);
 }
 
-.enigma-pillar p {
-  color: var(--luxe-soft);
-  font-size: 0.96rem;
-  font-weight: 300;
-  line-height: 1.7;
-  max-width: 28ch;
+/* ——— SIGNAL (immersive stats) ——— */
+.wow-signal {
   position: relative;
-  z-index: 1;
-}
-
-/* ——— SIGNAL ——— */
-.enigma-signal {
-  position: relative;
+  min-height: min(88vh, 760px);
+  display: flex;
+  align-items: flex-end;
+  padding: 4.5rem 0;
   overflow: hidden;
-  background:
-    radial-gradient(900px 420px at 88% 18%, rgba(0, 119, 182, 0.32), transparent 55%),
-    radial-gradient(600px 300px at 10% 90%, rgba(14, 118, 222, 0.12), transparent 50%),
-    linear-gradient(155deg, #03131f 0%, #05233a 48%, #041826 100%);
-  color: #e8f4ff;
+  background: #041525;
 }
 
-.enigma-signal__glow {
+.wow-signal__photo {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(126, 200, 239, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(126, 200, 239, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at 70% 35%, black 18%, transparent 72%);
-  opacity: 0.55;
 }
 
-.enigma-signal .container {
+.wow-signal__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  filter: saturate(0.92) contrast(1.05);
+}
+
+.wow-signal__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(2, 12, 22, 0.35) 0%, rgba(2, 12, 22, 0.55) 40%, rgba(2, 12, 22, 0.88) 100%),
+    linear-gradient(90deg, rgba(2, 12, 22, 0.55) 0%, transparent 55%);
+}
+
+.wow-signal__content {
   position: relative;
   z-index: 1;
-}
-
-.enigma-signal .eyebrow {
-  color: #8eccec;
-}
-
-.enigma-signal .eyebrow::before {
-  background: #8eccec;
-}
-
-.enigma-signal .enigma-heading {
-  color: #f6fbff;
-  max-width: 18ch;
-  font-weight: 600;
-}
-
-.enigma-signal__layout {
-  display: grid;
-  grid-template-columns: 1fr 1.08fr;
-  gap: 1.75rem;
-  align-items: stretch;
-  margin-top: 2.6rem;
-}
-
-.enigma-signal__grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.enigma-signal__media {
-  height: 100%;
-  min-height: 340px;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.32),
-    0 0 0 1px rgba(126, 200, 239, 0.14);
-}
-
-.enigma-signal__media .live-image {
-  border: 0;
-  border-radius: 22px;
-  box-shadow: none;
-  background: #0a2030;
-  min-height: 340px;
-}
-
-.enigma-signal__media .live-image,
-.enigma-signal__media img {
-  height: 100%;
   width: 100%;
-  object-fit: cover;
-  object-position: center 22%;
-  min-height: 340px;
 }
 
-.enigma-stat {
-  padding: 1.85rem 1.3rem;
-  text-align: center;
-  border: 1px solid rgba(126, 200, 239, 0.14);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.045);
-  backdrop-filter: blur(16px);
-  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
-  height: 100%;
-}
-
-.enigma-stat:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(126, 200, 239, 0.32);
-}
-
-.enigma-stat strong {
-  display: block;
-  font-size: clamp(2rem, 3.3vw, 2.7rem);
+.wow-signal h2 {
+  margin: 0 0 2.25rem;
+  max-width: 12ch;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   font-weight: 600;
-  color: #9fd8f5;
-  letter-spacing: -0.045em;
-  line-height: 1.05;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #f6fbff;
+}
+
+.wow-signal__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.wow-stat strong {
+  display: block;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: #fff;
+  line-height: 1;
   margin-bottom: 0.45rem;
 }
 
-.enigma-stat span {
-  color: rgba(226, 239, 250, 0.7);
-  font-weight: 400;
+.wow-stat span {
+  color: rgba(220, 236, 248, 0.7);
   font-size: 0.88rem;
+  font-weight: 400;
 }
 
-/* ——— SERVICES ——— */
-.enigma-layers {
-  background:
-    radial-gradient(700px 300px at 8% 10%, rgba(0, 119, 182, 0.07), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #f2f7fb 100%);
+/* ——— SERVICES (horizontal scroll) ——— */
+.wow-services {
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+  background: var(--paper);
 }
 
-.enigma-layers__grid {
+.wow-services__head {
+  margin-bottom: 2rem;
+}
+
+.wow-services__head h2 {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.wow-services__scroller {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1.15rem;
-  margin-top: 2.5rem;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, 34vw);
+  gap: 1.1rem;
+  overflow-x: auto;
+  padding: 0.5rem max(1.25rem, calc((100vw - var(--max)) / 2)) 1.25rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 119, 182, 0.35) transparent;
 }
 
-.enigma-layers__grid > * {
-  grid-column: span 2;
-}
-
-.enigma-layers__grid > *:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-.enigma-layers__grid > *:nth-child(5) {
-  grid-column: 4 / span 2;
-}
-
-.enigma-layer {
+.wow-service {
   position: relative;
-  display: block;
-  min-height: 330px;
-  aspect-ratio: 3 / 4;
-  max-height: 430px;
-  padding: 1.8rem 1.45rem 1.5rem;
-  border-radius: 22px;
-  border: 1px solid rgba(0, 119, 182, 0.12);
-  background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.97), rgba(230, 243, 251, 0.78));
-  box-shadow: 0 18px 42px rgba(2, 62, 99, 0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  border-radius: 28px;
   overflow: hidden;
-  height: 100%;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  scroll-snap-align: start;
+  background: #0a2030;
+  color: #fff;
+  isolation: isolate;
+  transition: transform 0.45s ease;
 }
 
-.enigma-layer::after {
-  content: "";
-  position: absolute;
-  inset: auto -30% -40% -30%;
-  height: 55%;
-  background: radial-gradient(circle at 50% 0%, rgba(0, 119, 182, 0.14), transparent 65%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-
-.enigma-layer:hover {
-  border-color: rgba(0, 119, 182, 0.32);
-  box-shadow: 0 28px 55px rgba(2, 62, 99, 0.12);
+.wow-service:hover {
   transform: translateY(-6px);
 }
 
-.enigma-layer:hover::after {
-  opacity: 1;
-}
-
-.enigma-layer__num {
+.wow-service__media {
   position: absolute;
-  top: 0;
-  right: 0.55rem;
-  font-size: clamp(4.2rem, 7.5vw, 5.6rem);
-  font-weight: 600;
-  line-height: 1;
-  color: rgba(0, 119, 182, 0.07);
-  letter-spacing: -0.06em;
-  pointer-events: none;
-  user-select: none;
-  transition: color 0.4s ease;
+  inset: 0;
+  z-index: 0;
 }
 
-.enigma-layer:hover .enigma-layer__num {
-  color: rgba(0, 119, 182, 0.14);
+.wow-service__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
 }
 
-.enigma-layer__body {
+.wow-service:hover .wow-service__media img {
+  transform: scale(1.06);
+}
+
+.wow-service__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 18, 30, 0.15) 0%, rgba(4, 18, 30, 0.35) 40%, rgba(4, 18, 30, 0.92) 100%);
+}
+
+.wow-service__body {
   position: relative;
   z-index: 1;
+  margin-top: auto;
+  padding: 1.6rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  height: 100%;
-}
-
-.enigma-layer h3 {
-  font-size: 1.16rem;
-  font-weight: 600;
-  color: var(--luxe-ink);
-  max-width: 20ch;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-}
-
-.enigma-layer__text {
-  color: var(--luxe-soft);
-  font-size: 0.92rem;
-  font-weight: 300;
-  line-height: 1.65;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.35s ease;
-  margin: 0;
-}
-
-.enigma-layer:hover .enigma-layer__text,
-.enigma-layer:focus-visible .enigma-layer__text {
-  max-height: 8.5rem;
-  opacity: 1;
-  margin-top: 0.2rem;
-}
-
-.enigma-layer__cta {
-  margin-top: auto;
-  padding-top: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.88rem;
-  opacity: 0.75;
-  transition: opacity 0.3s ease, gap 0.3s ease;
-}
-
-.enigma-layer:hover .enigma-layer__cta {
-  opacity: 1;
   gap: 0.55rem;
 }
 
-/* ——— PLATFORMS ——— */
-.enigma-platforms {
-  position: relative;
-  background:
-    radial-gradient(780px 360px at 80% 15%, rgba(0, 119, 182, 0.26), transparent 55%),
-    linear-gradient(160deg, #03131f 0%, #052845 52%, #031825 100%);
-  color: #e8f4ff;
-}
-
-.enigma-platforms .eyebrow {
-  color: #8eccec;
-}
-
-.enigma-platforms .eyebrow::before {
-  background: #8eccec;
-}
-
-.enigma-platforms .enigma-heading {
-  color: #f6fbff;
-  font-weight: 600;
-}
-
-.enigma-platforms__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.15rem;
-  margin-top: 2.5rem;
-}
-
-.enigma-platform {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  min-height: 280px;
-  padding: 1.9rem 1.6rem;
-  border-radius: 22px;
-  border: 1px solid rgba(126, 200, 239, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  overflow: hidden;
-  height: 100%;
-  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.enigma-platform:hover {
-  border-color: rgba(126, 200, 239, 0.34);
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.26);
-  transform: translateY(-5px);
-}
-
-.enigma-platform__index {
-  position: absolute;
-  top: 0.7rem;
-  right: 0.9rem;
-  font-size: 2.6rem;
-  font-weight: 600;
-  color: rgba(126, 200, 239, 0.12);
-  line-height: 1;
-  pointer-events: none;
-}
-
-.enigma-platform__tag {
-  margin: 0;
-  color: #8eccec;
+.wow-service__body span {
+  font-size: 0.78rem;
   font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #8eccec;
 }
 
-.enigma-platform h3 {
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: #f6fbff;
-  letter-spacing: -0.02em;
-}
-
-.enigma-platform__text {
+.wow-service__body h3 {
   margin: 0;
-  color: rgba(226, 239, 250, 0.72);
-  font-size: 0.94rem;
-  font-weight: 300;
-  line-height: 1.65;
-  flex: 1;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  max-width: 16ch;
 }
 
-.enigma-platform__cta {
-  margin-top: auto;
+.wow-service__body p {
+  margin: 0;
+  color: rgba(226, 239, 250, 0.78);
+  font-weight: 300;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  max-width: 34ch;
+}
+
+.wow-service__body em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  font-style: normal;
+  font-weight: 600;
+  color: #c5e8f8;
+}
+
+/* ——— PLATFORMS ——— */
+.wow-platforms {
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+  background:
+    radial-gradient(800px 360px at 70% 0%, rgba(0, 119, 182, 0.22), transparent 55%),
+    #03131f;
+  color: #eaf4ff;
+}
+
+.wow-platforms h2 {
+  margin: 0 0 2.5rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: #f6fbff;
+}
+
+.wow-platforms__list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wow-platform {
+  display: grid;
+  grid-template-columns: 11rem 1fr 1.2fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: padding 0.35s ease, background 0.35s ease;
+}
+
+.wow-platform:hover {
+  padding-left: 0.65rem;
+}
+
+.wow-platform__meta span {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: #8eccec;
+  margin-bottom: 0.45rem;
+}
+
+.wow-platform__meta p {
+  margin: 0;
+  color: rgba(220, 236, 248, 0.55);
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.wow-platform h3 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  color: #fff;
+  line-height: 1;
+}
+
+.wow-platform__text {
+  margin: 0;
+  color: rgba(220, 236, 248, 0.72);
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  max-width: 42ch;
+}
+
+.wow-platform__go {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   color: #a8dbf5;
   font-weight: 600;
   font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, gap 0.3s ease;
+}
+
+.wow-platform:hover .wow-platform__go {
+  opacity: 1;
+  gap: 0.6rem;
 }
 
 /* ——— WHY ——— */
-.enigma-why {
-  background:
-    radial-gradient(700px 280px at 15% 40%, rgba(0, 119, 182, 0.08), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #f3f8fc 100%);
-}
-
-.enigma-why__grid {
+.wow-why {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 2.5rem;
-  align-items: center;
+  grid-template-columns: 1.05fr 0.95fr;
+  min-height: min(84vh, 720px);
+  background: #fff;
 }
 
-.enigma-why__media {
+.wow-why__media {
   position: relative;
-  border-radius: 24px;
+  min-height: 420px;
   overflow: hidden;
-  box-shadow:
-    0 30px 60px rgba(2, 62, 99, 0.12),
-    0 0 0 1px rgba(0, 119, 182, 0.1);
 }
 
-.enigma-why__media .live-image {
-  border: 0;
-  border-radius: 24px;
-  box-shadow: none;
-  background: #d7e5ef;
+.wow-why__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
 }
 
-.enigma-why__media-veil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(2, 62, 99, 0.16), transparent 55%, rgba(0, 119, 182, 0.16));
-  pointer-events: none;
+.wow-why__copy {
+  display: flex;
+  align-items: center;
+  padding: clamp(2.5rem, 6vw, 5rem);
 }
 
-.enigma-why__lead {
-  color: var(--luxe-soft);
+.wow-why__copy h2 {
+  margin: 0 0 1.2rem;
+  max-width: 12ch;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.wow-why__copy > div > p:not(.wow-kicker):not(.wow-why__punch) {
+  margin: 0 0 1.15rem;
   max-width: 42ch;
-  margin-bottom: 1.2rem;
+  color: var(--muted);
   font-weight: 300;
   line-height: 1.75;
 }
 
-.enigma-why__punch {
-  font-weight: 600;
-  font-size: 1.12rem;
-  color: var(--luxe-ink);
-  margin-bottom: 1.65rem;
-  letter-spacing: -0.015em;
-  line-height: 1.45;
+.wow-why__punch {
+  margin: 0 0 1.75rem !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
 }
 
-/* ——— THRESHOLD ——— */
-.enigma-threshold {
-  padding-top: 1.25rem;
-  background: linear-gradient(180deg, #f3f8fc 0%, #03131f 26%, #020b16 100%);
-}
-
-.enigma-threshold__panel {
+/* ——— CLOSE ——— */
+.wow-close {
+  padding: clamp(5rem, 11vw, 8rem) 0;
   text-align: center;
-  padding: clamp(3rem, 7vw, 4.75rem) 1.75rem;
-  border-radius: 28px;
-  border: 1px solid rgba(126, 200, 239, 0.16);
   background:
-    radial-gradient(720px 280px at 50% 0%, rgba(0, 119, 182, 0.3), transparent 58%),
-    linear-gradient(180deg, rgba(8, 34, 54, 0.92), rgba(2, 12, 22, 0.98));
-  box-shadow:
-    0 34px 70px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    radial-gradient(700px 280px at 50% 0%, rgba(0, 119, 182, 0.28), transparent 55%),
+    #020b16;
+  color: #eaf4ff;
 }
 
-.enigma-threshold__panel .eyebrow {
-  color: #8eccec;
-  justify-content: center;
-}
-
-.enigma-threshold__panel .eyebrow::before {
-  background: #8eccec;
-}
-
-.enigma-threshold__panel h2 {
-  font-size: clamp(1.9rem, 4vw, 2.85rem);
+.wow-close h2 {
+  margin: 0 auto 1rem;
+  max-width: 18ch;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
   color: #f6fbff;
-  margin: 0.55rem auto 0.9rem;
-  max-width: 20ch;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
 }
 
-.enigma-threshold__panel > p:not(.eyebrow) {
-  color: rgba(226, 239, 250, 0.72);
-  margin: 0 auto 1.75rem;
+.wow-close p:not(.wow-kicker) {
+  margin: 0 auto 1.85rem;
   max-width: 46ch;
+  color: rgba(220, 236, 248, 0.72);
   font-weight: 300;
   line-height: 1.7;
 }
 
-@keyframes enigma-bounce {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(7px);
-  }
+.wow-close .wow-kicker {
+  justify-content: center;
 }
 
 @media (max-width: 1000px) {
-  .enigma-signal__layout {
-    grid-template-columns: 1fr;
-  }
-
-  .enigma-signal__grid,
-  .enigma-pillars__grid {
+  .wow-signal__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
   }
 
-  .enigma-layers__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .wow-platform {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.6rem 0;
   }
 
-  .enigma-layers__grid > *,
-  .enigma-layers__grid > *:nth-child(4),
-  .enigma-layers__grid > *:nth-child(5) {
-    grid-column: span 1;
+  .wow-platform__go {
+    opacity: 1;
   }
 
-  .enigma-platforms__grid {
+  .wow-why {
     grid-template-columns: 1fr;
   }
 
-  .enigma-why__grid {
-    grid-template-columns: 1fr;
+  .wow-why__media {
+    min-height: 320px;
   }
 
-  .enigma-hero--banner .enigma-hero__title {
-    max-width: 14ch;
+  .wow-services__scroller {
+    grid-auto-columns: minmax(280px, 78vw);
+  }
+
+  .wow-hero__rail {
+    display: none;
   }
 }
 
-@media (max-width: 720px) {
-  .enigma-layers__grid,
-  .enigma-signal__grid,
-  .enigma-pillars__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .wow-hero {
+    align-items: center;
+    padding-bottom: 3.5rem;
   }
 
-  .enigma-layers__grid > *,
-  .enigma-layers__grid > *:nth-child(4),
-  .enigma-layers__grid > *:nth-child(5) {
-    grid-column: auto;
+  .wow-manifesto h2 {
+    max-width: 12ch;
   }
 
-  .enigma-layer {
-    aspect-ratio: auto;
-    min-height: 240px;
-    max-height: none;
-  }
-
-  .enigma-layer__text {
-    max-height: none;
-    opacity: 1;
-  }
-
-  .enigma-layer__cta {
-    opacity: 1;
-  }
-
-  .enigma-trustline__sep {
-    margin: 0 0.45rem;
+  .wow-service {
+    min-height: 460px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .enigma-hero__scroll {
+  .wow-marquee__track,
+  .wow-hero__rail i {
     animation: none;
   }
 }

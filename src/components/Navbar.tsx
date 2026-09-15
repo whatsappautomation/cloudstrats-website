@@ -79,12 +79,18 @@ export function Navbar() {
   const servicesActive = location.pathname.startsWith("/services");
   const productsActive = location.pathname.startsWith("/products");
   const industriesActive = location.pathname.startsWith("/industries");
+  const overHero =
+    location.pathname === "/" && !scrolled && !activeMenu && !open;
 
   const openMenu = (key: MenuKey) => setActiveMenu(key);
   const closeMenus = () => setActiveMenu(null);
 
   return (
-    <header className={`nav ${scrolled || activeMenu ? "nav--scrolled" : ""}`}>
+    <header
+      className={`nav ${scrolled || activeMenu || open ? "nav--scrolled" : ""} ${
+        overHero ? "nav--over-hero" : ""
+      }`}
+    >
       <div className="container nav__inner">
         <Link
           to="/"
@@ -92,7 +98,7 @@ export function Navbar() {
           onClick={() => setOpen(false)}
           aria-label="CloudSTRATS home"
         >
-          <BrandLogo variant="nav" />
+          <BrandLogo variant={overHero ? "navOnDark" : "nav"} />
         </Link>
 
         <nav className="nav__links" aria-label="Primary">

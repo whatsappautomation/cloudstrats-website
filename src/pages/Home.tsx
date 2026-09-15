@@ -1,333 +1,282 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import { EnigmaField } from "../components/EnigmaField";
-import { LiveImage } from "../components/LiveMedia";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
-import { TiltCard } from "../components/TiltCard";
 import { company } from "../data/company";
 import { productPath, products } from "../data/products";
 import { servicePath } from "../data/services";
 import "./Home.css";
-
-const trustLine = [
-  "Make in India",
-  "Defence Ready",
-  "ISO Certified",
-  "GeM Registered",
-  "MeitY Empanelled",
-];
 
 const homeServices = [
   {
     id: "ai-infrastructure",
     code: "01",
     title: "AI Infrastructure and Data Centres",
-    text: "High-performance AI data centre solutions with advanced cybersecurity and continuous uptime.",
+    text: "High-performance AI data centre solutions engineered for scale, security and continuous uptime.",
+    image: "/assets/lifestyle/data-infra.png",
   },
   {
     id: "data-ai-analytics",
     code: "02",
     title: "Data AI & Analytics",
-    text: "Predictive analytics that turn complex data into clear, decisive intelligence.",
+    text: "Turn fragmented data into decisive intelligence with modern platforms and predictive analytics.",
+    image: "/assets/lifestyle/analytics-dashboard.png",
   },
   {
     id: "c5i-networks",
     code: "03",
     title: "C5I and Mission Critical Networks",
-    text: "Mission-ready C5I integration for secure, resilient command environments.",
+    text: "Secure, resilient command networks for environments where continuity is non-negotiable.",
+    image: "/assets/hero/defence-hero.png",
   },
   {
     id: "cybersecurity",
     code: "04",
     title: "Cyber Security Operations",
-    text: "Managed SOC with continuous monitoring, deep visibility and rapid response.",
+    text: "Around-the-clock SOC depth — detection, intelligence and response in one operating rhythm.",
+    image: "/assets/hero/soc.png",
   },
   {
     id: "automation",
     code: "05",
     title: "Intelligent Automation and Digital Transformation",
-    text: "Intelligent automation that removes friction and accelerates business outcomes.",
+    text: "AI-powered workflows that remove friction and accelerate measurable business outcomes.",
+    image: "/assets/lifestyle/process-automation.png",
   },
 ];
 
 export function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const bannerY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 140]), {
+    stiffness: 80,
+    damping: 28,
+  });
+  const bannerScale = useSpring(
+    useTransform(scrollYProgress, [0, 1], [1.08, 1.18]),
+    { stiffness: 80, damping: 28 },
+  );
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0.15]);
+
   return (
-    <div className="home home--enigma home--luxe">
-      <section className="enigma-hero enigma-hero--banner">
-        <div className="enigma-hero__banner" aria-hidden>
-          <img
+    <div className="home home--wow">
+      <section ref={heroRef} className="wow-hero">
+        <motion.div className="wow-hero__media" style={{ y: bannerY }}>
+          <motion.img
             src="/assets/lifestyle/home-banner.png"
             alt=""
-            className="enigma-hero__banner-img"
+            className="wow-hero__img"
+            style={{ scale: bannerScale }}
           />
-        </div>
-        <div className="enigma-hero__shade" aria-hidden />
-        <EnigmaField />
+        </motion.div>
+        <div className="wow-hero__shade" aria-hidden />
 
-        <div className="container enigma-hero__layout enigma-hero__layout--banner">
-          <div className="enigma-hero__copy">
-            <motion.p
-              className="enigma-kicker"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-            >
-              Defence · Government · Critical Infrastructure
-            </motion.p>
+        <motion.div className="container wow-hero__copy" style={{ opacity: copyOpacity }}>
+          <motion.p
+            className="wow-kicker wow-kicker--light"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.7 }}
+          >
+            Defence · Government · Critical Infrastructure
+          </motion.p>
 
-            <motion.h1
-              className="enigma-hero__title"
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Empowering India&apos;s{" "}
-              <span className="enigma-hero__accent">Mission Domains</span>
-            </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.28, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Empowering India&apos;s
+            <br />
+            <span>Mission Domains</span>
+          </motion.h1>
 
-            <motion.p
-              className="enigma-hero__lead"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.38, duration: 0.7 }}
-            >
-              AI infrastructure for missions that cannot afford noise — designed,
-              secured and operated by Cloudstrats.
-            </motion.p>
+          <motion.p
+            className="wow-hero__lead"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.75 }}
+          >
+            AI infrastructure for missions that cannot afford noise — designed,
+            secured and operated by Cloudstrats.
+          </motion.p>
 
-            <motion.div
-              className="enigma-hero__actions"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.65 }}
-            >
-              <Link to="/contact" className="btn btn-primary">
-                Partner with Cloudstrats <ArrowRight size={18} />
-              </Link>
-              <Link to="/services" className="btn btn-ghost enigma-hero__ghost">
-                Explore Services
-              </Link>
-            </motion.div>
-
-            <motion.p
-              className="enigma-trustline"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-            >
-              {trustLine.map((item, i) => (
-                <span key={item}>
-                  {i > 0 && <span className="enigma-trustline__sep" aria-hidden />}
-                  {item}
-                </span>
-              ))}
-            </motion.p>
-          </div>
-        </div>
-
-        <a href="#discover" className="enigma-hero__scroll" aria-label="Scroll to discover">
-          <ChevronDown size={22} />
-        </a>
-      </section>
-
-      <section id="discover" className="enigma-codes">
-        <div className="container">
-          <Reveal>
-            <ul className="enigma-codes__list">
-              {["AI", "Data", "C5I", "Security", "Automation"].map((item) => (
-                <li key={item}>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section enigma-pillars">
-        <div className="container">
-          <Reveal>
-            <p className="eyebrow">What we do</p>
-            <h2 className="enigma-heading enigma-heading--wide">
-              Build. Secure. Scale.
-            </h2>
-            <p className="enigma-sub enigma-sub--center">
-              End-to-end digital infrastructure — revealed as you explore.
-            </p>
-          </Reveal>
-
-          <div className="enigma-pillars__grid">
-            {[
-              {
-                n: "01",
-                title: "Build",
-                text: "AI-ready infrastructure and data centres engineered for mission uptime.",
-              },
-              {
-                n: "02",
-                title: "Secure",
-                text: "Zero-trust operations, SOC depth and C5I-grade network resilience.",
-              },
-              {
-                n: "03",
-                title: "Scale",
-                text: "Automation and analytics that turn complexity into measurable outcomes.",
-              },
-            ].map((pillar, i) => (
-              <Reveal key={pillar.title} delay={i * 0.08}>
-                <TiltCard>
-                  <div className="enigma-pillar">
-                    <span className="enigma-pillar__n">{pillar.n}</span>
-                    <h3>{pillar.title}</h3>
-                    <p>{pillar.text}</p>
-                  </div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section enigma-signal">
-        <div className="enigma-signal__glow" aria-hidden />
-        <div className="container">
-          <Reveal>
-            <p className="eyebrow">Signal</p>
-            <h2 className="enigma-heading">Numbers that stay quiet until you look.</h2>
-          </Reveal>
-          <div className="enigma-signal__layout">
-            <div className="enigma-signal__grid">
-              {company.stats.slice(0, 4).map((stat, i) => (
-                <Reveal key={stat.label} delay={i * 0.08}>
-                  <div className="enigma-stat">
-                    <strong>{stat.value}</strong>
-                    <span>{stat.label}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal delay={0.12}>
-              <div className="enigma-signal__media">
-                <LiveImage
-                  className="live-image--tall"
-                  src="/assets/lifestyle/stats-award.png"
-                  alt="Cloudstrats at India Digital Empowerment Meet & Awards"
-                />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="section enigma-layers">
-        <div className="container">
-          <Reveal>
-            <p className="eyebrow">Our Services</p>
-            <h2 className="enigma-heading enigma-heading--services">
-              Digital Transformation Services that Delivers Impact
-            </h2>
-            <p className="enigma-sub">
-              End-to-end solutions that strengthen digital infrastructure and
-              keep critical environments secure.
-            </p>
-          </Reveal>
-
-          <div className="enigma-layers__grid">
-            {homeServices.map((service, i) => (
-              <Reveal key={service.id} delay={i * 0.06}>
-                <TiltCard>
-                  <Link to={servicePath(service.id)} className="enigma-layer">
-                    <span className="enigma-layer__num" aria-hidden>
-                      {service.code}
-                    </span>
-                    <div className="enigma-layer__body">
-                      <h3>{service.title}</h3>
-                      <p className="enigma-layer__text">{service.text}</p>
-                      <span className="enigma-layer__cta">
-                        Learn more <ArrowRight size={14} />
-                      </span>
-                    </div>
-                  </Link>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="section-cta">
-            <Link to="/services" className="btn btn-ghost">
-              View all services <ArrowRight size={18} />
+          <motion.div
+            className="wow-hero__actions"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.58, duration: 0.7 }}
+          >
+            <Link to="/contact" className="wow-btn wow-btn--solid">
+              Partner with Cloudstrats <ArrowRight size={18} />
             </Link>
-          </div>
+            <Link to="/services" className="wow-btn wow-btn--ghost">
+              Explore Services
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        <div className="wow-hero__rail" aria-hidden>
+          <span>Scroll</span>
+          <i />
         </div>
       </section>
 
-      <section className="section enigma-platforms">
+      <section className="wow-marquee" aria-hidden>
+        <div className="wow-marquee__track">
+          {[0, 1].map((copy) => (
+            <div className="wow-marquee__group" key={copy}>
+              {["AI Infrastructure", "Data & Analytics", "C5I Networks", "Cybersecurity", "Automation", "Cloudstrats"].map(
+                (item) => (
+                  <span key={`${copy}-${item}`}>{item}</span>
+                ),
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="wow-manifesto">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Platforms</p>
-            <h2 className="enigma-heading">Named quietly. Built deeply.</h2>
+            <p className="wow-kicker">What we do</p>
+            <h2>
+              Build the foundations.
+              <br />
+              Secure the mission.
+              <br />
+              <em>Scale what matters.</em>
+            </h2>
           </Reveal>
+        </div>
+      </section>
 
-          <div className="enigma-platforms__grid">
-            {products.map((product, i) => (
-              <Reveal key={product.id} delay={i * 0.1}>
-                <TiltCard>
-                  <Link to={productPath(product.id)} className="enigma-platform">
-                    <span className="enigma-platform__index">0{i + 1}</span>
-                    <p className="enigma-platform__tag">{product.tagline}</p>
-                    <h3>{product.name.split(" ")[0]}</h3>
-                    <p className="enigma-platform__text">{product.description}</p>
-                    <span className="enigma-platform__cta">
-                      Explore <ArrowRight size={16} />
-                    </span>
-                  </Link>
-                </TiltCard>
+      <section className="wow-signal">
+        <div className="wow-signal__photo">
+          <img
+            src="/assets/lifestyle/stats-award.png"
+            alt="Cloudstrats at India Digital Empowerment Meet & Awards"
+          />
+          <div className="wow-signal__veil" aria-hidden />
+        </div>
+        <div className="container wow-signal__content">
+          <Reveal>
+            <p className="wow-kicker wow-kicker--light">By the numbers</p>
+            <h2>Quiet figures. Loud outcomes.</h2>
+          </Reveal>
+          <div className="wow-signal__stats">
+            {company.stats.slice(0, 4).map((stat, i) => (
+              <Reveal key={stat.label} delay={i * 0.07}>
+                <div className="wow-stat">
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section enigma-why">
-        <div className="container enigma-why__grid">
+      <section className="wow-services">
+        <div className="container wow-services__head">
           <Reveal>
-            <div className="enigma-why__media">
-              <LiveImage
-                className="live-image--tall"
-                src="/assets/lifestyle/team-cover.png"
-                alt="Cloudstrats team"
-              />
-              <div className="enigma-why__media-veil" />
-            </div>
+            <p className="wow-kicker">Services</p>
+            <h2>Five practices. One operating system for transformation.</h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="enigma-why__copy">
-              <p className="eyebrow">Why Cloudstrats</p>
-              <h2 className="enigma-heading">
-                One partner. Multiple transformation capabilities.
-              </h2>
-              <p className="enigma-why__lead">{company.advantageIntro}</p>
-              <p className="enigma-why__punch">{company.punchline}</p>
-              <Link to="/about" className="btn btn-primary">
-                About Cloudstrats <ArrowRight size={16} />
-              </Link>
-            </div>
+        </div>
+
+        <div className="wow-services__scroller">
+          {homeServices.map((service, i) => (
+            <Link
+              key={service.id}
+              to={servicePath(service.id)}
+              className="wow-service"
+              style={{ animationDelay: `${i * 40}ms` }}
+            >
+              <div className="wow-service__media">
+                <img src={service.image} alt="" />
+              </div>
+              <div className="wow-service__body">
+                <span>{service.code}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <em>
+                  Explore <ArrowUpRight size={16} />
+                </em>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="container">
+          <Link to="/services" className="wow-text-link">
+            View all services <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      <section className="wow-platforms">
+        <div className="container">
+          <Reveal>
+            <p className="wow-kicker wow-kicker--light">Platforms</p>
+            <h2>Named quietly. Built deeply.</h2>
+          </Reveal>
+
+          <div className="wow-platforms__list">
+            {products.map((product, i) => (
+              <Reveal key={product.id} delay={i * 0.08}>
+                <Link to={productPath(product.id)} className="wow-platform">
+                  <div className="wow-platform__meta">
+                    <span>0{i + 1}</span>
+                    <p>{product.tagline}</p>
+                  </div>
+                  <h3>{product.name.split(" ")[0]}</h3>
+                  <p className="wow-platform__text">{product.description}</p>
+                  <span className="wow-platform__go">
+                    Enter platform <ArrowUpRight size={18} />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="wow-why">
+        <div className="wow-why__media">
+          <img src="/assets/lifestyle/team-cover.png" alt="Cloudstrats team" />
+        </div>
+        <div className="wow-why__copy">
+          <Reveal>
+            <p className="wow-kicker">Why Cloudstrats</p>
+            <h2>One partner. Multiple transformation capabilities.</h2>
+            <p>{company.advantageIntro}</p>
+            <p className="wow-why__punch">{company.punchline}</p>
+            <Link to="/about" className="wow-btn wow-btn--dark">
+              About Cloudstrats <ArrowRight size={16} />
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      <section className="section enigma-threshold">
+      <section className="wow-close">
         <div className="container">
           <Reveal>
-            <div className="enigma-threshold__panel">
-              <p className="eyebrow">Building What’s Next</p>
-              <h2>{company.futurePunch}</h2>
-              <p>{company.futureText}</p>
-              <Link to="/contact" className="btn btn-primary">
-                Talk to our experts <ArrowRight size={18} />
-              </Link>
-            </div>
+            <p className="wow-kicker wow-kicker--light">Building what’s next</p>
+            <h2>{company.futurePunch}</h2>
+            <p>{company.futureText}</p>
+            <Link to="/contact" className="wow-btn wow-btn--solid">
+              Talk to our experts <ArrowRight size={18} />
+            </Link>
           </Reveal>
         </div>
       </section>

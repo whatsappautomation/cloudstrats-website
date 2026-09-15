@@ -42,8 +42,13 @@
   width: clamp(148px, 18vw, 188px);
 }
 
-.brand-logo--nav img {
+.brand-logo--nav img,
+.brand-logo--navOnDark img {
   filter: none;
+}
+
+.brand-logo--navOnDark {
+  width: clamp(148px, 18vw, 188px);
 }
 
 .brand-logo--footer {
