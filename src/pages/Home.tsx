@@ -1,22 +1,13 @@
 import { Link } from "react-router-dom";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { EnigmaField } from "../components/EnigmaField";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
-import { TiltCard } from "../components/TiltCard";
 import { company } from "../data/company";
 import { productPath, products } from "../data/products";
 import { servicePath } from "../data/services";
 import "./Home.css";
-
-const trustBadges = [
-  "Make in India",
-  "Defence Ready",
-  "ISO Certified",
-  "GeM Registered",
-  "MeitY Empanelled",
-];
 
 const homeServices = [
   {
@@ -51,21 +42,24 @@ const homeServices = [
   },
 ];
 
+const pillars = [
+  {
+    title: "Build",
+    text: "AI-ready infrastructure and data centres engineered for mission uptime.",
+  },
+  {
+    title: "Secure",
+    text: "Zero-trust operations, SOC depth and C5I-grade network resilience.",
+  },
+  {
+    title: "Scale",
+    text: "Automation and analytics that turn complexity into measurable outcomes.",
+  },
+];
+
 export function Home() {
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const glow = useMotionTemplate`radial-gradient(640px circle at ${mx}px ${my}px, rgba(0,119,182,0.12), transparent 48%)`;
-
   return (
-    <div
-      className="home home--enigma"
-      onMouseMove={(e) => {
-        mx.set(e.clientX);
-        my.set(e.clientY);
-      }}
-    >
-      <motion.div className="home__cursor-glow" style={{ background: glow }} />
-
+    <div className="home home--editorial">
       <section className="enigma-hero enigma-hero--banner">
         <div className="enigma-hero__banner" aria-hidden>
           <img
@@ -79,14 +73,14 @@ export function Home() {
 
         <div className="container enigma-hero__layout enigma-hero__layout--banner">
           <div className="enigma-hero__copy">
-            <motion.span
-              className="enigma-badge"
+            <motion.p
+              className="ed-kicker ed-kicker--light"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               Defence · Government · Critical Infrastructure
-            </motion.span>
+            </motion.p>
 
             <motion.h1
               className="enigma-hero__title"
@@ -121,17 +115,6 @@ export function Home() {
                 Explore Services
               </Link>
             </motion.div>
-
-            <motion.ul
-              className="enigma-trust"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-            >
-              {trustBadges.map((badge) => (
-                <li key={badge}>{badge}</li>
-              ))}
-            </motion.ul>
           </div>
         </div>
 
@@ -140,190 +123,163 @@ export function Home() {
         </a>
       </section>
 
-      <section id="discover" className="enigma-codes">
+      <section id="discover" className="ed-marquee">
         <div className="container">
           <Reveal>
-            <ul className="enigma-codes__list">
-              {["AI", "Data", "C5I", "Security", "Automation"].map((item) => (
-                <li key={item}>
-                  <span>{item}</span>
-                </li>
+            <p className="ed-marquee__line">
+              {["AI", "Data", "C5I", "Security", "Automation"].map((item, i) => (
+                <span key={item}>
+                  {i > 0 && <span className="ed-marquee__dot" aria-hidden />}
+                  {item}
+                </span>
               ))}
-            </ul>
+            </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="section enigma-pillars">
+      <section className="section ed-pillars">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">What we do</p>
-            <h2 className="enigma-heading enigma-heading--wide">
-              Build. Secure. Scale.
-            </h2>
-            <p className="enigma-sub enigma-sub--center">
-              End-to-end digital infrastructure — revealed as you explore.
-            </p>
+            <div className="ed-intro ed-intro--center">
+              <p className="ed-kicker">What we do</p>
+              <h2 className="ed-title">Build. Secure. Scale.</h2>
+              <p className="ed-lead">
+                End-to-end digital infrastructure — revealed as you explore.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="enigma-pillars__grid">
-            {[
-              {
-                n: "01",
-                title: "Build",
-                text: "AI-ready infrastructure and data centres engineered for mission uptime.",
-              },
-              {
-                n: "02",
-                title: "Secure",
-                text: "Zero-trust operations, SOC depth and C5I-grade network resilience.",
-              },
-              {
-                n: "03",
-                title: "Scale",
-                text: "Automation and analytics that turn complexity into measurable outcomes.",
-              },
-            ].map((pillar, i) => (
+          <div className="ed-pillars__row">
+            {pillars.map((pillar, i) => (
               <Reveal key={pillar.title} delay={i * 0.08}>
-                <TiltCard>
-                  <div className="enigma-pillar">
-                    <span className="enigma-pillar__n">{pillar.n}</span>
-                    <h3>{pillar.title}</h3>
-                    <p>{pillar.text}</p>
-                  </div>
-                </TiltCard>
+                <article className="ed-pillar">
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.text}</p>
+                </article>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats: 2×2 left + image right */}
-      <section className="section enigma-signal">
-        <div className="enigma-signal__glow" aria-hidden />
+      <section className="section ed-signal">
         <div className="container">
-          <Reveal>
-            <p className="eyebrow">Signal</p>
-            <h2 className="enigma-heading">Numbers that stay quiet until you look.</h2>
-          </Reveal>
-          <div className="enigma-signal__layout">
-            <div className="enigma-signal__grid">
-              {company.stats.slice(0, 4).map((stat, i) => (
-                <Reveal key={stat.label} delay={i * 0.08}>
-                  <div className="enigma-stat">
-                    <strong>{stat.value}</strong>
-                    <span>{stat.label}</span>
-                  </div>
-                </Reveal>
-              ))}
+          <div className="ed-signal__layout">
+            <div className="ed-signal__copy">
+              <Reveal>
+                <p className="ed-kicker">By the numbers</p>
+                <h2 className="ed-title">Quiet figures. Loud outcomes.</h2>
+              </Reveal>
+              <div className="ed-signal__stats">
+                {company.stats.slice(0, 4).map((stat, i) => (
+                  <Reveal key={stat.label} delay={i * 0.06}>
+                    <div className="ed-stat">
+                      <strong>{stat.value}</strong>
+                      <span>{stat.label}</span>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
             </div>
-            <Reveal delay={0.12}>
-              <div className="enigma-signal__media">
+            <Reveal delay={0.1}>
+              <figure className="ed-signal__photo">
                 <LiveImage
                   className="live-image--tall"
                   src="/assets/lifestyle/stats-award.png"
                   alt="Cloudstrats at India Digital Empowerment Meet & Awards"
                 />
-              </div>
+              </figure>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Services: portrait cards, 3 + 2 */}
-      <section className="section enigma-layers">
+      <section className="section ed-services">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Our Services</p>
-            <h2 className="enigma-heading enigma-heading--services">
-              Digital Transformation Services that Delivers Impact
-            </h2>
-            <p className="enigma-sub">
-              We provide end-to-end solutions that strengthens your digital
-              infrastructure, ensuring a smoother work environment with
-              comprehensive security.
-            </p>
+            <div className="ed-intro">
+              <p className="ed-kicker">Our services</p>
+              <h2 className="ed-title ed-title--wide">
+                Digital transformation with lasting impact
+              </h2>
+              <p className="ed-lead">
+                End-to-end solutions that strengthen digital infrastructure and
+                keep critical environments secure.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="enigma-layers__grid">
+          <div className="ed-services__list">
             {homeServices.map((service, i) => (
-              <Reveal key={service.id} delay={i * 0.06}>
-                <TiltCard>
-                  <Link to={servicePath(service.id)} className="enigma-layer">
-                    <span className="enigma-layer__num" aria-hidden>
-                      {service.code}
-                    </span>
-                    <div className="enigma-layer__body">
-                      <h3>{service.title}</h3>
-                      <p className="enigma-layer__text">{service.text}</p>
-                      <span className="enigma-layer__cta">
-                        Learn more <ArrowRight size={14} />
-                      </span>
-                    </div>
-                  </Link>
-                </TiltCard>
+              <Reveal key={service.id} delay={i * 0.04}>
+                <Link to={servicePath(service.id)} className="ed-service">
+                  <span className="ed-service__code">{service.code}</span>
+                  <div className="ed-service__body">
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                  </div>
+                  <span className="ed-service__go" aria-hidden>
+                    <ArrowRight size={18} />
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>
 
           <div className="section-cta">
-            <Link to="/services" className="btn btn-ghost">
-              View all services <ArrowRight size={18} />
+            <Link to="/services" className="ed-text-link">
+              View all services <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section enigma-platforms">
+      <section className="section ed-platforms">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">Platforms</p>
-            <h2 className="enigma-heading">Named quietly. Built deeply.</h2>
+            <div className="ed-intro ed-intro--center">
+              <p className="ed-kicker">Platforms</p>
+              <h2 className="ed-title">Named quietly. Built deeply.</h2>
+            </div>
           </Reveal>
 
-          <div className="enigma-platforms__grid">
+          <div className="ed-platforms__row">
             {products.map((product, i) => (
-              <Reveal key={product.id} delay={i * 0.1}>
-                <TiltCard>
-                  <Link to={productPath(product.id)} className="enigma-platform">
-                    <span className="enigma-platform__index">0{i + 1}</span>
-                    <p className="enigma-platform__tag">{product.tagline}</p>
-                    <h3>{product.name.split(" ")[0]}</h3>
-                    <p className="enigma-platform__hint">Hover to reveal</p>
-                    <p className="enigma-platform__text">{product.description}</p>
-                    <span className="enigma-platform__cta">
-                      Explore <ArrowRight size={16} />
-                    </span>
-                  </Link>
-                </TiltCard>
+              <Reveal key={product.id} delay={i * 0.08}>
+                <Link to={productPath(product.id)} className="ed-platform">
+                  <p className="ed-platform__tag">{product.tagline}</p>
+                  <h3>{product.name.split(" ")[0]}</h3>
+                  <p className="ed-platform__text">{product.description}</p>
+                  <span className="ed-text-link">
+                    Explore <ArrowRight size={14} />
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Industries section unpublished per feedback */}
-
-      <section className="section enigma-why">
-        <div className="container enigma-why__grid">
+      <section className="section ed-why">
+        <div className="container ed-why__grid">
           <Reveal>
-            <div className="enigma-why__media">
+            <figure className="ed-why__photo">
               <LiveImage
                 className="live-image--tall"
                 src="/assets/lifestyle/team-cover.png"
                 alt="Cloudstrats team"
               />
-              <div className="enigma-why__media-veil" />
-            </div>
+            </figure>
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="enigma-why__copy">
-              <p className="eyebrow">Why Cloudstrats</p>
-              <h2 className="enigma-heading">
+          <Reveal delay={0.08}>
+            <div className="ed-why__copy">
+              <p className="ed-kicker">Why Cloudstrats</p>
+              <h2 className="ed-title">
                 One partner. Multiple transformation capabilities.
               </h2>
-              <p className="enigma-why__lead">{company.advantageIntro}</p>
-              <p className="enigma-why__punch">{company.punchline}</p>
+              <p className="ed-lead">{company.advantageIntro}</p>
+              <p className="ed-why__punch">{company.punchline}</p>
               <Link to="/about" className="btn btn-primary">
                 About Cloudstrats <ArrowRight size={16} />
               </Link>
@@ -332,13 +288,13 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section enigma-threshold">
+      <section className="section ed-close">
         <div className="container">
           <Reveal>
-            <div className="enigma-threshold__panel">
-              <p className="eyebrow">Building What’s Next</p>
-              <h2>{company.futurePunch}</h2>
-              <p>{company.futureText}</p>
+            <div className="ed-close__inner">
+              <p className="ed-kicker">Building what’s next</p>
+              <h2 className="ed-title ed-title--center">{company.futurePunch}</h2>
+              <p className="ed-lead ed-lead--center">{company.futureText}</p>
               <Link to="/contact" className="btn btn-primary">
                 Talk to our experts <ArrowRight size={18} />
               </Link>
