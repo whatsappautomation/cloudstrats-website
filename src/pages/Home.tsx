@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { EnigmaField } from "../components/EnigmaField";
 import { LiveImage } from "../components/LiveMedia";
@@ -10,7 +10,7 @@ import { productPath, products } from "../data/products";
 import { servicePath } from "../data/services";
 import "./Home.css";
 
-const trustBadges = [
+const trustLine = [
   "Make in India",
   "Defence Ready",
   "ISO Certified",
@@ -23,49 +23,37 @@ const homeServices = [
     id: "ai-infrastructure",
     code: "01",
     title: "AI Infrastructure and Data Centres",
-    text: "Build high performance AI data centre solutions with advanced cybersecurity and 24/7 uptime.",
+    text: "High-performance AI data centre solutions with advanced cybersecurity and continuous uptime.",
   },
   {
     id: "data-ai-analytics",
     code: "02",
     title: "Data AI & Analytics",
-    text: "Align circumstantial expectations and ensure preparedness using predictive analytics solutions.",
+    text: "Predictive analytics that turn complex data into clear, decisive intelligence.",
   },
   {
     id: "c5i-networks",
     code: "03",
     title: "C5I and Mission Critical Networks",
-    text: "Collate analytics and insights derived from years of experience with our C5I integration services.",
+    text: "Mission-ready C5I integration for secure, resilient command environments.",
   },
   {
     id: "cybersecurity",
     code: "04",
     title: "Cyber Security Operations",
-    text: "Managed SOC services for around the clock monitoring, deep threat visibility and rapid response.",
+    text: "Managed SOC with continuous monitoring, deep visibility and rapid response.",
   },
   {
     id: "automation",
     code: "05",
-    title: "Intelligent Automations and Digital Transformation",
-    text: "Intelligent automation services that reduce friction, accelerate outcomes and optimize business operations.",
+    title: "Intelligent Automation and Digital Transformation",
+    text: "Intelligent automation that removes friction and accelerates business outcomes.",
   },
 ];
 
 export function Home() {
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const glow = useMotionTemplate`radial-gradient(640px circle at ${mx}px ${my}px, rgba(0,119,182,0.12), transparent 48%)`;
-
   return (
-    <div
-      className="home home--enigma"
-      onMouseMove={(e) => {
-        mx.set(e.clientX);
-        my.set(e.clientY);
-      }}
-    >
-      <motion.div className="home__cursor-glow" style={{ background: glow }} />
-
+    <div className="home home--enigma home--luxe">
       <section className="enigma-hero enigma-hero--banner">
         <div className="enigma-hero__banner" aria-hidden>
           <img
@@ -79,14 +67,14 @@ export function Home() {
 
         <div className="container enigma-hero__layout enigma-hero__layout--banner">
           <div className="enigma-hero__copy">
-            <motion.span
-              className="enigma-badge"
+            <motion.p
+              className="enigma-kicker"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               Defence · Government · Critical Infrastructure
-            </motion.span>
+            </motion.p>
 
             <motion.h1
               className="enigma-hero__title"
@@ -122,16 +110,19 @@ export function Home() {
               </Link>
             </motion.div>
 
-            <motion.ul
-              className="enigma-trust"
+            <motion.p
+              className="enigma-trustline"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              {trustBadges.map((badge) => (
-                <li key={badge}>{badge}</li>
+              {trustLine.map((item, i) => (
+                <span key={item}>
+                  {i > 0 && <span className="enigma-trustline__sep" aria-hidden />}
+                  {item}
+                </span>
               ))}
-            </motion.ul>
+            </motion.p>
           </div>
         </div>
 
@@ -198,7 +189,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Stats: 2×2 left + image right */}
       <section className="section enigma-signal">
         <div className="enigma-signal__glow" aria-hidden />
         <div className="container">
@@ -230,7 +220,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Services: portrait cards, 3 + 2 */}
       <section className="section enigma-layers">
         <div className="container">
           <Reveal>
@@ -239,9 +228,8 @@ export function Home() {
               Digital Transformation Services that Delivers Impact
             </h2>
             <p className="enigma-sub">
-              We provide end-to-end solutions that strengthens your digital
-              infrastructure, ensuring a smoother work environment with
-              comprehensive security.
+              End-to-end solutions that strengthen digital infrastructure and
+              keep critical environments secure.
             </p>
           </Reveal>
 
@@ -289,7 +277,6 @@ export function Home() {
                     <span className="enigma-platform__index">0{i + 1}</span>
                     <p className="enigma-platform__tag">{product.tagline}</p>
                     <h3>{product.name.split(" ")[0]}</h3>
-                    <p className="enigma-platform__hint">Hover to reveal</p>
                     <p className="enigma-platform__text">{product.description}</p>
                     <span className="enigma-platform__cta">
                       Explore <ArrowRight size={16} />
@@ -301,8 +288,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      {/* Industries section unpublished per feedback */}
 
       <section className="section enigma-why">
         <div className="container enigma-why__grid">
