@@ -1,5 +1,4 @@
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
@@ -8,15 +7,7 @@ import "./ServiceCategory.css";
 
 export function ServiceCategoryPage() {
   const { serviceId = "" } = useParams();
-  const location = useLocation();
   const category = getServiceById(serviceId);
-
-  useEffect(() => {
-    if (!location.hash) return;
-    const id = location.hash.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [location.hash, serviceId]);
 
   if (!category) return <Navigate to="/services" replace />;
 

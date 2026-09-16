@@ -465,7 +465,7 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "automation",
-    title: "Intelligent Automations and Digital Transformation",
+    title: "Intelligent Automation and Digital Transformation",
     headline: "Transform Operations with AI-Powered Automation",
     summary:
       "Incorporate intelligent workflows, and digital transformation solutions that improve efficiency, agility, and business performance.",

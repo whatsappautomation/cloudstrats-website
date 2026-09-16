@@ -1,5 +1,4 @@
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight, Cloud, Database, Shield } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import {
@@ -18,15 +17,7 @@ const icons = {
 
 export function ProductDetail() {
   const { productId = "" } = useParams();
-  const location = useLocation();
   const product = getProductById(productId);
-
-  useEffect(() => {
-    if (!location.hash) return;
-    const id = location.hash.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [location.hash, productId]);
 
   if (!product) return <Navigate to="/products" replace />;
 

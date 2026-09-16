@@ -10,46 +10,24 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import { productPath, products } from "../data/products";
-import { servicePath } from "../data/services";
+import { serviceCategories, servicePath } from "../data/services";
 import "./Home.css";
 
-const homeServices = [
-  {
-    id: "ai-infrastructure",
-    code: "01",
-    title: "AI Infrastructure and Data Centres",
-    text: "High-performance AI data centre solutions engineered for scale, security and continuous uptime.",
-    image: "/assets/lifestyle/data-infra.png",
-  },
-  {
-    id: "data-ai-analytics",
-    code: "02",
-    title: "Data AI & Analytics",
-    text: "Turn fragmented data into decisive intelligence with modern platforms and predictive analytics.",
-    image: "/assets/lifestyle/analytics-dashboard.png",
-  },
-  {
-    id: "c5i-networks",
-    code: "03",
-    title: "C5I and Mission Critical Networks",
-    text: "Secure, resilient command networks for environments where continuity is non-negotiable.",
-    image: "/assets/hero/defence-hero.png",
-  },
-  {
-    id: "cybersecurity",
-    code: "04",
-    title: "Cyber Security Operations",
-    text: "Around-the-clock SOC depth — detection, intelligence and response in one operating rhythm.",
-    image: "/assets/hero/soc.png",
-  },
-  {
-    id: "automation",
-    code: "05",
-    title: "Intelligent Automation and Digital Transformation",
-    text: "AI-powered workflows that remove friction and accelerate measurable business outcomes.",
-    image: "/assets/lifestyle/process-automation.png",
-  },
-];
+const serviceImages: Record<string, string> = {
+  "ai-infrastructure": "/assets/lifestyle/data-infra.png",
+  "data-ai-analytics": "/assets/lifestyle/analytics-dashboard.png",
+  "c5i-networks": "/assets/hero/defence-hero.png",
+  cybersecurity: "/assets/hero/soc.png",
+  automation: "/assets/lifestyle/process-automation.png",
+};
+
+const homeServices = serviceCategories.map((service, index) => ({
+  id: service.id,
+  code: String(index + 1).padStart(2, "0"),
+  title: service.title,
+  text: service.summary,
+  image: serviceImages[service.id] ?? service.bannerImage,
+}));
 
 export function Home() {
   const heroRef = useRef<HTMLElement>(null);
