@@ -5,7 +5,8 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import type { FormEvent } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
@@ -31,6 +32,7 @@ const homeServices = serviceCategories.map((service, index) => ({
 
 export function Home() {
   const heroRef = useRef<HTMLElement>(null);
+  const [sent, setSent] = useState(false);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -45,6 +47,22 @@ export function Home() {
   );
   const copyOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0.15]);
 
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const org = String(data.get("organization") || "");
+    const message = String(data.get("message") || "");
+    const subject = encodeURIComponent(`Cloudstrats enquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\n\n${message}`,
+    );
+    window.location.href = `mailto:${company.contacts.email}?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
   return (
     <div className="home home--wow">
       <section ref={heroRef} className="wow-hero">
@@ -58,7 +76,7 @@ export function Home() {
         </motion.div>
         <div className="wow-hero__shade" aria-hidden />
 
-        <motion.div className="container wow-hero__copy" style={{ opacity: copyOpacity }}>
+        <motion.div className="wow-hero__copy" style={{ opacity: copyOpacity }}>
           <motion.p
             className="wow-kicker wow-kicker--light"
             initial={{ opacity: 0, y: 16 }}
@@ -130,7 +148,6 @@ export function Home() {
               <span className="wow-manifesto__mark" aria-hidden>
                 “
               </span>
-              <p className="wow-kicker">What we do</p>
               <h2>
                 Build the foundations.
                 <br />
@@ -223,8 +240,12 @@ export function Home() {
       <section className="wow-platforms">
         <div className="container">
           <Reveal>
-            <p className="wow-kicker wow-kicker--light">Platforms</p>
-            <h2>Named quietly. Built deeply.</h2>
+            <p className="wow-kicker wow-kicker--light">Our Products</p>
+            <h2>Intelligent platforms. Unified by purpose.</h2>
+            <p className="wow-platforms__lead">
+              Abha, Miraya and Narad — cloud-native, secure-by-design platforms
+              built for mission interoperability.
+            </p>
           </Reveal>
 
           <div className="wow-platforms__list">
@@ -248,28 +269,76 @@ export function Home() {
       </section>
 
       <section className="wow-why">
-        <div className="container wow-why__copy">
-          <Reveal>
-            <p className="wow-kicker">Why Cloudstrats</p>
-            <h2>One partner. Multiple transformation capabilities.</h2>
-            <p>{company.advantageIntro}</p>
-            <p className="wow-why__punch">{company.punchline}</p>
-            <Link to="/about" className="wow-btn wow-btn--dark">
-              About Cloudstrats <ArrowRight size={16} />
-            </Link>
-          </Reveal>
+        <div className="container wow-why__layout">
+          <div className="wow-why__media">
+            <img
+              src="/assets/lifestyle/team-collab-group.png"
+              alt="Cloudstrats team"
+            />
+          </div>
+          <div className="wow-why__copy">
+            <Reveal>
+              <p className="wow-kicker">Why Cloudstrats</p>
+              <h2>One partner. Multiple transformation capabilities.</h2>
+              <p>{company.advantageIntro}</p>
+              <p>{company.advantageBody}</p>
+              <p className="wow-why__punch">{company.punchline}</p>
+              <Link to="/about" className="wow-btn wow-btn--dark">
+                About Cloudstrats <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       <section className="wow-close">
-        <div className="container">
+        <div className="container wow-close__layout">
           <Reveal>
-            <p className="wow-kicker wow-kicker--light">Building what’s next</p>
-            <h2>{company.futurePunch}</h2>
-            <p>{company.futureText}</p>
-            <Link to="/contact" className="wow-btn wow-btn--solid">
-              Talk to our experts <ArrowRight size={18} />
-            </Link>
+            <div className="wow-close__copy">
+              <p className="wow-kicker wow-kicker--light">Building what&apos;s next</p>
+              <h2>{company.futureHeadlineHome}</h2>
+              <p>{company.advantageIntro}</p>
+              <p>{company.advantageBody}</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <form className="wow-close__form" onSubmit={onSubmit}>
+              <h3>Talk to us</h3>
+              <label>
+                Full name
+                <input name="name" required placeholder="Your name" />
+              </label>
+              <label>
+                Work email
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@organization.com"
+                />
+              </label>
+              <label>
+                Organization
+                <input name="organization" placeholder="Agency / Enterprise" />
+              </label>
+              <label>
+                How can we help?
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="Tell us about your mission, timeline or RFP."
+                />
+              </label>
+              <button type="submit" className="wow-btn wow-btn--solid">
+                Email Us <ArrowRight size={16} />
+              </button>
+              {sent && (
+                <p className="wow-close__note">
+                  Your mail client should open with the enquiry pre-filled.
+                </p>
+              )}
+            </form>
           </Reveal>
         </div>
       </section>

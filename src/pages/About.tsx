@@ -80,6 +80,7 @@ export function About() {
               One Partner. Multiple Transformation Capabilities.
             </p>
             <p className="section-lead">{company.advantageIntro}</p>
+            <p className="section-lead">{company.advantageBody}</p>
           </Reveal>
           <div className="grid-3 values-grid">
             {company.advantage.map((item, i) => (

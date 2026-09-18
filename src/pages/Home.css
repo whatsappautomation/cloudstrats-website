@@ -127,13 +127,15 @@
   position: relative;
   z-index: 2;
   max-width: 640px;
-  margin-left: clamp(-0.5rem, -2vw, 0);
+  margin-left: clamp(1rem, 3.5vw, 2.25rem);
+  margin-right: auto;
   padding-bottom: 1rem;
+  padding-right: 1rem;
 }
 
 .wow-hero h1 {
   margin: 0 0 1.1rem;
-  font-size: clamp(2.35rem, 5.4vw, 4.15rem);
+  font-size: clamp(2.2rem, 5vw, 3.85rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -502,11 +504,20 @@
 }
 
 .wow-platforms h2 {
-  margin: 0 0 2.5rem;
+  margin: 0 0 0.85rem;
   font-size: clamp(2rem, 4vw, 3.1rem);
   font-weight: 600;
   letter-spacing: -0.035em;
   color: #f6fbff;
+}
+
+.wow-platforms__lead {
+  margin: 0 0 2.5rem;
+  max-width: 48ch;
+  color: rgba(220, 236, 248, 0.72);
+  font-weight: 300;
+  font-size: 1.02rem;
+  line-height: 1.65;
 }
 
 .wow-platforms__list {
@@ -583,11 +594,34 @@
 /* ——— WHY ——— */
 .wow-why {
   background: #fff;
-  padding: clamp(4.5rem, 9vw, 7rem) 0;
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+}
+
+.wow-why__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: center;
+}
+
+.wow-why__media {
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 360px;
+  box-shadow: 0 18px 48px rgba(2, 62, 99, 0.12);
+}
+
+.wow-why__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
 }
 
 .wow-why__copy {
-  max-width: 52rem;
+  max-width: 40rem;
 }
 
 .wow-why__copy h2 {
@@ -601,7 +635,7 @@
 }
 
 .wow-why__copy > div > p:not(.wow-kicker):not(.wow-why__punch) {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1rem;
   max-width: 52ch;
   color: var(--muted);
   font-weight: 300;
@@ -609,7 +643,7 @@
 }
 
 .wow-why__punch {
-  margin: 0 0 1.75rem !important;
+  margin: 0.35rem 0 1.75rem !important;
   font-weight: 600 !important;
   color: var(--ink) !important;
   font-size: 1.08rem;
@@ -618,34 +652,92 @@
 
 /* ——— CLOSE ——— */
 .wow-close {
-  padding: clamp(5rem, 11vw, 8rem) 0;
-  text-align: center;
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
   background:
-    radial-gradient(700px 280px at 50% 0%, rgba(0, 119, 182, 0.28), transparent 55%),
+    radial-gradient(700px 280px at 20% 0%, rgba(0, 119, 182, 0.28), transparent 55%),
     #020b16;
   color: #eaf4ff;
+  text-align: left;
 }
 
-.wow-close h2 {
-  margin: 0 auto 1rem;
+.wow-close__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.wow-close__copy h2 {
+  margin: 0 0 1.15rem;
   max-width: 18ch;
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-size: clamp(1.85rem, 3.8vw, 2.85rem);
   font-weight: 600;
   letter-spacing: -0.035em;
-  line-height: 1.12;
+  line-height: 1.15;
   color: #f6fbff;
 }
 
-.wow-close p:not(.wow-kicker) {
-  margin: 0 auto 1.85rem;
+.wow-close__copy p:not(.wow-kicker) {
+  margin: 0 0 1rem;
   max-width: 46ch;
   color: rgba(220, 236, 248, 0.72);
   font-weight: 300;
   line-height: 1.7;
 }
 
-.wow-close .wow-kicker {
+.wow-close__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+}
+
+.wow-close__form h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f6fbff;
+}
+
+.wow-close__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(220, 236, 248, 0.78);
+}
+
+.wow-close__form input,
+.wow-close__form textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(2, 12, 22, 0.55);
+  color: #f4f9ff;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  resize: vertical;
+}
+
+.wow-close__form input::placeholder,
+.wow-close__form textarea::placeholder {
+  color: rgba(220, 236, 248, 0.4);
+}
+
+.wow-close__form .wow-btn {
+  margin-top: 0.35rem;
   justify-content: center;
+}
+
+.wow-close__note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(220, 236, 248, 0.7);
 }
 
 @media (max-width: 1000px) {
@@ -664,6 +756,8 @@
     opacity: 1;
   }
 
+  .wow-why__layout,
+  .wow-close__layout,
   .wow-manifesto__layout {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -671,6 +765,14 @@
 
   .wow-manifesto__support {
     margin-top: 0;
+  }
+
+  .wow-why__media {
+    min-height: 280px;
+  }
+
+  .wow-why__media img {
+    min-height: 280px;
   }
 
   .wow-hero__rail {

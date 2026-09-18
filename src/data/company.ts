@@ -53,7 +53,11 @@ export const company = {
     },
   ],
   advantageIntro:
-    "Modern enterprises rarely face a single technology challenge. Cloud, data, AI, cybersecurity, and automation are increasingly interconnected. Cloudstrats brings these capabilities together under one transformation ecosystem, enabling organizations to address multiple technology priorities through a unified approach.",
+    "What started as a simple tech company, slowly developed into an AI infrastructure and growth solutions provider. Our 15+ years of experience has taught us the importance of an efficient system and unique workflows, that encourage faster output.",
+  advantageBody:
+    "We help organizations turn complex technology challenges into measurable business outcomes. From building AI-ready infrastructure and transforming enterprise data into something you can use, all while automating business operations, CloudStrats combines deep technology expertise with an outcome-driven approach.",
+  futureHeadlineHome:
+    "Conquer the Future. Reshape how you Secure, Manage and Analyse Critical Information",
   advantage: [
     {
       title: "Business-First Thinking",
