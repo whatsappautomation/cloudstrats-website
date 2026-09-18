@@ -150,12 +150,9 @@ export function Navbar() {
             <div className={`nav__mega ${activeMenu === "services" ? "nav__mega--open" : ""}`}>
               <div className="nav__mega-inner">
                 <div className="nav__mega-head">
-                  <div>
-                    <p className="nav__mega-kicker">Our Services</p>
-                    <h3>Main services & capabilities</h3>
-                  </div>
+                  <p className="nav__mega-kicker">Services</p>
                   <Link to="/services" className="nav__mega-all">
-                    View all services →
+                    View all →
                   </Link>
                 </div>
                 <div className="nav__mega-grid">
@@ -166,7 +163,7 @@ export function Navbar() {
                       <div key={cat.id} className="nav__mega-col">
                         <Link to={servicePath(cat.id)} className="nav__mega-title">
                           <span className="nav__mega-icon">
-                            <Icon size={16} />
+                            <Icon size={15} />
                           </span>
                           <span>{cat.title}</span>
                         </Link>
@@ -205,12 +202,9 @@ export function Navbar() {
             <div className={`nav__mega ${activeMenu === "products" ? "nav__mega--open" : ""}`}>
               <div className="nav__mega-inner nav__mega-inner--products">
                 <div className="nav__mega-head">
-                  <div>
-                    <p className="nav__mega-kicker">Our Products</p>
-                    <h3>Platforms & capabilities</h3>
-                  </div>
+                  <p className="nav__mega-kicker">Products</p>
                   <Link to="/products" className="nav__mega-all">
-                    View all products →
+                    View all →
                   </Link>
                 </div>
                 <div className="nav__mega-grid nav__mega-grid--products">
@@ -221,7 +215,7 @@ export function Navbar() {
                       <div key={product.id} className="nav__mega-col">
                         <Link to={productPath(product.id)} className="nav__mega-title">
                           <span className="nav__mega-icon">
-                            <Icon size={16} />
+                            <Icon size={15} />
                           </span>
                           <span>{product.name}</span>
                         </Link>
@@ -262,12 +256,9 @@ export function Navbar() {
             <div className={`nav__mega ${activeMenu === "industries" ? "nav__mega--open" : ""}`}>
               <div className="nav__mega-inner nav__mega-inner--industries">
                 <div className="nav__mega-head">
-                  <div>
-                    <p className="nav__mega-kicker">Industries</p>
-                    <h3>Sectors we serve</h3>
-                  </div>
+                  <p className="nav__mega-kicker">Industries</p>
                   <Link to="/industries" className="nav__mega-all">
-                    View all industries →
+                    View all →
                   </Link>
                 </div>
                 <div className="nav__mega-grid nav__mega-grid--industries">

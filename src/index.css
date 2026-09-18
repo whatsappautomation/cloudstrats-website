@@ -209,10 +209,10 @@ p {
 /* Dark image banner used across top-level pages */
 .page-banner {
   position: relative;
-  min-height: 420px;
+  min-height: 340px;
   display: flex;
   align-items: flex-end;
-  padding: calc(var(--nav-h) + 2rem) 0 3rem;
+  padding: calc(var(--nav-h) + 1.75rem) 0 2.5rem;
   overflow: hidden;
   color: #fff;
   background: #031525;
@@ -225,16 +225,18 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  opacity: 0.55;
+  filter: saturate(0.85) brightness(0.92);
 }
 
 .page-banner__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    120deg,
-    rgba(2, 62, 99, 0.9) 8%,
-    rgba(0, 119, 182, 0.72) 52%,
-    rgba(2, 62, 99, 0.55) 100%
+    115deg,
+    rgba(3, 28, 48, 0.78) 0%,
+    rgba(0, 90, 140, 0.55) 48%,
+    rgba(3, 28, 48, 0.42) 100%
   );
 }
 

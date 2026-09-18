@@ -203,9 +203,15 @@
 /* ——— MARQUEE ——— */
 .wow-marquee {
   overflow: hidden;
-  border-block: 1px solid rgba(255, 255, 255, 0.06);
-  background: #03111d;
-  padding: 1.15rem 0;
+  border-block: none;
+  background: linear-gradient(
+    180deg,
+    #041525 0%,
+    #0a3550 42%,
+    #1a5f86 78%,
+    #3d8eb5 100%
+  );
+  padding: 1.15rem 0 1.35rem;
 }
 
 .wow-marquee__track {
@@ -226,7 +232,7 @@
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(210, 232, 248, 0.45);
+  color: rgba(232, 244, 252, 0.72);
 }
 
 @keyframes wow-marquee {
@@ -242,8 +248,14 @@
 .wow-manifesto {
   padding: clamp(4.5rem, 10vw, 7.5rem) 0;
   background:
-    radial-gradient(900px 420px at 80% 0%, rgba(0, 119, 182, 0.08), transparent 55%),
-    #fff;
+    linear-gradient(
+      180deg,
+      #3d8eb5 0%,
+      #7eb6d4 8%,
+      #c5dff0 18%,
+      #e8f3f9 32%,
+      #fff 48%
+    );
 }
 
 .wow-manifesto__layout {

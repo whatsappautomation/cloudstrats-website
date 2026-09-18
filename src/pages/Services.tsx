@@ -46,18 +46,28 @@ export function Services() {
             <MediaStrip
               items={[
                 {
-                  src: "/assets/lifestyle/data-infra.png",
+                  src: "/assets/services/ai-infra.png",
                   alt: "AI infrastructure services",
                   label: "AI Infrastructure",
                 },
                 {
-                  src: "/assets/lifestyle/ai-briefing.png",
-                  alt: "Mission intelligence briefing",
-                  label: "Data & Mission Intel",
+                  src: "/assets/services/data-ai.png",
+                  alt: "Data AI and analytics",
+                  label: "Data & Analytics",
                 },
                 {
-                  src: "/assets/lifestyle/automation-rpa.png",
-                  alt: "Automation services",
+                  src: "/assets/services/c5i.png",
+                  alt: "C5I and mission networks",
+                  label: "C5I Networks",
+                },
+                {
+                  src: "/assets/services/cyber.png",
+                  alt: "Cybersecurity operations",
+                  label: "Cyber Security",
+                },
+                {
+                  src: "/assets/services/automation.png",
+                  alt: "Intelligent automation",
                   label: "Automation",
                 },
               ]}
