@@ -290,8 +290,7 @@ export function Home() {
             <div className="wow-close__copy">
               <p className="wow-kicker wow-kicker--light">Building what&apos;s next</p>
               <h2>{company.futureHeadlineHome}</h2>
-              <p>{company.advantageIntro}</p>
-              <p>{company.advantageBody}</p>
+              <p>{company.futureText}</p>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
