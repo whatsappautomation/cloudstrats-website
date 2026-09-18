@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import {
   aiSuites,
@@ -19,17 +20,14 @@ const productVisuals: Record<string, string> = {
 export function Products() {
   return (
     <div className="products-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Our Products</p>
-          <h1 className="section-title">Intelligent platforms. Unified by purpose.</h1>
-          <p className="section-lead">
-            Cloud native · Secure by design · AI powered · Mission interoperable.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Our Products"
+        title="Intelligent platforms. Unified by purpose."
+        lead="Cloud native · Secure by design · AI powered · Mission interoperable."
+        image="/assets/lifestyle/data-infra.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container products-stack">
           {products.map((product, i) => (
             <Reveal key={product.id} delay={i * 0.06}>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import "./Blog.css";
 
@@ -37,18 +38,14 @@ const posts = [
 export function Blog() {
   return (
     <div className="blog-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Blog</p>
-          <h1 className="section-title">Insights from the field</h1>
-          <p className="section-lead">
-            Perspectives on AI infrastructure, cybersecurity, data platforms and
-            mission-critical digital transformation.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Blog"
+        title="Insights from the field"
+        lead="Perspectives on AI infrastructure, cybersecurity, data platforms and mission-critical digital transformation."
+        image="/assets/lifestyle/ai-briefing.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container blog-grid">
           {posts.map((post, i) => (
             <Reveal key={post.title} delay={i * 0.05}>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import { servicePath } from "../data/services";
@@ -9,20 +10,20 @@ import "./About.css";
 export function About() {
   return (
     <div className="about-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">About Cloudstrats</p>
-          <h1 className="section-title" style={{ maxWidth: "22ch" }}>
-            {company.headline}
-          </h1>
-          <p className="section-lead">{company.description}</p>
-          <p className="section-lead">{company.about}</p>
-          <p className="about-punch">{company.punchline}</p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="About Cloudstrats"
+        title={company.headline}
+        lead={company.description}
+        image="/assets/lifestyle/boardroom-skyline.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
+          <Reveal>
+            <p className="section-lead">{company.about}</p>
+            <p className="about-punch">{company.punchline}</p>
+          </Reveal>
+
           <Reveal>
             <div className="about-visual">
               <LiveImage

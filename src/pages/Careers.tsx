@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import "./Careers.css";
@@ -39,18 +40,14 @@ const openings = [
 export function Careers() {
   return (
     <div className="careers-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Careers</p>
-          <h1 className="section-title">Build with purpose. Grow with India.</h1>
-          <p className="section-lead">
-            Join Cloudstrats and help power mission-critical AI, cloud, data and
-            cybersecurity programs for defence, government and critical infrastructure.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Careers"
+        title="Build with purpose. Grow with India."
+        lead="Join Cloudstrats and help power mission-critical AI, cloud, data and cybersecurity programs for defence, government and critical infrastructure."
+        image="/assets/lifestyle/strategy-review.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
           <Reveal>
             <div className="careers-visual">

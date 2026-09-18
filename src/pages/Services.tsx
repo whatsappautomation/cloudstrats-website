@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import { MediaStrip } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import {
   aiInfraFeatures,
   highlightServices,
@@ -32,19 +33,14 @@ const icons = {
 export function Services() {
   return (
     <div className="services-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Our Services</p>
-          <h1 className="section-title">Comprehensive solutions. Measurable impact.</h1>
-          <p className="section-lead">
-            Strategy · Design · Management — end-to-end services for mission
-            success across AI infrastructure, data, C5I, cyber security and
-            intelligent automation.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Our Services"
+        title="Comprehensive solutions. Measurable impact."
+        lead="Strategy · Design · Management — end-to-end services for mission success across AI infrastructure, data, C5I, cyber security and intelligent automation."
+        image="/assets/hero/services-slide.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
           <Reveal>
             <MediaStrip

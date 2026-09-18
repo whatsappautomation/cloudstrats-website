@@ -1,5 +1,5 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Brain,
   ChevronDown,
@@ -16,11 +16,9 @@ import { BrandLogo } from "./BrandLogo";
 import {
   serviceCategories,
   servicePath,
-  slugify,
 } from "../data/services";
 import {
   productPath,
-  productSlugify,
   products,
 } from "../data/products";
 import { industryPath, industrySectors } from "../data/industries";
@@ -55,6 +53,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MenuKey>(null);
   const [mobileOpen, setMobileOpen] = useState<MenuKey>(null);
+  const closeTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -67,6 +66,7 @@ export function Navbar() {
     setOpen(false);
     setActiveMenu(null);
     setMobileOpen(null);
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -76,14 +76,32 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    };
+  }, []);
+
   const servicesActive = location.pathname.startsWith("/services");
   const productsActive = location.pathname.startsWith("/products");
   const industriesActive = location.pathname.startsWith("/industries");
-  const overHero =
-    location.pathname === "/" && !scrolled && !activeMenu && !open;
+  // White nav text over dark page banners until the user scrolls
+  const overHero = !scrolled && !activeMenu && !open;
 
-  const openMenu = (key: MenuKey) => setActiveMenu(key);
-  const closeMenus = () => setActiveMenu(null);
+  const openMenu = (key: MenuKey) => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setActiveMenu(key);
+  };
+  const closeMenus = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => {
+      setActiveMenu(null);
+      closeTimer.current = null;
+    }, 200);
+  };
 
   return (
     <header
@@ -153,9 +171,7 @@ export function Navbar() {
                         <ul>
                           {cat.items.map((item) => (
                             <li key={item}>
-                              <Link to={`${servicePath(cat.id)}#${slugify(item)}`}>
-                                {item}
-                              </Link>
+                              <Link to={servicePath(cat.id)}>{item}</Link>
                             </li>
                           ))}
                         </ul>
@@ -208,11 +224,7 @@ export function Navbar() {
                         <ul>
                           {product.items.map((item) => (
                             <li key={item}>
-                              <Link
-                                to={`${productPath(product.id)}#${productSlugify(item)}`}
-                              >
-                                {item}
-                              </Link>
+                              <Link to={productPath(product.id)}>{item}</Link>
                             </li>
                           ))}
                         </ul>

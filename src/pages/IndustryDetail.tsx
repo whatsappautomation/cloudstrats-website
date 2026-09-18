@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import {
   getIndustryById,
@@ -18,15 +19,14 @@ export function IndustryDetail() {
 
   return (
     <div className="industry-detail">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Industries</p>
-          <h1 className="section-title">{industry.title}</h1>
-          <p className="section-lead">{industry.summary}</p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Industries"
+        title={industry.title}
+        lead={industry.summary}
+        image="/assets/hero/defence-hero.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
           <Reveal>
             <article className="panel industry-detail__body">

@@ -124,16 +124,31 @@ export function Home() {
       </section>
 
       <section className="wow-manifesto">
-        <div className="container">
+        <div className="container wow-manifesto__layout">
           <Reveal>
-            <p className="wow-kicker">What we do</p>
-            <h2>
-              Build the foundations.
-              <br />
-              Secure the mission.
-              <br />
-              <em>Scale what matters.</em>
-            </h2>
+            <div className="wow-manifesto__quote">
+              <span className="wow-manifesto__mark" aria-hidden>
+                “
+              </span>
+              <p className="wow-kicker">What we do</p>
+              <h2>
+                Build the foundations.
+                <br />
+                Secure the mission.
+                <br />
+                <em>Scale what matters.</em>
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="wow-manifesto__support">
+              Cloudstrats is known to modernise organisations with environments
+              that facilitate critical operations and digital transformation. We
+              specialise in AI Infrastructure, Data Centres, Data, AI &amp;
+              Analytics, C5I &amp; Mission-Critical Networks, Cybersecurity, and
+              Intelligent Automation – all of which work towards a stable, fully
+              connected system that is ready for mission critical tasks.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -168,11 +183,14 @@ export function Home() {
         <div className="container wow-services__head">
           <Reveal>
             <p className="wow-kicker">Services</p>
-            <h2>Five practices. One operating system for transformation.</h2>
+            <h2>
+              Transform your organization with five practices and one operating
+              system
+            </h2>
           </Reveal>
         </div>
 
-        <div className="wow-services__scroller">
+        <div className="container wow-services__grid">
           {homeServices.map((service, i) => (
             <Link
               key={service.id}

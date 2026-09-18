@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight, Cloud, Database, Shield } from "lucide-react";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import {
   getProductById,
@@ -15,40 +16,41 @@ const icons = {
   narad: Shield,
 } as const;
 
+const productBanners: Record<string, string> = {
+  abha: "/assets/lifestyle/data-infra.png",
+  miraya: "/assets/lifestyle/analytics-dashboard.png",
+  narad: "/assets/lifestyle/digital-consult.png",
+};
+
 export function ProductDetail() {
   const { productId = "" } = useParams();
   const product = getProductById(productId);
 
   if (!product) return <Navigate to="/products" replace />;
 
-  const Icon = icons[product.id as keyof typeof icons] ?? Cloud;
   const others = products.filter((p) => p.id !== product.id);
 
   return (
     <div className="product-detail-page">
-      <section className="page-hero">
+      <PageBanner
+        eyebrow="Products"
+        title={product.name}
+        lead={product.description}
+        image={productBanners[product.id] ?? "/assets/lifestyle/data-infra.png"}
+      >
+        <p className="product-detail-page__tag product-detail-page__tag--on-banner">
+          {product.tagline}
+        </p>
+      </PageBanner>
+
+      <section className="section">
         <div className="container">
-          <p className="eyebrow">Products</p>
-          <div className="product-detail-page__title-row">
-            <span className="product-detail-page__icon">
-              <Icon size={26} />
-            </span>
-            <div>
-              <h1 className="section-title">{product.name}</h1>
-              <p className="product-detail-page__tag">{product.tagline}</p>
-            </div>
-          </div>
-          <p className="section-lead">{product.description}</p>
           <div className="trait-row product-detail-page__traits">
             {product.traits.map((t) => (
               <span key={t}>{t}</span>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
           <Reveal>
             <p className="eyebrow">Capabilities</p>
             <h2 className="section-title">What&apos;s included</h2>

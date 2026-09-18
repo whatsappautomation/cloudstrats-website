@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LiveImage, MediaStrip } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import "./WhyCloudstrats.css";
 
 export function WhyCloudstrats() {
   return (
     <div className="why-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Why Cloudstrats?</p>
-          <h1 className="section-title">Outcome-driven technology, under one roof</h1>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Why Cloudstrats?"
+        title="Outcome-driven technology, under one roof"
+        lead="AI infrastructure, data, C5I, cybersecurity and automation — brought together to deliver measurable business outcomes."
+        image="/assets/lifestyle/team-collab.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
           <Reveal>
             <div className="why-hero-media">

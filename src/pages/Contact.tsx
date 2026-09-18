@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { LiveImage } from "../components/LiveMedia";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import { company } from "../data/company";
 import "./Contact.css";
@@ -26,18 +27,14 @@ export function Contact() {
 
   return (
     <div className="contact-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Contact</p>
-          <h1 className="section-title">Let&apos;s build mission-ready infrastructure</h1>
-          <p className="section-lead">
-            Reach our business development team — we partner with defence,
-            government, PSUs and critical enterprises worldwide.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Contact"
+        title="Let's build mission-ready infrastructure"
+        lead="Reach our business development team — we partner with defence, government, PSUs and critical enterprises worldwide."
+        image="/assets/lifestyle/digital-consult.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container contact-grid">
           <Reveal>
             <form className="panel contact-form" onSubmit={onSubmit}>

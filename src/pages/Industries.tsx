@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import {
   aksharUseCases,
@@ -25,18 +26,14 @@ export function Industries() {
 
   return (
     <div className="industries-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Industries & Use Cases</p>
-          <h1 className="section-title">Intelligent solutions across key sectors</h1>
-          <p className="section-lead">
-            From defence and aerospace to BFSI, healthcare, smart cities and
-            critical infrastructure — Cloudstrats delivers measurable outcomes.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Industries & Use Cases"
+        title="Intelligent solutions across key sectors"
+        lead="From defence and aerospace to BFSI, healthcare, smart cities and critical infrastructure — Cloudstrats delivers measurable outcomes."
+        image="/assets/hero/defence-hero.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
           <div className="sectors-grid">
             {industrySectors.map((sector, i) => (

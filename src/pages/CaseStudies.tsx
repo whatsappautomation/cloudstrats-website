@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { PageBanner } from "../components/PageBanner";
 import { Reveal } from "../components/Reveal";
 import "./CaseStudies.css";
 
@@ -45,18 +46,14 @@ const cases = [
 export function CaseStudies() {
   return (
     <div className="cases-page">
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Case Studies</p>
-          <h1 className="section-title">Outcomes that matter</h1>
-          <p className="section-lead">
-            Selected engagements across defence, government, enterprise and critical
-            infrastructure — where Cloudstrats delivered measurable impact.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Case Studies"
+        title="Outcomes that matter"
+        lead="Selected engagements across defence, government, enterprise and critical infrastructure — where Cloudstrats delivered measurable impact."
+        image="/assets/lifestyle/boardroom-skyline.png"
+      />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container cases-grid">
           {cases.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.04}>

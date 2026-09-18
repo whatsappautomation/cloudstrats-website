@@ -23,6 +23,11 @@
   margin-top: 0.35rem;
 }
 
+.product-detail-page__tag--on-banner {
+  color: #9fd0ff;
+  margin: -0.4rem 0 0.85rem;
+}
+
 .product-detail-page__traits {
   margin-top: 1.25rem;
 }

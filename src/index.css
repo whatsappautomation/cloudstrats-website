@@ -206,6 +206,70 @@ p {
   pointer-events: none;
 }
 
+/* Dark image banner used across top-level pages */
+.page-banner {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--nav-h) + 2rem) 0 3rem;
+  overflow: hidden;
+  color: #fff;
+  background: #031525;
+}
+
+.page-banner__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.page-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(2, 62, 99, 0.9) 8%,
+    rgba(0, 119, 182, 0.72) 52%,
+    rgba(2, 62, 99, 0.55) 100%
+  );
+}
+
+.page-banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.page-banner__content .eyebrow {
+  color: #9fd0ff;
+}
+
+.page-banner__content .eyebrow::before {
+  background: #9fd0ff;
+}
+
+.page-banner__content h1 {
+  font-size: clamp(2rem, 4.5vw, 3.3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin: 0 0 0.85rem;
+  color: #fff;
+  max-width: 22ch;
+}
+
+.page-banner__content > p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
+  max-width: 48ch;
+  margin: 0 0 1.2rem;
+  line-height: 1.65;
+}
+
 .grid-2 {
   display: grid;
   gap: 1.25rem;
