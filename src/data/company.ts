@@ -173,7 +173,7 @@ export const company = {
   ],
   contacts: {
     email: "bd@cloudstrats.com",
-    website: "www.cloudstrats.com",
+    website: "www.cstrats.com",
     phones: [
       { label: "India Toll-Free", value: "1800 210 6450" },
       { label: "USA", value: "1 833 844 8550" },

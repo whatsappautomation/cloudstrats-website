@@ -37,8 +37,8 @@ export function Footer() {
                 {p.label}: {p.value}
               </a>
             ))}
-            <a href="https://cloudstrats.ai" target="_blank" rel="noreferrer">
-              cloudstrats.ai
+            <a href="https://cstrats.com" target="_blank" rel="noreferrer">
+              cstrats.com
             </a>
           </div>
         </div>
