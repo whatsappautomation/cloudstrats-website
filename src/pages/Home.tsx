@@ -248,10 +248,7 @@ export function Home() {
       </section>
 
       <section className="wow-why">
-        <div className="wow-why__media">
-          <img src="/assets/lifestyle/team-cover.png" alt="Cloudstrats team" />
-        </div>
-        <div className="wow-why__copy">
+        <div className="container wow-why__copy">
           <Reveal>
             <p className="wow-kicker">Why Cloudstrats</p>
             <h2>One partner. Multiple transformation capabilities.</h2>
