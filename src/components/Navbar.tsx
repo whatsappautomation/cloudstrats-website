@@ -102,7 +102,7 @@ export function Navbar() {
     closeTimer.current = window.setTimeout(() => {
       setActiveMenu(null);
       closeTimer.current = null;
-    }, 200);
+    }, 280);
   };
 
   return (

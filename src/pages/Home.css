@@ -673,6 +673,12 @@
     margin-top: 0;
   }
 
+  .wow-hero__rail {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
   .wow-services__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -681,10 +687,6 @@
   .wow-services__grid .wow-service:nth-child(4),
   .wow-services__grid .wow-service:nth-child(5) {
     grid-column: span 1;
-  }
-
-  .wow-hero__rail {
-    display: none;
   }
 }
 
