@@ -420,10 +420,6 @@
   transition: transform 0.45s ease;
 }
 
-.wow-service--image {
-  min-height: 360px;
-}
-
 .wow-service:hover {
   transform: translateY(-6px);
 }
@@ -445,17 +441,12 @@
   transform: scale(1.06);
 }
 
-/* Image-only cards: no text / gradient overlays */
-.wow-service--image .wow-service__media::after {
-  display: none;
-}
-
 .wow-service__media::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(4, 18, 30, 0.15) 0%, rgba(4, 18, 30, 0.35) 40%, rgba(4, 18, 30, 0.92) 100%);
+    linear-gradient(180deg, rgba(4, 18, 30, 0.1) 0%, rgba(4, 18, 30, 0.25) 45%, rgba(4, 18, 30, 0.88) 100%);
 }
 
 .wow-service__body {
@@ -465,7 +456,7 @@
   padding: 1.6rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
 .wow-service__body span {
@@ -481,23 +472,14 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  max-width: 16ch;
-}
-
-.wow-service__body p {
-  margin: 0;
-  color: rgba(226, 239, 250, 0.78);
-  font-weight: 300;
-  font-size: 0.94rem;
-  line-height: 1.6;
-  max-width: 34ch;
+  max-width: 18ch;
 }
 
 .wow-service__body em {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: 0.55rem;
+  margin-top: 0.45rem;
   font-style: normal;
   font-weight: 600;
   color: #c5e8f8;
