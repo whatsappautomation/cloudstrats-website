@@ -15,11 +15,11 @@ import { serviceCategories, servicePath } from "../data/services";
 import "./Home.css";
 
 const serviceImages: Record<string, string> = {
-  "ai-infrastructure": "/assets/lifestyle/data-infra.png",
-  "data-ai-analytics": "/assets/lifestyle/analytics-dashboard.png",
-  "c5i-networks": "/assets/hero/defence-hero.png",
-  cybersecurity: "/assets/hero/soc.png",
-  automation: "/assets/lifestyle/process-automation.png",
+  "ai-infrastructure": "/assets/services/ai-infra.png",
+  "data-ai-analytics": "/assets/services/data-ai.png",
+  "c5i-networks": "/assets/services/c5i.png",
+  cybersecurity: "/assets/services/cyber.png",
+  automation: "/assets/services/automation.png",
 };
 
 const homeServices = serviceCategories.map((service, index) => ({
