@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-/** Always land at the top of the page on route changes. */
+/**
+ * Always open pages from the top on route change.
+ * Hash anchors (dropdown sub-items) update page content at the top —
+ * they do not jump mid-page.
+ */
 export function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const scrollTop = () => {
@@ -13,7 +17,6 @@ export function ScrollToTop() {
     };
 
     scrollTop();
-    // Re-run after route transition paint so mid-page restores don't stick
     const frame = requestAnimationFrame(scrollTop);
     const timer = window.setTimeout(scrollTop, 50);
 
@@ -21,7 +24,7 @@ export function ScrollToTop() {
       cancelAnimationFrame(frame);
       window.clearTimeout(timer);
     };
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }

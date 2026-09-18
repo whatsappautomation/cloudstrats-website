@@ -16,9 +16,11 @@ import { BrandLogo } from "./BrandLogo";
 import {
   serviceCategories,
   servicePath,
+  slugify,
 } from "../data/services";
 import {
   productPath,
+  productSlugify,
   products,
 } from "../data/products";
 import { industryPath, industrySectors } from "../data/industries";
@@ -171,7 +173,9 @@ export function Navbar() {
                         <ul>
                           {cat.items.map((item) => (
                             <li key={item}>
-                              <Link to={servicePath(cat.id)}>{item}</Link>
+                              <Link to={`${servicePath(cat.id)}#${slugify(item)}`}>
+                                {item}
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -224,7 +228,11 @@ export function Navbar() {
                         <ul>
                           {product.items.map((item) => (
                             <li key={item}>
-                              <Link to={productPath(product.id)}>{item}</Link>
+                              <Link
+                                to={`${productPath(product.id)}#${productSlugify(item)}`}
+                              >
+                                {item}
+                              </Link>
                             </li>
                           ))}
                         </ul>

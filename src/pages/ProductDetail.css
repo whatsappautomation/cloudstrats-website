@@ -51,6 +51,13 @@
 .product-detail-page__item {
   padding: 1.35rem 1.4rem;
   scroll-margin-top: calc(var(--nav-h) + 1.25rem);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.product-detail-page__item--active {
+  border-color: var(--accent);
+  background: #f0f8ff;
+  box-shadow: 0 12px 32px rgba(0, 119, 182, 0.14);
 }
 
 .product-detail-page__item h3 {

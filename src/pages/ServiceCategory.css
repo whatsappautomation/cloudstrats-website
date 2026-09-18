@@ -98,6 +98,32 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.service-cat__item--active {
+  border-color: var(--accent);
+  background: #f0f8ff;
+  box-shadow: 0 12px 32px rgba(0, 119, 182, 0.14);
+}
+
+.service-cat__item--flash {
+  animation: service-item-pulse 1.2s ease;
+}
+
+@keyframes service-item-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 32px rgba(0, 119, 182, 0.14);
+  }
+  40% {
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.35);
+  }
+}
+
+.service-why-context {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .service-cat__item h3 {

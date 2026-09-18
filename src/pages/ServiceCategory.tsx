@@ -1,4 +1,5 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { useEffect, useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
@@ -7,9 +8,38 @@ import "./ServiceCategory.css";
 
 export function ServiceCategoryPage() {
   const { serviceId = "" } = useParams();
+  const { hash } = useLocation();
   const category = getServiceById(serviceId);
 
+  const selectedItem = useMemo(() => {
+    if (!category) return null;
+    const id = hash.replace("#", "");
+    if (!id) return null;
+    return category.items.find((item) => slugify(item) === id) ?? null;
+  }, [category, hash]);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+    const id = slugify(selectedItem);
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.classList.add("service-cat__item--flash");
+    }, 80);
+    return () => {
+      window.clearTimeout(timer);
+      document.getElementById(id)?.classList.remove("service-cat__item--flash");
+    };
+  }, [selectedItem]);
+
   if (!category) return <Navigate to="/services" replace />;
+
+  const whyTitle = selectedItem
+    ? `Why ${category.title} — ${selectedItem} matters`
+    : `Why ${category.title} matters`;
+
+  const whyLead = selectedItem
+    ? (category.itemBlurbs[selectedItem] ??
+      `${selectedItem} is a core capability within our ${category.title} practice for mission-critical environments.`)
+    : category.whyImportant;
 
   return (
     <div className="service-cat">
@@ -17,9 +47,16 @@ export function ServiceCategoryPage() {
         <img src={category.bannerImage} alt="" className="service-banner__bg" />
         <div className="service-banner__overlay" />
         <div className="container service-banner__content">
-          <p className="eyebrow">Services</p>
-          <h1>{category.headline}</h1>
-          <p>{category.summary}</p>
+          <p className="eyebrow">
+            Services
+            {selectedItem ? ` · ${category.title}` : ""}
+          </p>
+          <h1>{selectedItem ?? category.headline}</h1>
+          <p>
+            {selectedItem
+              ? `${selectedItem} under ${category.title}. ${category.summary}`
+              : category.summary}
+          </p>
           <Link to="/contact" className="btn btn-primary">
             Talk to Our Experts <ArrowRight size={16} />
           </Link>
@@ -28,12 +65,17 @@ export function ServiceCategoryPage() {
 
       <section className="section">
         <div className="container service-why-grid">
-          <Reveal>
+          <Reveal key={selectedItem ?? "main"}>
             <div>
-              <h2 className="section-title" style={{ maxWidth: "18ch" }}>
-                Why this service matters
+              <h2 className="section-title" style={{ maxWidth: "28ch" }}>
+                {whyTitle}
               </h2>
-              <p className="section-lead">{category.whyImportant}</p>
+              <p className="section-lead">{whyLead}</p>
+              {selectedItem ? (
+                <p className="section-lead service-why-context">
+                  Part of <strong>{category.title}</strong>. {category.whyImportant}
+                </p>
+              ) : null}
             </div>
           </Reveal>
           <Reveal delay={0.08}>
@@ -72,20 +114,26 @@ export function ServiceCategoryPage() {
             <p className="section-lead">{category.servicesIntro}</p>
           </Reveal>
           <div className="service-cat__items">
-            {category.items.map((item, i) => (
-              <Reveal key={item} delay={i * 0.04}>
-                <article id={slugify(item)} className="panel service-cat__item">
-                  <h3>{item}</h3>
-                  <p>
-                    {category.itemBlurbs[item] ??
-                      `Part of our ${category.title} practice for mission-critical environments.`}
-                  </p>
-                  <Link to="/contact" className="service-cat__item-cta">
-                    Enquire <ArrowRight size={14} />
-                  </Link>
-                </article>
-              </Reveal>
-            ))}
+            {category.items.map((item, i) => {
+              const active = selectedItem === item;
+              return (
+                <Reveal key={item} delay={i * 0.04}>
+                  <article
+                    id={slugify(item)}
+                    className={`panel service-cat__item${active ? " service-cat__item--active" : ""}`}
+                  >
+                    <h3>{item}</h3>
+                    <p>
+                      {category.itemBlurbs[item] ??
+                        `Part of our ${category.title} practice for mission-critical environments.`}
+                    </p>
+                    <Link to="/contact" className="service-cat__item-cta">
+                      Enquire <ArrowRight size={14} />
+                    </Link>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
