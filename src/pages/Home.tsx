@@ -212,19 +212,12 @@ export function Home() {
             <Link
               key={service.id}
               to={servicePath(service.id)}
-              className="wow-service"
+              className="wow-service wow-service--image"
               style={{ animationDelay: `${i * 40}ms` }}
+              aria-label={`${service.title} — explore`}
             >
               <div className="wow-service__media">
-                <img src={service.image} alt="" />
-              </div>
-              <div className="wow-service__body">
-                <span>{service.code}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <em>
-                  Explore <ArrowUpRight size={16} />
-                </em>
+                <img src={service.image} alt={service.title} />
               </div>
             </Link>
           ))}

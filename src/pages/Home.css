@@ -420,6 +420,10 @@
   transition: transform 0.45s ease;
 }
 
+.wow-service--image {
+  min-height: 360px;
+}
+
 .wow-service:hover {
   transform: translateY(-6px);
 }
@@ -439,6 +443,11 @@
 
 .wow-service:hover .wow-service__media img {
   transform: scale(1.06);
+}
+
+/* Image-only cards: no text / gradient overlays */
+.wow-service--image .wow-service__media::after {
+  display: none;
 }
 
 .wow-service__media::after {
