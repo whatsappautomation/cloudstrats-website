@@ -147,7 +147,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
     ],
     whyChoose:
-      "With years of experience delivering AI infrastructure solutions, Cloudstrats helps organizations build and manage scalable AI ecosystems aligned with their business objectives. Our team combines expertise across AI data centers, GPU infrastructure, cloud environments, infrastructure modernization, and managed services to deliver solutions that support both current requirements and future growth. From strategy and architecture to deployment and ongoing management, we provide end-to-end support throughout the AI infrastructure lifecycle.",
+      "With years of experience delivering AI infrastructure solutions, Cloudstrats helps organizations build and manage scalable AI ecosystems aligned with their business objectives. Our team combines expertise across AI data centers, GPU infrastructure, cloud environments, infrastructure modernization, and managed services to deliver solutions that support both current requirements and future growth.\n\nFrom strategy and architecture to deployment and ongoing management, we provide end-to-end support throughout the AI infrastructure lifecycle.",
     stats: [
       {
         value: "80%+",
@@ -185,7 +185,7 @@ export const serviceCategories: ServiceCategory[] = [
     bannerImage: "/assets/services/ai-infra.png",
     chartImage: "/assets/services/ai-chip.png",
     cardImage: "/assets/services/ai-infra.png",
-    whyImage: "/assets/lifestyle/strategy-review.png",
+    whyImage: "/assets/lifestyle/nasscom-award.png",
   },
   {
     id: "data-ai-analytics",

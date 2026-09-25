@@ -1,15 +1,36 @@
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
-import { useEffect, useMemo } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import type { FormEvent } from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Building2,
+  HeartPulse,
+  Landmark,
+  Shield,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
+import { company } from "../data/company";
 import { getServiceById, slugify } from "../data/services";
 import "./ServiceCategory.css";
+
+const industryIcons = {
+  "defense-aerospace": Shield,
+  "government-public-sector": Landmark,
+  "banking-financial-services": Building2,
+  "healthcare-life-sciences": HeartPulse,
+  "energy-utilities": Zap,
+  "smart-cities-infrastructure": Sparkles,
+} as const;
 
 export function ServiceCategoryPage() {
   const { serviceId = "" } = useParams();
   const { hash } = useLocation();
   const category = getServiceById(serviceId);
+  const [sent, setSent] = useState(false);
 
   const selectedItem = useMemo(() => {
     if (!category) return null;
@@ -33,8 +54,7 @@ export function ServiceCategoryPage() {
   if (!category) return <Navigate to="/services" replace />;
 
   const shortTitle = category.shortTitle ?? category.title;
-  const whyTag =
-    category.whyTag ?? `Why ${shortTitle}`;
+  const whyTag = category.whyTag ?? `Why ${shortTitle}`;
   const whyTitle = selectedItem
     ? selectedItem
     : (category.whyTitle ?? shortTitle);
@@ -43,6 +63,28 @@ export function ServiceCategoryPage() {
       `${selectedItem} is a core capability within our ${category.title} practice for mission-critical environments.`)
     : category.whyImportant;
   const cardImage = category.cardImage ?? category.bannerImage;
+  const whyParas = category.whyChoose
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const org = String(data.get("organization") || "");
+    const message = String(data.get("message") || "");
+    const subject = encodeURIComponent(
+      `Cloudstrats enquiry — ${shortTitle} — ${name}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nService: ${category.title}\n\n${message}`,
+    );
+    window.location.href = `mailto:${company.contacts.email}?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
 
   return (
     <div className="service-cat">
@@ -156,17 +198,25 @@ export function ServiceCategoryPage() {
             </h2>
           </Reveal>
           <div className="service-industries">
-            {category.industries.map((industry, i) => (
-              <Reveal key={industry.id} delay={i * 0.04}>
-                <Link
-                  to={`/industries/${industry.id}`}
-                  className="panel service-industry"
-                >
-                  <h3>{industry.title}</h3>
-                  <p>{industry.text}</p>
-                </Link>
-              </Reveal>
-            ))}
+            {category.industries.map((industry, i) => {
+              const Icon =
+                industryIcons[industry.id as keyof typeof industryIcons] ??
+                Building2;
+              return (
+                <Reveal key={industry.id} delay={i * 0.04}>
+                  <Link
+                    to={`/industries/${industry.id}`}
+                    className="service-industry"
+                  >
+                    <span className="service-industry__icon" aria-hidden>
+                      <Icon size={18} />
+                    </span>
+                    <h3>{industry.title}</h3>
+                    <p>{industry.text}</p>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -174,10 +224,14 @@ export function ServiceCategoryPage() {
       <section className="section service-choose">
         <div className="container service-choose__grid">
           <Reveal>
-            <div>
+            <div className="service-choose__copy">
               <h2 className="section-title">Why Choose Cloudstrats?</h2>
-              <p className="section-lead">{category.whyChoose}</p>
-              <Link to="/contact" className="btn btn-primary">
+              {whyParas.map((para) => (
+                <p key={para.slice(0, 40)} className="section-lead">
+                  {para}
+                </p>
+              ))}
+              <Link to="/contact" className="btn btn-primary service-choose__cta">
                 Talk to an Expert <ArrowRight size={16} />
               </Link>
             </div>
@@ -186,22 +240,22 @@ export function ServiceCategoryPage() {
             <LiveImage
               className="live-image--tall"
               src={category.whyImage}
-              alt="Why choose Cloudstrats"
+              alt="Cloudstrats nasscom recognition"
             />
           </Reveal>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section service-stats-section">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">By the numbers</p>
+            <p className="eyebrow">Our Stats</p>
             <h2 className="section-title">{shortTitle} by the Numbers</h2>
           </Reveal>
           <div className="service-stats">
             {category.stats.map((stat, i) => (
               <Reveal key={`${stat.value}-${i}`} delay={i * 0.05}>
-                <div className="panel service-stat">
+                <div className="service-stat">
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
                 </div>
@@ -211,18 +265,53 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
+      <section className="service-close">
+        <div className="container service-close__layout">
           <Reveal>
-            <div className="panel service-cat__cta">
-              <div>
-                <h2>{category.finalHeadline}</h2>
-                <p>{category.finalText}</p>
-              </div>
-              <Link to="/contact" className="btn btn-primary">
-                Get in Touch <ArrowRight size={16} />
-              </Link>
+            <div className="service-close__copy">
+              <p className="eyebrow service-close__kicker">Building what&apos;s next</p>
+              <h2>{category.finalHeadline}</h2>
+              <p>{category.finalText}</p>
             </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <form className="service-close__form" onSubmit={onSubmit}>
+              <h3>Talk to us</h3>
+              <label>
+                Full name
+                <input name="name" required placeholder="Your name" />
+              </label>
+              <label>
+                Work email
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@organization.com"
+                />
+              </label>
+              <label>
+                Organization
+                <input name="organization" placeholder="Agency / Enterprise" />
+              </label>
+              <label>
+                How can we help?
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="Tell us about your mission, timeline or RFP."
+                />
+              </label>
+              <button type="submit" className="btn btn-primary">
+                Email Us <ArrowRight size={16} />
+              </button>
+              {sent ? (
+                <p className="service-close__note">
+                  Your mail client should open with the enquiry pre-filled.
+                </p>
+              ) : null}
+            </form>
           </Reveal>
         </div>
       </section>
