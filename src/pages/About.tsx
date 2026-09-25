@@ -27,9 +27,9 @@ export function About() {
           <Reveal>
             <div className="about-visual">
               <LiveImage
-                className="live-image--wide"
-                src="/assets/lifestyle/team-cover.png"
-                alt="Cloudstrats team"
+                className="live-image--wide live-image--team"
+                src="/assets/lifestyle/team-group.png"
+                alt="The Cloudstrats team"
                 caption="The Cloudstrats team"
               />
             </div>
