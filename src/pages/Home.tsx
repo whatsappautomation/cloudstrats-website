@@ -329,7 +329,7 @@ export function Home() {
                 />
               </label>
               <button type="submit" className="wow-btn wow-btn--solid">
-                Email Us <ArrowRight size={16} />
+                Contact <ArrowRight size={16} />
               </button>
               {sent && (
                 <p className="wow-close__note">

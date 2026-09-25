@@ -61,7 +61,7 @@ export function Contact() {
                 />
               </label>
               <button type="submit" className="btn btn-primary">
-                Email Us
+                Contact
               </button>
               {sent && (
                 <p className="form-note">

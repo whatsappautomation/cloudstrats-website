@@ -304,7 +304,7 @@ export function ServiceCategoryPage() {
                 />
               </label>
               <button type="submit" className="btn btn-primary">
-                Email Us <ArrowRight size={16} />
+                Contact <ArrowRight size={16} />
               </button>
               {sent ? (
                 <p className="service-close__note">
