@@ -1,10 +1,15 @@
 export type ServiceCategory = {
   id: string;
   title: string;
+  shortTitle?: string;
   headline: string;
   summary: string;
   quote: string;
   servicesIntro: string;
+  servicesHeading?: string;
+  industriesHeading?: string;
+  whyTitle?: string;
+  whyTag?: string;
   icon: string;
   items: string[];
   whyImportant: string;
@@ -17,6 +22,7 @@ export type ServiceCategory = {
   finalText: string;
   bannerImage: string;
   chartImage: string;
+  cardImage?: string;
   whyImage: string;
 };
 
@@ -70,12 +76,17 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: "ai-infrastructure",
     title: "AI Infrastructure and Data Centres",
+    shortTitle: "AI Infrastructure",
     headline: "Build Scalable AI Infrastructure for the Future of Enterprise Innovation",
     summary:
       "Adapt AI infrastructure solutions designed to support modern workloads, GPU-intensive computing, and next-generation data center environments.",
     quote:
       "Our AI infrastructure solutions ensure that innovation works hand in hand with performance, security, efficiency, and long-term scalability.",
     servicesIntro: "Solutions catered for excellence",
+    servicesHeading: "Our AI Infrastructure & Data Center Services",
+    industriesHeading: "AI Infrastructure Catered for Key Industries",
+    whyTitle: "AI Infrastructure – the Foundation of Modern Success",
+    whyTag: "Why AI Infrastructure",
     icon: "server",
     items: [
       "Building AI Data Centers",
@@ -171,13 +182,16 @@ export const serviceCategories: ServiceCategory[] = [
     ],
     finalHeadline: "A Future-Ready Foundation for Exponential Growth",
     finalText: "Ready to optimize your CPUs and data centres? Let’s get started.",
-    bannerImage: "/assets/lifestyle/data-infra.png",
-    chartImage: "/assets/lifestyle/analytics-dashboard.png",
+    bannerImage: "/assets/services/ai-infra.png",
+    chartImage: "/assets/services/ai-chip.png",
+    cardImage: "/assets/services/ai-infra.png",
     whyImage: "/assets/lifestyle/strategy-review.png",
   },
   {
     id: "data-ai-analytics",
     title: "Data AI & Analytics",
+    shortTitle: "Data & Analytics",
+    whyTag: "Why Data & Analytics",
     headline: "Transform data into Actionable Intelligence",
     summary:
       "Harness analytics from modern data platforms, and AI-powered business insights, that drive smarter decision making.",
@@ -269,11 +283,14 @@ export const serviceCategories: ServiceCategory[] = [
     finalText: "Prioritize data-driven decision making to have an edge over your competition.",
     bannerImage: "/assets/lifestyle/analytics-dashboard.png",
     chartImage: "/assets/lifestyle/ai-briefing.png",
+    cardImage: "/assets/services/data-ai.png",
     whyImage: "/assets/lifestyle/team-collab.png",
   },
   {
     id: "c5i-networks",
     title: "C5I and Mission Critical Networks",
+    shortTitle: "C5I Networks",
+    whyTag: "Why C5I Networks",
     headline: "C5I Networks for Mission Critical Networks",
     summary:
       "Enable secure, resilient, and mission-ready operations with advanced C5I systems.",
@@ -363,11 +380,14 @@ export const serviceCategories: ServiceCategory[] = [
     finalText: "Ready to build resilient infrastructure with C5I?",
     bannerImage: "/assets/lifestyle/ai-workshop.png",
     chartImage: "/assets/lifestyle/boardroom-skyline.png",
+    cardImage: "/assets/services/c5i.png",
     whyImage: "/assets/lifestyle/digital-consult.png",
   },
   {
     id: "cybersecurity",
     title: "Cyber Security Operations",
+    shortTitle: "Cyber Security",
+    whyTag: "Why Cyber Security",
     headline: "Strengthen Security Posture with Around the Clock Monitoring",
     summary:
       "Cybersecurity services built for threat detection, incident response, and better preparedness against unprecedented threats.",
@@ -461,11 +481,14 @@ export const serviceCategories: ServiceCategory[] = [
     finalText: "Ready to build a security-first system? Let’s get started.",
     bannerImage: "/assets/lifestyle/digital-consult.png",
     chartImage: "/assets/lifestyle/process-automation.png",
+    cardImage: "/assets/services/cyber.png",
     whyImage: "/assets/lifestyle/boardroom-skyline.png",
   },
   {
     id: "automation",
     title: "Intelligent Automation and Digital Transformation",
+    shortTitle: "Automation",
+    whyTag: "Why Automation",
     headline: "Transform Operations with AI-Powered Automation",
     summary:
       "Incorporate intelligent workflows, and digital transformation solutions that improve efficiency, agility, and business performance.",
@@ -561,6 +584,7 @@ export const serviceCategories: ServiceCategory[] = [
       "The future of enterprise operations is intelligent, connected, and increasingly automated.",
     bannerImage: "/assets/lifestyle/automation-rpa.png",
     chartImage: "/assets/lifestyle/process-automation.png",
+    cardImage: "/assets/services/automation.png",
     whyImage: "/assets/lifestyle/team-meeting.png",
   },
 ];

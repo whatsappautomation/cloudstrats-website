@@ -62,6 +62,16 @@
   object-position: center 42%;
 }
 
+.live-image--contain {
+  background: #06101a;
+}
+
+.live-image--contain img {
+  object-fit: contain;
+  object-position: center;
+  min-height: 320px;
+}
+
 .live-image--hero {
   min-height: 420px;
   border-radius: 24px;
@@ -84,6 +94,16 @@
   border: 1px solid var(--line);
   background: white;
   box-shadow: var(--shadow-soft);
+}
+
+.media-strip__link {
+  display: block;
+  color: inherit;
+  height: 100%;
+}
+
+.media-strip__link:hover figcaption {
+  color: var(--accent);
 }
 
 .media-strip__item img {

@@ -12,10 +12,8 @@ import { MediaStrip } from "../components/LiveMedia";
 import { PageBanner } from "../components/PageBanner";
 import {
   aiInfraFeatures,
-  highlightServices,
   serviceCategories,
   servicePath,
-  servicePillars,
   slugify,
   socCapabilities,
   socOutcomes,
@@ -30,71 +28,79 @@ const icons = {
   spark: Sparkles,
 } as const;
 
+const stripItems = [
+  {
+    id: "ai-infrastructure",
+    src: "/assets/services/ai-infra.png",
+    alt: "AI infrastructure services",
+    label: "AI Infrastructure",
+  },
+  {
+    id: "data-ai-analytics",
+    src: "/assets/services/data-ai.png",
+    alt: "Data AI and analytics",
+    label: "Data & Analytics",
+  },
+  {
+    id: "c5i-networks",
+    src: "/assets/services/c5i.png",
+    alt: "C5I and mission networks",
+    label: "C5I Networks",
+  },
+  {
+    id: "cybersecurity",
+    src: "/assets/services/cyber.png",
+    alt: "Cybersecurity operations",
+    label: "Cyber Security",
+  },
+  {
+    id: "automation",
+    src: "/assets/services/automation.png",
+    alt: "Intelligent automation",
+    label: "Automation",
+  },
+] as const;
+
 export function Services() {
   return (
     <div className="services-page">
       <PageBanner
         eyebrow="Our Services"
         title="Comprehensive solutions. Measurable impact."
-        lead="Strategy · Design · Management — end-to-end services for mission success across AI infrastructure, data, C5I, cyber security and intelligent automation."
-        image="/assets/hero/services-slide.png"
+        lead="End-to-end technology solutions designed to power smarter, more secure businesses."
+        image="/assets/lifestyle/data-infra.png"
       />
 
       <section className="section">
         <div className="container">
           <Reveal>
             <MediaStrip
-              items={[
-                {
-                  src: "/assets/services/ai-infra.png",
-                  alt: "AI infrastructure services",
-                  label: "AI Infrastructure",
-                },
-                {
-                  src: "/assets/services/data-ai.png",
-                  alt: "Data AI and analytics",
-                  label: "Data & Analytics",
-                },
-                {
-                  src: "/assets/services/c5i.png",
-                  alt: "C5I and mission networks",
-                  label: "C5I Networks",
-                },
-                {
-                  src: "/assets/services/cyber.png",
-                  alt: "Cybersecurity operations",
-                  label: "Cyber Security",
-                },
-                {
-                  src: "/assets/services/automation.png",
-                  alt: "Intelligent automation",
-                  label: "Automation",
-                },
-              ]}
+              items={stripItems.map((item) => ({
+                ...item,
+                to: servicePath(item.id),
+              }))}
             />
           </Reveal>
-          <div className="grid-3" style={{ marginTop: "1.25rem" }}>
-            {servicePillars.map((p, i) => (
-              <Reveal key={p.id} delay={i * 0.06}>
-                <article className="panel services-pillar">
-                  <span>0{i + 1}</span>
-                  <h2>{p.title}</h2>
-                  <p>{p.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
 
-          <div className="services-highlights">
-            {highlightServices.map((s, i) => (
-              <Reveal key={s.id} delay={i * 0.05}>
-                <article className="panel services-highlight">
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <div className="services-intro">
+              <h2 className="section-title">
+                Build A Future Ready Environment for Optimized Workflows
+              </h2>
+              <p className="section-lead">
+                Cloudstrats delivers end-to-end technology solutions across AI
+                infrastructure, data and analytics, mission-critical networks,
+                cybersecurity, and intelligent automation. Our intention is to
+                build scalable AI-ready infrastructure, turn data into actionable
+                insights, modernise critical networks, strengthen security
+                operations, and automate complex business processes. By bringing
+                these capabilities together, Cloudstrats enables businesses and
+                institutions to improve efficiency, strengthen resilience, and
+                build a more intelligent, secure and future-ready technology
+                ecosystem.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -171,7 +177,10 @@ export function Services() {
           <Reveal delay={0.08}>
             <article className="panel deep-block">
               <p className="eyebrow">Security Operations Centre</p>
-              <h2>24×7 command. Complete visibility. Faster detection. Stronger response.</h2>
+              <h2>
+                24×7 command. Complete visibility. Faster detection. Stronger
+                response.
+              </h2>
               <p>
                 Continuous monitoring, deep threat visibility and rapid response
                 to protect your digital infrastructure, users and data.

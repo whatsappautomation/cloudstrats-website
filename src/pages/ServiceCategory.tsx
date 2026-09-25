@@ -1,6 +1,6 @@
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { LiveImage } from "../components/LiveMedia";
 import { Reveal } from "../components/Reveal";
 import { getServiceById, slugify } from "../data/services";
@@ -22,24 +22,27 @@ export function ServiceCategoryPage() {
     if (!selectedItem) return;
     const id = slugify(selectedItem);
     const timer = window.setTimeout(() => {
-      document.getElementById(id)?.classList.add("service-cat__item--flash");
+      document.getElementById(id)?.classList.add("service-cat__card--flash");
     }, 80);
     return () => {
       window.clearTimeout(timer);
-      document.getElementById(id)?.classList.remove("service-cat__item--flash");
+      document.getElementById(id)?.classList.remove("service-cat__card--flash");
     };
   }, [selectedItem]);
 
   if (!category) return <Navigate to="/services" replace />;
 
+  const shortTitle = category.shortTitle ?? category.title;
+  const whyTag =
+    category.whyTag ?? `Why ${shortTitle}`;
   const whyTitle = selectedItem
-    ? `Why ${category.title} — ${selectedItem} matters`
-    : `Why ${category.title} matters`;
-
+    ? selectedItem
+    : (category.whyTitle ?? shortTitle);
   const whyLead = selectedItem
     ? (category.itemBlurbs[selectedItem] ??
       `${selectedItem} is a core capability within our ${category.title} practice for mission-critical environments.`)
     : category.whyImportant;
+  const cardImage = category.cardImage ?? category.bannerImage;
 
   return (
     <div className="service-cat">
@@ -48,8 +51,8 @@ export function ServiceCategoryPage() {
         <div className="service-banner__overlay" />
         <div className="container service-banner__content">
           <p className="eyebrow">
-            Services
-            {selectedItem ? ` · ${category.title}` : ""}
+            Services → {shortTitle}
+            {selectedItem ? ` → ${selectedItem}` : ""}
           </p>
           <h1>{selectedItem ?? category.headline}</h1>
           <p>
@@ -67,6 +70,7 @@ export function ServiceCategoryPage() {
         <div className="container service-why-grid">
           <Reveal key={selectedItem ?? "main"}>
             <div>
+              <p className="eyebrow">{whyTag}</p>
               <h2 className="section-title" style={{ maxWidth: "28ch" }}>
                 {whyTitle}
               </h2>
@@ -80,7 +84,7 @@ export function ServiceCategoryPage() {
           </Reveal>
           <Reveal delay={0.08}>
             <LiveImage
-              className="live-image--tall"
+              className="live-image--tall live-image--contain"
               src={category.chartImage}
               alt={`${category.title} impact`}
               caption="Impact & insight"
@@ -89,19 +93,16 @@ export function ServiceCategoryPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
+      <section className="service-quote">
+        <div className="container service-quote__inner">
           <Reveal>
-            <div className="panel service-highlight">
-              <div>
-                <p className="eyebrow">Our experience</p>
-                <h2>{category.quote}</h2>
-                <p>{category.experience}</p>
-              </div>
-              <Link to="/contact" className="btn btn-primary">
-                Schedule a Consultation <ArrowRight size={16} />
-              </Link>
-            </div>
+            <span className="service-quote__mark" aria-hidden>
+              “
+            </span>
+            <h2>{category.quote}</h2>
+            <Link to="/contact" className="btn btn-primary">
+              Schedule a Consultation <ArrowRight size={16} />
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -110,7 +111,9 @@ export function ServiceCategoryPage() {
         <div className="container">
           <Reveal>
             <p className="eyebrow">Capabilities</p>
-            <h2 className="section-title">Our {category.title} Services</h2>
+            <h2 className="section-title">
+              {category.servicesHeading ?? `Our ${category.title} Services`}
+            </h2>
             <p className="section-lead">{category.servicesIntro}</p>
           </Reveal>
           <div className="service-cat__items">
@@ -120,16 +123,22 @@ export function ServiceCategoryPage() {
                 <Reveal key={item} delay={i * 0.04}>
                   <article
                     id={slugify(item)}
-                    className={`panel service-cat__item${active ? " service-cat__item--active" : ""}`}
+                    className={`service-cat__card${active ? " service-cat__card--active" : ""}`}
                   >
-                    <h3>{item}</h3>
-                    <p>
-                      {category.itemBlurbs[item] ??
-                        `Part of our ${category.title} practice for mission-critical environments.`}
-                    </p>
-                    <Link to="/contact" className="service-cat__item-cta">
-                      Enquire <ArrowRight size={14} />
-                    </Link>
+                    <div className="service-cat__card-media" aria-hidden>
+                      <img src={cardImage} alt="" />
+                    </div>
+                    <div className="service-cat__card-body">
+                      <span>{String(i + 1).padStart(2, "0")}</span>
+                      <h3>{item}</h3>
+                      <p>
+                        {category.itemBlurbs[item] ??
+                          `Part of our ${category.title} practice for mission-critical environments.`}
+                      </p>
+                      <Link to="/contact" className="service-cat__card-cta">
+                        Explore <ArrowUpRight size={16} />
+                      </Link>
+                    </div>
                   </article>
                 </Reveal>
               );
@@ -142,7 +151,9 @@ export function ServiceCategoryPage() {
         <div className="container">
           <Reveal>
             <p className="eyebrow">Industries</p>
-            <h2 className="section-title">Where this service creates impact</h2>
+            <h2 className="section-title">
+              {category.industriesHeading ?? "Where this service creates impact"}
+            </h2>
           </Reveal>
           <div className="service-industries">
             {category.industries.map((industry, i) => (
@@ -185,7 +196,7 @@ export function ServiceCategoryPage() {
         <div className="container">
           <Reveal>
             <p className="eyebrow">By the numbers</p>
-            <h2 className="section-title">{category.title} by the Numbers</h2>
+            <h2 className="section-title">{shortTitle} by the Numbers</h2>
           </Reveal>
           <div className="service-stats">
             {category.stats.map((stat, i) => (

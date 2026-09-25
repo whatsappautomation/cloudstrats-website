@@ -64,6 +64,15 @@
   flex-shrink: 0;
 }
 
+.services-intro {
+  margin-top: 2rem;
+  max-width: 68ch;
+}
+
+.services-intro .section-title {
+  margin-bottom: 0.85rem;
+}
+
 .hierarchy-card ul {
   list-style: none;
   margin: 0;

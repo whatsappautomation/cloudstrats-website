@@ -1,5 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import "./LiveMedia.css";
 
 type LiveImageProps = {
@@ -28,26 +29,39 @@ export function LiveImage({ src, alt, className = "", caption }: LiveImageProps)
 }
 
 type MediaStripProps = {
-  items: { src: string; alt: string; label: string }[];
+  items: { src: string; alt: string; label: string; to?: string }[];
 };
 
 export function MediaStrip({ items }: MediaStripProps) {
   return (
     <div className="media-strip">
-      {items.map((item, i) => (
-        <motion.figure
-          key={item.src}
-          className="media-strip__item"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: i * 0.08, duration: 0.55 }}
-          whileHover={{ y: -6 }}
-        >
-          <img src={item.src} alt={item.alt} loading="lazy" />
-          <figcaption>{item.label}</figcaption>
-        </motion.figure>
-      ))}
+      {items.map((item, i) => {
+        const body = (
+          <>
+            <img src={item.src} alt={item.alt} loading="lazy" />
+            <figcaption>{item.label}</figcaption>
+          </>
+        );
+        return (
+          <motion.figure
+            key={item.src}
+            className="media-strip__item"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: i * 0.08, duration: 0.55 }}
+            whileHover={{ y: -6 }}
+          >
+            {item.to ? (
+              <Link to={item.to} className="media-strip__link">
+                {body}
+              </Link>
+            ) : (
+              body
+            )}
+          </motion.figure>
+        );
+      })}
     </div>
   );
 }
